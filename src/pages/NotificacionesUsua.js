@@ -1,19 +1,17 @@
 import React from "react";
-import busquedaUsua from "../static/img/busquedaUsua.png";
-import filtrar from "../static/img/filtrar.png";
+import Notificacionessection1 from "../components/notificacionessection1";
+import Notificacionessection2 from "../components/Notificacionessection2";
 
 
 
-function NotificacionesUsua () {
-    return (
-       <div>
-  
+function NotificacionesUsua() {
+  return (
+    <div>
+    {/* aqui hace falta el nav de Usuario vincularlooo */}
+    <Notificacionessection1/>
+    <Notificacionessection2/>
     </div>
-    {/* Repite las tarjetas de notificación aquí */}
-  </main>
-</div>
- 
-    );
+  );
 };
 
 export default NotificacionesUsua;
