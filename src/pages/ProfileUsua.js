@@ -1,10 +1,11 @@
 import React from "react";
+import Navbarinscap from "../components/layout/NavbarInsCap";
 import Profile from "../components/Profile";
 
 function ProfileUsua() {
   return (
     <div>
-       {/* aqui hace falta el nav de Usuario vincularlooo */}
+      < Navbarinscap />
       <Profile/>
     </div>
   );
