@@ -1,12 +1,13 @@
 import React from "react";
 import NavbarAdmin from "../components/layout/NavbarAdmin";
-import ProfileAdmin from "../components/ProfileAdmin";
+import PerfilAdmin from "../components/ProfileAdmin";
+import '../index.css'
 
 function Perfil() {
   return (
     <div>
       < NavbarAdmin />
-      < ProfileAdmin />
+      < PerfilAdmin />
     </div>
   );
 };

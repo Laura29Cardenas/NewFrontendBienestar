@@ -6,7 +6,7 @@ function ProfileUsua() {
   return (
     <div>
       < Navbarinscap />
-      <Profile/>
+      < Profile/>
     </div>
   );
 };
