@@ -11,6 +11,8 @@ function Cardsede52() {
             <ol>Jorge Torres</ol>
             <ol>15/09/2024 | 9:00am</ol>
           </ul>
+
+          
         </div>
         <div className="cuadro-info" id="info1">
           <ul className="text-info">
