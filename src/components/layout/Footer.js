@@ -8,7 +8,7 @@ function Footer() {
         <div className="container">
           <div className="row">
             <div className="footer-col">
-              <h4>Descubrir</h4>
+              <h4> Descubrir</h4>
               <ul>
                 <li>
                   <Link to="https://www.sena.edu.co/es-co/ciudadano/Paginas/certificadosConstancias.aspx">

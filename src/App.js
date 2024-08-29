@@ -6,7 +6,7 @@ import PerfilAdmin from "./pages/PerfilAdmin";
 
 function App() {
   return (
-    <div className="App">
+    <div className=" App">
       <>
         <Routes>
           <Route path="/Informes" element={<Informes/>} />

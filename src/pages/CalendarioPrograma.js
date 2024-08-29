@@ -4,7 +4,7 @@ import Calendariomain from "../components/calendariomain";
 
 function CalendarioPrograma () {
   return (
-    <div>
+    <div >
       < Navbarinscap />
       < Calendariomain />
     </div>

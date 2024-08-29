@@ -4,7 +4,7 @@ function Notificacionessection() {
   return (
     <div>
       <div classname="title-search-container">
-        <h2 classname="section-title">Historial de Notificaciones</h2>
+        <h2 classname="section-title" >Historial de Notificaciones</h2>
         <div classname="search-filter-container">
           <input
             type="text"

@@ -4,7 +4,7 @@ import Usuarios1 from "../components/Usuarios1";
 
 function Usuarios() {
   return (
-    <div>
+    <div >
       < NavbarAdmin />
       < Usuarios1 />
     </div>

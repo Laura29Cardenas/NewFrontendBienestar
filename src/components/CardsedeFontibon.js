@@ -30,7 +30,7 @@ function CardsedeFontibon() {
           <ul className="text-info">
             <ol>Deporte - Pruebas fisicas</ol>
             <ol>Jorge Torres</ol>
-            <ol>15/09/2024 | 9:00am</ol>
+            <ol> 15/09/2024 | 9:00am</ol>
           </ul>
         </div>
       </div>

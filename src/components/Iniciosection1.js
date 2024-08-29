@@ -7,7 +7,7 @@ function Iniciosection1() {
   return (
     <div>
       <section className="coffee">
-        <div className="coffee-content container">
+        <div className=" coffee-content container">
           <h2>Los diferentes servicios</h2>
           <h3>Asesoría Psicológica</h3>
           <div className="coffee-group" />

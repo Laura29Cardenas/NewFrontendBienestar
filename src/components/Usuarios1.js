@@ -4,7 +4,7 @@ function Usuarios1() {
   return (
     <div>
 <div>
-  <h2 className="titulo-usuario">¿Cúal usuario desea buscar?</h2>
+  <h2 className="titulo-usuario"> ¿Cúal usuario desea buscar?</h2>
   <div className="buscador-usuarios">
     <form>
       <div className="form-busqueda">

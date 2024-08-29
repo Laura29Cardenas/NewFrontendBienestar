@@ -6,7 +6,7 @@ function Iniciosection4() {
       <section className="general">
         <div className="general-3" />
         <div className="general-1">
-          <h3>Plataformas de Aprendizaje en Línea</h3>
+          <h3> Plataformas de Aprendizaje en Línea</h3>
           <p>
             Las plataformas de aprendizaje en línea del SENA ofrecen recursos
             adicionales y cursos complementarios que permiten a los estudiantes

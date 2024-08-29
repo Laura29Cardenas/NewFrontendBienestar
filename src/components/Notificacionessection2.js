@@ -4,7 +4,7 @@ function Notificacionessection2() {
   return (
     <main classname="notifications-container">
       <div classname="notification-card">
-        <h3>Asunto: Actualización de Taller</h3>
+        <h3> Asunto: Actualización de Taller</h3>
         <p>
           Descripción: Se ha actualizado el taller de Deportes para incluir
           nuevas actividades.

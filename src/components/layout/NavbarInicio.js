@@ -10,7 +10,7 @@ function NavbarInicio() {
           <Link to="#" className="logo">
             AVA
           </Link>
-          <input type="checkbox" id="menu" />
+          <input type="checkbox" id=" menu" />
           <label htmlFor="menu">
             <img src={actividades} className="menu-icono" alt="actividades" />
           </label>

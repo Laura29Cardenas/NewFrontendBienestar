@@ -4,7 +4,7 @@ import Informes1 from "../components/Informes1";
 
 function Informes() {
   return (
-    <div>
+    <div >
         < NavbarAdmin />
         < Informes />
     </div>

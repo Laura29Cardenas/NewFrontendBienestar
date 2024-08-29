@@ -4,7 +4,7 @@ import Profile from "../components/Profile";
 
 function ProfileUsua() {
   return (
-    <div>
+    <div >
       < Navbarinscap />
       < Profile/>
     </div>

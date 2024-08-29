@@ -5,7 +5,7 @@ function ProfileAdmin() {
     <div>
     <div>
   <div className="title-container">
-    <h2 className="seccion-titulo-perfil">Informacion del Perfil</h2>
+    <h2 className="seccion-titulo-perfil" >Informacion del Perfil</h2>
   </div>
   <main className="informacion-perfil">
     <div className="perfil-container">

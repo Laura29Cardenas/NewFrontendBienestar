@@ -4,7 +4,7 @@ function Informes1() {
   return (
     <div>
       <div>
-        <h1 className="titulo-informes">Bienvenido a los informes</h1>
+        <h1 className="titulo-informes"> Bienvenido a los informes</h1>
         <h3 className="titulo2-informes">
           A continuación llena los datos para poder visualizar el informe que
           estas buscando

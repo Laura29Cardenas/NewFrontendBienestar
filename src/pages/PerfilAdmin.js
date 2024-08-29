@@ -5,7 +5,7 @@ import '../index.css'
 
 function Perfil() {
   return (
-    <div>
+    <div >
       < NavbarAdmin />
       < PerfilAdmin />
     </div>

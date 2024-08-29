@@ -11,7 +11,8 @@ import { Link } from "react-router-dom";
 function NavbarAdmin () {
     return (
         <header>
-        <img src={logo} className="logo" alt="logo"/>
+
+        <img src={logo} className=" logo" alt="logo"/>
         <nav>
           <ul>
             <li>
