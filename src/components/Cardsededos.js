@@ -1,9 +1,9 @@
 import React from "react";
 
-function CardsedeFontibon() {
+function Cardsededos() {
   return (
     <div className="card">
-      <h2 className="tittle">Sede Fontibón</h2>
+      <h2 className="tittle">Sede 64</h2>
       <div className="cuadro-info">
         <ul className="text-info">
           <li>Deporte - Pruebas físicas</li>
@@ -36,4 +36,4 @@ function CardsedeFontibon() {
   );
 }
 
-export default CardsedeFontibon;
+export default Cardsededos;

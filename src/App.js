@@ -1,6 +1,7 @@
-import { Route, Router, Routes } from "react-router-dom";
-import Informes from "./pages/Informes";
-import PerfilAdmin from "./pages/PerfilAdmin";
+import { Route, Routes } from "react-router-dom";
+import ProfileUsua from "./pages/ProfileUsua";
+import CalendarioUsuario from "./pages/CalendarioUsuario";
+import ProgramacionUsua from "./pages/ProgramacionUsua";
 
 
 
@@ -9,8 +10,9 @@ function App() {
     <div className=" App">
       <>
         <Routes>
-          <Route path="/Informes" element={<Informes/>} />
-          <Route path="/PerfilAdmin" element={<PerfilAdmin/>} />
+          <Route path="/Perfil" element={<ProfileUsua/>} />
+          <Route path="/Calendario" element={<CalendarioUsuario/>} />
+          <Route path="/Programacion" element={<ProgramacionUsua/>} />
         </Routes>
       </>
     </div>

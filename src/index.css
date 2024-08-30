@@ -1,89 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
-/*NavAdmin css*/
- .swal2-html-container {
-  z-index: 1;
-  display: flex ;
-  margin: 0;
-  padding: 1em 1.6em 0.3em;
-  overflow: auto;
-  color: inherit;
-  font-size: 1.125em;
-  font-weight: normal;
-  line-height: normal;
-  text-align:initial;
-  word-wrap: break-word;
-  word-break: break-word;
-}
 
-swal.fire {
-  padding: 0px;
-  margin: 0px;
-}
-
-swal.fire title {
-  margin: 0;
-  padding: 0;
-}
-
-.swal2-popup {
-  border-radius: 8px;
-  border: 2px solid #5cb85c;
-  padding: 0 0 0.03em;
-  display:flex;
-}
-
-.swal2-validation-message {
-  position: relative;
-  bottom: 25%;
-  margin: 0;
-}
-
-.swal2-actions .boton-usuario {
-  background-color: #5cb85c;
-  position: relative;
-  bottom: 40%;
-}
-
-.registrar-usua {
-  display: block;
-  padding: 0px;
-  margin: 0px;
-}
-
-.registrar-usua .form-busqueda {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group .label-usuarios {
-  display: flex;
-  font-weight: 600;
-  color: #333;
-  text-align: left; /* Alinea el texto del label a la izquierda */
-}
-
-.form-group .input-check-usuarios,
-.form-group .selector-documento {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  width: 100%;
-  transition: border-color 0.3s ease;
-}
-
-.form-group .input-check-usuarios:focus,
-.form-group .selector-documento:focus {
-  border-color: #5cb85c;
-  outline: none;
-}
+ 
 
 
 /*Gestion de usuarios*/
@@ -388,7 +307,9 @@ swal.fire title {
   outline: none;
 }
 
-/*ProfileAdmin*/
+
+
+/*PROFILEADMIN*/
 /*ProfileAdmin.css*/
 .swal2-html-container {
   z-index: 1;
@@ -726,4 +647,864 @@ swal.fire title {
 }
 .download-button-informes .descargar-informe {
   border: none;
+}
+
+
+
+/*CALENDARIOUSUA*/
+/* Estilos para el contenido principal */
+.calendario-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  margin-top: 9vh; /* Espacio para la barra de navegación */
+  height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+}
+
+/* Contenedor que agrupa el formulario y el calendario */
+/* Contenedor que agrupa el formulario y el calendario */
+.form-calendar-container {
+  display: grid;
+  justify-items: center;
+  margin: 20vh auto; /* Ajusta el margen superior para bajar el contenedor */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+  padding: 10px;
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  padding-bottom: 0;
+  box-sizing: content-box; /* Ajusta el box-sizing */
+}
+
+/* Estilos para el contenedor del formulario */
+.form-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 450px;
+  padding: 20px; /* Ajusta el padding según el diseño */
+  border: 2px solid #5cb85c;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Asegura que padding no afecte el tamaño total */
+  margin-top: 15vh; /* Ajusta el margen superior según sea necesario */
+  margin-left: 50vh; 
+  transform: translateX(-500px);/* Ajusta el margen izquierdo según sea necesario */
+}
+
+.form-container h2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  text-align: left; /* Mantiene los labels alineados a la izquierda */
+}
+
+.form-container input {
+  width: calc(100% - 1rem);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-container button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #5cb85c;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.form-container button:hover {
+  background-color: #4cae4c;
+}
+
+/* Estilos para el contenedor del calendario */
+.calendar-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 450px;
+  padding: 10px;
+  border: 2px solid #5cb85c;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Asegura que padding no afecte el tamaño total */
+  margin-top: 0; /* Ajusta el margen superior según sea necesario */
+  margin-left: 0; /* Ajusta el margen izquierdo según sea necesario */
+}
+/* Estilos para la cuadrícula del calendario */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px; /* Espacio entre los días */
+  margin-top: 1rem;
+}
+
+/* Estilos para los días del calendario */
+.calendar-day {
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Estilo para los días con eventos */
+.calendar-day.event {
+  background-color: #e0ffe0; /* Color de fondo para los días con eventos */
+  border-color: #5cb85c; /* Borde más oscuro para días con eventos */
+  color: #333;
+}
+
+.calendar-day:hover {
+  background-color: #f5f5f5;
+}
+
+.calendar-day.event:hover {
+  background-color: #d4edda; /* Color de fondo más claro para días con eventos */
+}
+
+
+
+
+  /*PROFILEUSUA*/
+  /* Estilo general para el contenedor principal */
+  main {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      padding: 20px;
+      height: auto; /* Ajusta automáticamente la altura */
+      width: 90vw; /* Ajusta el ancho */
+      max-width: 1000px; /* Ancho máximo del contenedor */
+      border-radius: 8px;
+      box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+    }
+    
+    /* Estilo para el contenedor del título */
+    .title-container-perfil{
+      text-align: center;
+    }
+    
+    /* Estilo del título */
+    .section-title-perfil {
+      font-size: 2.3em;
+      margin-top: 20vh; /* Ajusta el espaciado superior */
+      color: #2c3e50;
+
+    }
+    
+    /* Estilo del contenedor del perfil */
+    .main-perfil {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      padding: 20px;
+      height: auto; /* Ajusta automáticamente la altura */
+      width: 90vw; /* Ajusta el ancho */
+      max-width: 1000px; /* Ancho máximo del contenedor */
+      border: 1px solid #5cb85c;
+      border-radius: 8px;
+      background-color: #fff;
+      box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+    }
+    
+    /* Estilo para el contenedor del título */
+    .title-container {
+      text-align: center;
+    }
+    
+    /* Estilo del título */
+    .section-title {
+      font-size: 2.5em;
+      margin-top: 15vh; /* Ajusta el espaciado superior */
+      color: #2c3e50;
+    }
+    
+    /* Estilo del contenedor del perfil */
+    .profile-container {
+      display: flex;
+      justify-content: center; /* Centra el formulario horizontalmente */
+      align-items: center; /* Centra el contenido verticalmente */
+      width: 100%; /* Ocupa todo el ancho del contenedor */
+      max-width: 970px; /* Ancho máximo del contenedor del formulario */
+    }
+    
+    /* Estilo del formulario */
+    #formulario {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+      gap: 35px; /* Espacio entre columnas */
+      width: 100%; /* Ocupa todo el ancho del contenedor */
+      max-width: 600px; /* Limita el ancho máximo para que se vea centrado */
+      margin: 0 auto; /* Centra el formulario dentro de su contenedor */
+    }
+    
+    /* Estilo de los grupos de formulario */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px; /* Espacio entre campos */
+      align-items: flex-end; /* Alinea los elementos a la derecha */
+    }
+    
+    /* Estilo de las etiquetas */
+    .form-group .datos {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px; /* Espacio debajo de la etiqueta */
+      text-align: right; /* Alinea el texto de la etiqueta a la derecha */
+    }
+    
+    /* Estilo de los campos de entrada */
+    .form-group .datos2,
+.form-group .opciones {
+  padding: 12px; /* Padding para mejor usabilidad */
+  font-size: 16px;
+  border: 1px solid #5cb85c;
+  border-radius: 8px;
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+  transition: border-color 0.3s ease;
+}
+
+/* Estilo para el enfoque en campos de entrada */
+.form-group .datos2:focus,
+.form-group .opciones:focus {
+  border-color: #5cb85c;
+  outline: none;
+}
+    
+    /* Otros estilos como Media Queries se mantienen igual */
+    
+    
+    /* Estilo para el enfoque en campos de entrada */
+    .form-group .datos2:focus,
+    .form-group .opciones:focus {
+      border-color: #5cb85c;
+      outline: none;
+    }
+    
+    /* Media queries para pantallas más pequeñas */
+    @media (max-width: 768px) {
+      .profile-container {
+          grid-template-columns: 1fr; /* Cambia a una columna en pantallas pequeñas */
+      }
+    
+      .section-title {
+          font-size: 2em; /* Reduce el tamaño del título */
+          margin-top: 10vh; /* Ajusta el margen superior */
+      }
+    }
+    
+    /* Media queries para pantallas muy pequeñas (móviles) */
+    @media (max-width: 480px) {
+      main {
+          padding: 15px; /* Reduce el padding en pantallas pequeñas */
+          width: 95vw; /* Aumenta el ancho para aprovechar más el espacio */
+      }
+    
+      #formulario {
+          gap: 20px; /* Reduce el espacio entre los campos */
+      }
+    
+      .form-group .datos2,
+      .form-group .opciones {
+          padding: 10px; /* Reduce el padding de los campos de entrada */
+          font-size: 14px; /* Reduce el tamaño de la fuente */
+      }
+    }
+    
+    /* Media queries para pantallas muy grandes (monitores ultra anchos) */
+    @media (min-width: 1440px) {
+      main {
+          width: 70vw; /* Reduce el ancho para evitar que el contenido se extienda demasiado */
+          max-width: 1800px; /* Incrementa el máximo ancho del contenedor principal */
+          padding: 50px; /* Incrementa el padding para dar más espacio alrededor del contenido */
+      }
+    
+      .profile-container {
+          grid-template-columns: repeat(4, 1fr); /* Añade una cuarta columna para aprovechar mejor el espacio */
+          gap: 50px; /* Incrementa el espacio entre los campos */
+      }
+    
+      .section-title {
+          font-size: 3.5em; /* Incrementa el tamaño del título */
+          margin-top: 8vh; /* Ajusta el margen superior para centrar mejor el contenido */
+      }
+    
+      .form-group .datos2,
+      .form-group .opciones {
+          padding: 18px; /* Mayor padding para campos de entrada */
+          font-size: 20px; /* Incrementa el tamaño de la fuente */
+      }
+    }
+    
+    /* Media queries para pantallas ultra grandes (televisores y pantallas de más de 1920px) */
+    @media (min-width: 1920px) {
+      main {
+          width: 60vw; /* Reduce aún más el ancho para evitar que el contenido se extienda demasiado */
+          max-width: 2000px; /* Incrementa el máximo ancho del contenedor principal */
+          padding: 60px; /* Incrementa el padding para dar más espacio alrededor del contenido */
+      }
+    
+      .profile-container {
+        padding: 20px;
+        background-color: #fff; /* Fondo blanco para el contenedor del formulario */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Incrementa el espacio entre los campos */
+      }
+    
+      .section-title {
+          font-size: 4em; /* Incrementa el tamaño del título */
+          margin-top: 6vh; /* Ajusta el margen superior */
+      }
+    
+      .form-group .datos2,
+      .form-group .opciones {
+          padding: 20px; /* Mayor padding para campos de entrada */
+          font-size: 22px; /* Incrementa el tamaño de la fuente */
+      }
+    }  
+
+
+
+    /*PROGRAMACIONUSUA*/
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    
+    header {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    nav {
+      padding: 10px;
+    }
+    
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+    
+    nav ul li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+    
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+    
+    .main-content {
+      padding: 20px;
+      display: flex;
+      justify-content: center; /* Centra las tarjetas horizontalmente */
+    }
+    
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      /*max-width: 1200px;*/
+      width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+      margin: 0 auto; /* Centra el contenedor de las tarjetas */
+      /*padding: 0 20px;*/ /* Añade espacio a los lados para evitar que el contenido toque los bordes */
+      box-sizing: border-box; /* Incluye el padding dentro del ancho total */
+    }
+    
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 400px; /* Fija el ancho de las tarjetas a 400px */
+      box-sizing: border-box;
+      margin-top: 10%;
+      transform: translateX(260px); /* Mueve las tarjetas 50px a la izquierda */
+    }
+    
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.5rem; /* Aumenta el tamaño de la fuente */
+      text-align: center; /* Centra el texto */
+ 
+    }
+    
+    .cuadro-info {
+      margin-top: 10px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border: 2px solid #006400; /* Borde verde oscuro */
+      border-radius: 8px;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+    
+    .cuadro-info:hover {
+      background-color: #5cb85c;
+      color: white;
+    }
+    
+    .text-info {
+      list-style: none;
+      padding: 0;
+      margin: 15px 0 0 0;
+      font-size: 1rem;
+      color: #555;
+    }
+    
+    .text-info li {
+      margin-bottom: 10px;
+      line-height: 1.5;
+      font-weight: 300;
+      text-align: left; /* Alinea el texto a la izquierda dentro de las tarjetas */
+    }
+    
+    .text-info li::before {
+      content: "•"; /* Añade un punto al inicio de cada elemento de la lista */
+      color: #5cb85c;
+      margin-right: 8px;
+    }
+
+    
+
+
+
+/*NAVUSUARIO*/
+body {
+  background-color: #5cb85c21;
+  margin: 0;
+  padding: 0;
+  font-family: "Work Sans Regular", sans-serif;
+}
+
+/* Estilo del encabezado */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4f4f4;
+  top: 0;
+  height: 9vh;
+  width: 100%;
+  border-bottom: 2px solid #5cb85c;
+  position: fixed;
+  z-index: 1000;
+  padding: 0 1%; /* Agrega padding horizontal */
+}
+
+/* Estilo del logo */
+.logo {
+  padding: 5px;
+  width: 15%;
+  max-height: 15vh;
+  object-fit: contain; /* Asegura que el logo se ajuste correctamente */
+}
+
+/* Estilo de la barra de navegación */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto; /* Permite que el nav se ajuste al contenido */
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 60px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+/* Estilo de los enlaces de la barra de navegación */
+nav ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 10px;
+  text-decoration: none;
+  color: #000000;
+  transition: color 0.3s, background-color 0.3s;
+  border-radius: 50px;
+  position: relative;
+}
+
+/* Estilo de los iconos */
+nav ul li a .icono {
+  width: 3vh;
+  height: 3vh;
+  padding: 0px 5px;
+  margin: 0;
+}
+
+/* Efecto de hover en los enlaces */
+nav ul li a:hover {
+  background-color: #5cb85cc2;
+}
+
+/* Estilo de los enlaces de cerrar sesión */
+.cerrarSesion {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.cerrarSesion a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  padding: 4px 10px;
+  text-decoration: none;
+  color: #000000;
+  transition: color 0.3s, background-color 0.3s;
+  border-radius: 50px;
+  position: relative;
+}
+
+.cerrarSesion a:hover {
+  background-color: #5cb85cc2;
+}
+
+/* Estilo de la línea inferior para el botón de cerrar sesión activo */
+.cerrarSesion a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  background-color: #5cb85c;
+  border-radius: 50px;
+}
+
+/* Estilo de los iconos en cerrar sesión */
+.cerrarSesion a .icono {
+  width: 3.4vh;
+  height: 3.4vh;
+}
+
+.cerrarSesion a .icono:hover {
+  filter: brightness(0.5);
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 1024px) {
+  .logo {
+    width: 12%; /* Ajusta el tamaño del logo para pantallas más pequeñas */
+  }
+
+  nav ul li {
+    margin: 0 10px; /* Reduce el margen entre los elementos de la barra de navegación */
+  }
+
+  nav ul li a {
+    padding: 4px 8px; /* Reduce el padding de los enlaces */
+  }
+}
+
+/* Media queries para pantallas muy pequeñas (móviles) */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    height: auto; /* Permite que el header se ajuste al contenido */
+    padding: 10px 5%; /* Añade padding para el contenido del header */
+  }
+
+  .logo {
+    width: 30%; /* Aumenta el tamaño del logo en pantallas móviles */
+    max-height: none; /* Permite que el logo se ajuste libremente en pantallas pequeñas */
+  }
+
+  nav {
+    margin: 0; /* Elimina el margen para que el contenido del nav esté centrado */
+  }
+
+  nav ul {
+    flex-direction: column; /* Coloca los elementos de navegación en columna */
+  }
+
+  nav ul li {
+    margin: 10px 0; /* Ajusta el margen entre los elementos en columna */
+  }
+
+  nav ul li a {
+    padding: 6px 12px; /* Aumenta el padding de los enlaces para pantallas móviles */
+  }
+
+  .cerrarSesion a {
+    padding: 6px 14px; /* Aumenta el padding del botón de cerrar sesión */
+  }
+}
+
+/* Media queries para pantallas más grandes */
+@media (min-width: 1440px) {
+  header {
+    height: 10vh; /* Ajusta la altura del encabezado para pantallas grandes */
+    padding: 0 4%; /* Aumenta el padding para centrar mejor el contenido */
+  }
+
+  .logo {
+    width: 10%; /* Reduce el tamaño del logo para pantallas muy grandes */
+  }
+
+  nav {
+    flex-grow: 0; /* Desactiva el crecimiento del flex para mantener el nav centrado */
+    width: auto; /* Ajusta el ancho del nav para que no se expanda demasiado */
+  }
+
+  nav ul {
+    margin: 0;
+  }
+
+  nav ul li {
+    margin: 0 20px; /* Aumenta el margen entre los elementos de la barra de navegación */
+  }
+
+  nav ul li a {
+    padding: 6px 14px; /* Aumenta el padding de los enlaces para mejor visibilidad */
+    font-size: 16px; /* Aumenta el tamaño de la fuente de los enlaces */
+  }
+
+  .cerrarSesion a {
+    padding: 6px 16px; /* Aumenta el padding del botón de cerrar sesión */
+    font-size: 16px; /* Aumenta el tamaño de la fuente del botón de cerrar sesión */
+  }
+}
+
+/*NAVADMIN*/
+/* Estilo del cuerpo */
+body {
+  background-color: #5cb85c21;
+  margin: 0;
+  padding: 0;
+  font-family: "Work Sans Regular", sans-serif;
+}
+
+/* Estilo del encabezado */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4f4f4;
+  top: 0;
+  height: 9vh;
+  width: 100%;
+  border-bottom: 2px solid #5cb85c;
+  position: fixed;
+  z-index: 1000;
+  padding: 0 1%; /* Añade padding para asegurar que el contenido no esté pegado a los bordes */
+  box-sizing: border-box;
+}
+
+/* Estilo del logo */
+.logo {
+  padding: 5px;
+  width: 15%;
+  max-height: 15vh;
+}
+
+/* Estilo de la barra de navegación */
+.nav {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  margin: 0; /* Elimina el margen derecho para centrar el nav */
+}
+
+.nav .ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 75px -20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav .ul .li {
+  margin: 0 15px;
+}
+
+/* Estilo de los enlaces de la barra de navegación */
+.nav .ul .li .a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 10px;
+  text-decoration: none;
+  color: #000000;
+  transition: color 0.3s, background-color 0.3s;
+  border-radius: 50px;
+  position: relative; /* Necesario para la línea inferior */
+}
+
+/* Estilo de los iconos */
+nav ul li a .icono {
+  width: 3vh;
+  height: 3vh;
+  padding: 0px 5px;
+  margin: 0;
+}
+
+/* Efecto de hover en los enlaces */
+nav ul li a:hover {
+  background-color: #5cb85cc2;
+}
+
+/* Estilo de los enlaces de cerrar sesión */
+.cerrarSesion {
+  display: flex;
+  align-items: center;
+}
+
+.cerrarSesion a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  padding: 4px 10px;
+  text-decoration: none;
+  color: #000000;
+  transition: color 0.3s, background-color 0.3s;
+  border-radius: 50px;
+  position: relative; /* Necesario para la línea inferior */
+}
+
+.cerrarSesion a:hover {
+  background-color: #5cb85cc2;
+}
+
+/* Estilo de la línea inferior para el botón de cerrar sesión activo */
+.cerrarSesion a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  background-color: #5cb85c;
+  border-radius: 50px;
+}
+
+/* Estilo de los iconos en cerrar sesión */
+.cerrarSesion a .icono {
+  width: 3.4vh;
+  height: 3.4vh;
+}
+
+.cerrarSesion a .icono:hover {
+  filter: brightness(0.5);
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 1024px) {
+  .logo {
+    width: 12%; /* Ajusta el tamaño del logo para pantallas más pequeñas */
+  }
+
+  nav ul li {
+    margin: 0 10px; /* Reduce el margen entre los elementos de la barra de navegación */
+  }
+
+  nav ul li a {
+    padding: 4px 8px; /* Reduce el padding de los enlaces */
+  }
+}
+
+/* Media queries para pantallas muy pequeñas (móviles) */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    height: auto; /* Permite que el header se ajuste al contenido */
+    padding: 10px 5%; /* Añade padding para el contenido del header */
+  }
+
+  .logo {
+    width: 30%; /* Aumenta el tamaño del logo en pantallas móviles */
+    max-height: none; /* Permite que el logo se ajuste libremente en pantallas pequeñas */
+  }
+
+  nav {
+    margin: 0; /* Elimina el margen para que el contenido del nav esté centrado */
+  }
+
+  nav ul {
+    flex-direction: column; /* Coloca los elementos de navegación en columna */
+  }
+
+  nav ul li {
+    margin: 10px 0; /* Ajusta el margen entre los elementos en columna */
+  }
+
+  nav ul li a {
+    padding: 6px 12px; /* Aumenta el padding de los enlaces para pantallas móviles */
+  }
+
+  .cerrarSesion a {
+    padding: 6px 14px; /* Aumenta el padding del botón de cerrar sesión */
+  }
+}
+
+/* Media queries para pantallas más grandes */
+@media (min-width: 1440px) {
+  header {
+    height: 10vh; /* Ajusta la altura del encabezado para pantallas grandes */
+    padding: 0 4%; /* Aumenta el padding para centrar mejor el contenido */
+  }
+
+  .logo {
+    width: 10%; /* Reduce el tamaño del logo para pantallas muy grandes */
+  }
+
+  nav {
+    flex-grow: 0; /* Desactiva el crecimiento del flex para mantener el nav centrado */
+    width: auto; /* Ajusta el ancho del nav para que no se expanda demasiado */
+  }
+
+  nav ul {
+    margin: 0;
+  }
+
+  nav ul li {
+    margin: 0 20px; /* Aumenta el margen entre los elementos de la barra de navegación */
+  }
+
+  nav ul li a {
+    padding: 6px 14px; /* Aumenta el padding de los enlaces para mejor visibilidad */
+    font-size: 16px; /* Aumenta el tamaño de la fuente de los enlaces */
+  }
+
+  .cerrarSesion a {
+    padding: 6px 16px; /* Aumenta el padding del botón de cerrar sesión */
+    font-size: 16px; /* Aumenta el tamaño de la fuente del botón de cerrar sesión */
+  }
 }

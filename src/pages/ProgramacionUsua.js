@@ -1,16 +1,16 @@
 import React from "react";
-import Navbarinscap from "../components/layout/NavbarInsCap";
-import Cardsede52 from "../components/Cardsede52";
-import Cardsede64 from "../components/Cardsede64";
+import NavbarInsCap from "../components/layout/NavbarInsCap";
+import Cardsedeuno from "../components/Cardsedeuno";
+import Cardsededos from "../components/Cardsededos";
 import CardsedeFontibon from "../components/CardsedeFontibon";
 
 function ProgramacionUsua() {
   return (
     <div >
       <div className="container"> 
-      < Navbarinscap />
-      <Cardsede52/>
-      <Cardsede64/>
+      < NavbarInsCap />
+      <Cardsedeuno/>
+      <Cardsededos/>
       <CardsedeFontibon/>
       </div>
     </div>

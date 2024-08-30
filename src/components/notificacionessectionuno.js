@@ -1,6 +1,6 @@
 import React from "react";
 
-function Notificacionessection() {
+function Notificacionessectionuno() {
   return (
     <div>
       <div classname="title-search-container">
@@ -23,4 +23,4 @@ function Notificacionessection() {
   );
 }
 
-export default Notificacionessection;
+export default Notificacionessectionuno;

@@ -1,8 +1,8 @@
 import React from "react";
 import NavbarAdmin from "../components/layout/NavbarAdmin";
-import Informes1 from "../components/Informes1";
+import Informes from "../components/Informes";
 
-function Informes() {
+function informes() {
   return (
     <div >
         < NavbarAdmin />
@@ -11,4 +11,4 @@ function Informes() {
   );
 };
 
-export default Informes;
+export default informes;

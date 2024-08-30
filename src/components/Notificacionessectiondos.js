@@ -1,6 +1,6 @@
 import React from "react";
 
-function Notificacionessection2() {
+function Notificacionessectiondos() {
   return (
     <main classname="notifications-container">
       <div classname="notification-card">
@@ -56,4 +56,4 @@ function Notificacionessection2() {
   );
 };
 
-export default Notificacionessection2;
+export default Notificacionessectiondos;

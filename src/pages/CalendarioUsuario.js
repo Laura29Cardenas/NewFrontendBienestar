@@ -1,11 +1,11 @@
 import React from "react";
-import Navbarinscap from "../components/layout/Navbarinscap";
-import Calendariomain from "../components/calendariomain";
+import NavbarInsCap from "../components/layout/NavbarInsCap";
+import Calendariomain from "../components/Calendariomain";
 
 function CalendarioPrograma () {
   return (
     <div >
-      < Navbarinscap />
+      < NavbarInsCap />
       < Calendariomain />
     </div>
   );
