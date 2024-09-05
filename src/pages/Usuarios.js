@@ -10,5 +10,4 @@ function Usuarios() {
     </div>
   );
 };
-
 export default Usuarios;

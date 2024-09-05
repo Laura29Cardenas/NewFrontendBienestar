@@ -1,48 +1,256 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
-
- 
-
-
-/*Gestion de usuarios*/
-/*UsuariosAdmin*/
-.titulo-info {
-  font-size: 1.5em;
-  margin: 0% 0 3% 0;
+/*GESTIONUSUARIOS - ADMIN*/
+/*Usarios.css*/
+/* Estilo del cuerpo */
+body {
+  background-color: #5cb85c21;
+  margin: 0;
+  padding: 0;
+  font-family: "Work Sans Regular", sans-serif;
+  overflow: hidden;
 }
 
-.informacion-container {
-  max-width: 50%;
-  max-height: 58vh;
-  margin: 0 0 0 70vh; /* adjust margin top and left to position the container */
-  padding: 20px;
-  background-color: #fff;
-  border: 1px solid #5cb85c;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.informacion-container .form-group {
-  margin-bottom: 1.2%;
+/* Estilo del encabezado */
+header {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4f4f4;
+  top: 0;
+  height: 9vh;
+  width: 100%;
+  border-bottom: 2px solid #5cb85c;
+  position: fixed;
+  z-index: 1000;
+  padding: 0 1%; /* Añade padding para asegurar que el contenido no esté pegado a los bordes */
+  box-sizing: border-box;
+}
+
+/* Estilo del logo */
+.logo {
+  padding: 5px;
+  width: 15%;
+  max-height: 15vh;
+}
+
+/* Estilo de la barra de navegación */
+nav {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  margin: 0; /* Elimina el margen derecho para centrar el nav */
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 75px 0 0;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.form-group .label-usuarios {
+nav ul li {
+  margin: 0 15px;
+}
+
+/* Estilo de los enlaces de la barra de navegación */
+nav ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 10px;
+  text-decoration: none;
+  color: #000000;
+  transition: color 0.3s, background-color 0.3s;
+  border-radius: 50px;
+  position: relative; /* Necesario para la línea inferior */
+}
+
+/* Estilo de los iconos */
+nav ul li a .icono {
+  width: 3vh;
+  height: 3vh;
+  padding: 0px 5px;
+  margin: 0;
+}
+
+/* Efecto de hover en los enlaces */
+nav ul li a:hover {
+  background-color: #5cb85cc2;
+}
+
+/* Estilo de los enlaces de cerrar sesión */
+.cerrarSesion {
+  display: flex;
+  align-items: center;
+}
+
+.cerrarSesion a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  padding: 4px 10px;
+  text-decoration: none;
+  color: #000000;
+  transition: color 0.3s, background-color 0.3s;
+  border-radius: 50px;
+  position: relative; /* Necesario para la línea inferior */
+}
+
+.cerrarSesion a:hover {
+  background-color: #5cb85cc2;
+}
+
+/* Estilo de la línea inferior para el botón de cerrar sesión activo */
+.cerrarSesion a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  background-color: #5cb85c;
+  border-radius: 50px;
+}
+
+/* Estilo de los iconos en cerrar sesión */
+.cerrarSesion a .icono {
+  width: 3.4vh;
+  height: 3.4vh;
+}
+
+.cerrarSesion a .icono:hover {
+  filter: brightness(0.5);
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 1024px) {
+  .logo {
+    width: 12%; /* Ajusta el tamaño del logo para pantallas más pequeñas */
+  }
+
+  nav ul li {
+    margin: 0 10px; /* Reduce el margen entre los elementos de la barra de navegación */
+  }
+
+  nav ul li a {
+    padding: 4px 8px; /* Reduce el padding de los enlaces */
+  }
+}
+
+/* Media queries para pantallas muy pequeñas (móviles) */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    height: auto; /* Permite que el header se ajuste al contenido */
+    padding: 10px 5%; /* Añade padding para el contenido del header */
+  }
+
+  .logo {
+    width: 30%; /* Aumenta el tamaño del logo en pantallas móviles */
+    max-height: none; /* Permite que el logo se ajuste libremente en pantallas pequeñas */
+  }
+
+  nav {
+    margin: 0; /* Elimina el margen para que el contenido del nav esté centrado */
+  }
+
+  nav ul {
+    flex-direction: column; /* Coloca los elementos de navegación en columna */
+  }
+
+  nav ul li {
+    margin: 10px 0; /* Ajusta el margen entre los elementos en columna */
+  }
+
+  nav ul li a {
+    padding: 6px 12px; /* Aumenta el padding de los enlaces para pantallas móviles */
+  }
+
+  .cerrarSesion a {
+    padding: 6px 14px; /* Aumenta el padding del botón de cerrar sesión */
+  }
+}
+
+/* Media queries para pantallas más grandes */
+@media (min-width: 1440px) {
+  header {
+    height: 10vh; /* Ajusta la altura del encabezado para pantallas grandes */
+    padding: 0 4%; /* Aumenta el padding para centrar mejor el contenido */
+  }
+
+  .logo {
+    width: 10%; /* Reduce el tamaño del logo para pantallas muy grandes */
+  }
+
+  nav {
+    flex-grow: 0; /* Desactiva el crecimiento del flex para mantener el nav centrado */
+    width: auto; /* Ajusta el ancho del nav para que no se expanda demasiado */
+  }
+
+  nav ul {
+    margin: 0;
+  }
+
+  nav ul li {
+    margin: 0 20px; /* Aumenta el margen entre los elementos de la barra de navegación */
+  }
+
+  nav ul li a {
+    padding: 6px 14px; /* Aumenta el padding de los enlaces para mejor visibilidad */
+    font-size: 16px; /* Aumenta el tamaño de la fuente de los enlaces */
+  }
+
+  .cerrarSesion a {
+    padding: 6px 16px; /* Aumenta el padding del botón de cerrar sesión */
+    font-size: 16px; /* Aumenta el tamaño de la fuente del botón de cerrar sesión */
+  }
+}
+
+/*usarios*/
+/* Estilo para el título */
+.titulo-usuarios {
+  font-size: 1.5em;
+  margin-top: 15vh;
+  margin-bottom: 8vh;
+  margin-left: 16vh;
+}
+
+/* Estilo para el buscador de usuarios */
+.buscador-usuarios {
+  max-width: 20%; /* ancho máximo */
+  max-height: 52vh;
+  margin-left: 20vh;
+  margin-bottom: 0; 
+  padding: 20px;
+  float: left;
+  background-color: #fff;
+  border: 1px solid #5cb85c;
+  border-radius: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el formulario de búsqueda */
+.form-busqueda-usuarios {
+  margin-bottom: 20px;
+}
+
+.campo-usuarios {
+  margin-bottom: 20px; /* add margin bottom to separate fields */
+}
+
+.campo-usuarios .label-form-registrar-usuarios {
   display: block;
-  margin-bottom: 5px;
-  width: 100%;
+  margin-bottom: 10px;
 }
 
-.column {
-  flex: 1;
-  margin: 0 1%;
-}
-
-.form-group .input-check-usuarios,
-.form-group .selector-documento {
+.campo-usuarios .input-form-registrar-usuarios[type="text"],
+.campo-usuarios .select-form-registrar-usuarios {
   width: 100%;
   height: 40px;
   padding: 10px;
@@ -50,7 +258,141 @@
   border-radius: 5px;
 }
 
-.modificar-usua[type="button"] {
+.registrar-usuario {
+  font-size: 1rem;
+  text-align: center;
+  margin-left: 3.2vh;
+  margin-bottom: 10vh;
+  position: static;
+  padding: 10px;
+  background-color: #fff; /* Fondo blanco para un estilo limpio y sencillo */
+  color: #5cb85c; /* Texto en el mismo verde que el borde del formulario */
+  border: 2px solid #fff; /* Borde en verde para que coincida con el resto del formulario */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Añade una transición suave para el hover */
+}
+
+.buscar-usuario {
+  width: 100%; /* make the button full width */
+  font-size: 1rem;
+  text-align: center;
+  padding: 10px;
+  background-color: #5cb85c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 1024px) {
+  .buscador-usuarios {
+    max-width: 40%; /* Ajusta el ancho máximo para pantallas más pequeñas */
+    margin-left: 10%; /* Ajusta el margen izquierdo */
+  }
+
+  .titulo-usuarios {
+    font-size: 1.2em; /* Reduce el tamaño del título */
+    margin-left: 10%; /* Ajusta el margen izquierdo */
+  }
+
+  .registrar-usuario {
+    font-size: 0.9rem; /* Reduce el tamaño de la fuente */
+    margin-left: 2vh; /* Ajusta el margen izquierdo */
+  }
+}
+
+/* Media queries para pantallas muy pequeñas (móviles) */
+@media (max-width: 600px) {
+  .buscador-usuarios {
+    max-width: 80%; /* Ajusta el ancho máximo para móviles */
+    margin-left: 0; /* Elimina el margen izquierdo */
+    padding: 15px; /* Reduce el padding */
+  }
+
+  .titulo-usuarios {
+    font-size: 1em; /* Reduce aún más el tamaño del título */
+    margin-left: 0; /* Elimina el margen izquierdo */
+  }
+
+  .registrar-usuario {
+    font-size: 0.8rem; /* Reduce el tamaño de la fuente */
+    margin-left: 0; /* Elimina el margen izquierdo */
+  }
+
+  .buscar-usuario {
+    font-size: 0.9rem; /* Ajusta el tamaño de la fuente */
+  }
+}
+
+/* Media queries para pantallas más grandes */
+@media (min-width: 1600px) {
+  .buscador-usuarios {
+    max-width: 15%; /* Ajusta el ancho máximo para pantallas grandes */
+    margin-left: 25vh; /* Ajusta el margen izquierdo */
+  }
+
+  .titulo-usuarios {
+    font-size: 2em; /* Aumenta el tamaño del título */
+    margin-left: 20vh; /* Ajusta el margen izquierdo */
+  }
+
+  .registrar-usuario {
+    font-size: 1.2rem; /* Aumenta el tamaño de la fuente */
+    margin-left: 0.5vh; /* Ajusta el margen izquierdo */
+  }
+}
+
+/*gestion usua*/
+.informacion-container-usuarios {
+  max-width: 50%;
+  max-height: 58vh;
+  margin: 0 0 0 70vh; /* adjust margin top and left to position the container */
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #5cb85c;
+  border-radius: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+ 
+.informacion-container-usuarios .form-group {
+  margin-bottom: 1.2%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.titulo-info-usuarios {
+  font-size: 1.5em;
+  margin: 0% 0 3% 0;
+}
+
+.form-group .label-alert-form-usuarios {
+  display: block;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.column-form-usuarios {
+  flex: 1;
+  margin: 0 1%;
+}
+
+.form-group .input-alert-form-usuarios,
+.form-group .select-alert-form-usuarios {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #5cb85c;
+  border-radius: 5px;
+}
+
+.modificar-usuario[type="button"] {
   display: flex;
   justify-content: center;
   margin-top: 3vh;
@@ -66,7 +408,7 @@
   cursor: pointer;
 }
 
-.inactivar[type="submit"] {
+.inactivar-usuario[type="submit"] {
   display: flex;
   justify-content: center;
   margin-right: 1vh;
@@ -83,147 +425,12 @@
   cursor: pointer;
 }
 
-.modificar[type="submit"]:hover,
-.inactivar[type="submit"]:hover {
+.modificar-usuario[type="submit"]:hover,
+.inactivar-usuario[type="submit"]:hover {
   background-color: #3e8e41;
 }
 
-/*usarios.css*/
-/* Estilo para el buscador de usuarios */
-.buscador-usuarios {
-  max-width: 20%; /* ancho máximo */
-  max-height: 52vh;
-  margin-left: 20vh;
-  margin-bottom: 0;
-  padding: 20px;
-  float: left;
-  background-color: #fff;
-  border: 1px solid #5cb85c;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilo para el título */
-.titulo-usuario {
-  font-size: 1.5em;
-  margin-top: 15vh;
-  margin-bottom: 8vh;
-  margin-left: 16vh;
-}
-
-/* Estilo para el formulario de búsqueda */
-.form-busqueda {
-  margin-bottom: 20px;
-}
-
-.campo {
-  margin-bottom: 20px; /* add margin bottom to separate fields */
-}
-
-.campo .label-usuarios {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.campo .input-check-usuarios[type="text"],
-.campo .selector-documento {
-  width: 100%;
-  height: 40px;
-  padding: 10px;
-  border: 1px solid #5cb85c;
-  border-radius: 5px;
-}
-
-.registrar-usua {
-  font-size: 1rem;
-  text-align: center;
-  margin-left: 3.2vh;
-  margin-bottom: 10vh;
-  position: static;
-  padding: 10px;
-  background-color: #fff; /* Fondo blanco para un estilo limpio y sencillo */
-  color: #5cb85c; /* Texto en el mismo verde que el borde del formulario */
-  border: 2px solid #fff; /* Borde en verde para que coincida con el resto del formulario */
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s; /* Añade una transición suave para el hover */
-}
-
-.buscar {
-  width: 100%; /* make the button full width */
-  font-size: 1rem;
-  text-align: center;
-  padding: 10px;
-  background-color: #5cb85c;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.boton-usuario[type="submit"]:hover{
-  background-color: #3e8e41;
-}
-
-/* Media queries para pantallas más pequeñas */
-@media (max-width: 1024px) {
-  .buscador-usuarios {
-    max-width: 40%; /* Ajusta el ancho máximo para pantallas más pequeñas */
-    margin-left: 10%; /* Ajusta el margen izquierdo */
-  }
-
-  .titulo-usuario {
-    font-size: 1.2em; /* Reduce el tamaño del título */
-    margin-left: 10%; /* Ajusta el margen izquierdo */
-  }
-
-  .registrar-usua {
-    font-size: 0.9rem; /* Reduce el tamaño de la fuente */
-    margin-left: 2vh; /* Ajusta el margen izquierdo */
-  }
-}
-
-/* Media queries para pantallas muy pequeñas (móviles) */
-@media (max-width: 600px) {
-  .buscador-usuarios {
-    max-width: 80%; /* Ajusta el ancho máximo para móviles */
-    margin-left: 0; /* Elimina el margen izquierdo */
-    padding: 15px; /* Reduce el padding */
-  }
-
-  .titulo-usuario {
-    font-size: 1em; /* Reduce aún más el tamaño del título */
-    margin-left: 0; /* Elimina el margen izquierdo */
-  }
-
-  .registrar-usua {
-    font-size: 0.8rem; /* Reduce el tamaño de la fuente */
-    margin-left: 0; /* Elimina el margen izquierdo */
-  }
-
-  .buscar {
-    font-size: 0.9rem; /* Ajusta el tamaño de la fuente */
-  }
-}
-
-/* Media queries para pantallas más grandes */
-@media (min-width: 1600px) {
-  .buscador-usuarios {
-    max-width: 15%; /* Ajusta el ancho máximo para pantallas grandes */
-    margin-left: 25vh; /* Ajusta el margen izquierdo */
-  }
-
-  .titulo-usuario {
-    font-size: 2em; /* Aumenta el tamaño del título */
-    margin-left: 20vh; /* Ajusta el margen izquierdo */
-  }
-
-  .registrar-usua {
-    font-size: 1.2rem; /* Aumenta el tamaño de la fuente */
-    margin-left: 0.5vh; /* Ajusta el margen izquierdo */
-  }
-}
-
+/*registrar*/
 .swal2-html-container {
   z-index: 1;
   display: flex ;
@@ -237,8 +444,8 @@
   text-align:initial;
   word-wrap: break-word;
   word-break: break-word;
-}
-
+} 
+ 
 swal.fire {
   padding: 0px;
   margin: 0px;
@@ -262,36 +469,36 @@ swal.fire title {
   margin: 0;
 }
 
-.swal2-actions .boton-usuario {
+.swal2-actions .agregar-mas-usuarios {
   background-color: #5cb85c;
   position: relative;
   bottom: 40%;
 }
 
-.registrar-usua {
+.registrar {
   display: block;
   padding: 0px;
   margin: 0px;
 }
 
-.registrar-usua .form-busqueda {
+.registrar-container .form-registrar-usuario {
   display: flex;
   flex-direction: column;
 }
 
-.form-group {
+.form-group-usuarios {
   margin-bottom: 15px;
 }
 
-.form-group .label-usuarios {
+.form-group-usuarios .label-registrar-usuario {
   display: flex;
   font-weight: 600;
   color: #333;
   text-align: left; /* Alinea el texto del label a la izquierda */
 }
 
-.form-group .input-check-usuarios,
-.form-group .selector-documento {
+.form-group-usuarios .input-registrar-usuario,
+.form-group-usuarios .select-registrar-usuario {
   padding: 10px;
   font-size: 16px;
   background-color: #fff;
@@ -301,103 +508,176 @@ swal.fire title {
   transition: border-color 0.3s ease;
 }
 
-.form-group .input-check-usuarios:focus,
-.form-group .selector-documento:focus {
+.form-group-usuarios .input-registrar-usuario:focus,
+.form-group-usuarios .select-registrar-usuario:focus {
   border-color: #5cb85c;
   outline: none;
 }
+
+/*alert gestion usua*/
+.swal2-html-container {
+  z-index: 1;
+  display: flex ;
+  margin: 0;
+  padding: 1em 1.6em 0.3em;
+  overflow: auto;
+  color: inherit;
+  font-size: 1.125em;
+  font-weight: normal;
+  line-height: normal;
+  text-align:initial;
+  word-wrap: break-word;
+  word-break: break-word;
+} 
+ 
+swal.fire {
+  padding: 0px;
+  margin: 0px;
+}
+
+swal.fire title {
+  margin: 0;
+  padding: 0;
+}
+
+.swal2-popup {
+  border-radius: 8px;
+  border: 2px solid #5cb85c;
+  padding: 0 0 0.03em;
+  display:flex;
+}
+
+.swal2-validation-message {
+  position: relative;
+  bottom: 25%;
+  margin: 0;
+}
+
+.swal2-actions .agregar-mas-usuarios {
+  background-color: #5cb85c;
+  position: relative;
+  bottom: 40%;
+}
+
+.registrar {
+  display: block;
+  padding: 0px;
+  margin: 0px;
+}
+
+.registrar-container .form-registrar-usuario {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group-usuarios {
+  margin-bottom: 15px;
+}
+
+.form-group-usuarios .label-registrar-usuario {
+  display: flex;
+  font-weight: 600;
+  color: #333;
+  text-align: left; /* Alinea el texto del label a la izquierda */
+}
+
+.form-group-usuarios .input-registrar-usuario,
+.form-group-usuarios .select-registrar-usuario {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+.form-group-usuarios .input-registrar-usuario:focus,
+.form-group-usuarios .select-registrar-usuario:focus {
+  border-color: #5cb85c;
+  outline: none;
+}
+
 
 
 
 /*PROFILEADMIN*/
 /*ProfileAdmin.css*/
-.swal2-html-container {
-  z-index: 1;
-  display: flex ;
-  margin: 0;
-  padding: 1em 1.6em 0.3em;
-  overflow: auto;
-  color: inherit;
-  font-size: 1.125em;
-  font-weight: normal;
-  line-height: normal;
-  text-align:initial;
-  word-wrap: break-word;
-  word-break: break-word;
-}
-
-swal.fire {
-  padding: 0px;
-  margin: 0px;
-}
-
-swal.fire title {
-  margin: 0;
-  padding: 0;
-}
-
-.swal2-popup {
-  border-radius: 8px;
-  border: 2px solid #5cb85c;
-  padding: 0 0 0.03em;
-  display:flex;
-}
-
-.swal2-validation-message {
-  position: relative;
-  bottom: 25%;
-  margin: 0;
-}
-
-.swal2-actions .boton-usuario {
-  background-color: #5cb85c;
-  position: relative;
-  bottom: 40%;
-}
-
-.registrar-usua {
-  display: block;
-  padding: 0px;
-  margin: 0px;
-}
-
-.registrar-usua .form-busqueda {
+/* Estilo del contenedor principal */
+.container-profile-admin {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
+  height: auto; /* Ajusta automáticamente la altura */
+  width: 90vw; /* Ampliado para ocupar más espacio */
+  max-width: 1000px; /* Aumentado para más espacio */
+  border: 1px solid #5cb85c;
+  border-radius: 8px;
+  background-color: #fff;
+  box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+
+}
+ 
+/* Estilo del título */
+.section-title-profile-admin {
+  text-align: center;
+  font-size: 2.5em;
+  margin-top: 15vh; /* Ajustado para mejorar el espaciado */
+  color: #2c3e50;
 }
 
+/* Estilo del formulario */
+.profile-admin-container .form-perfil-admin {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas de igual tamaño */
+  gap: 35px; /* Espacio entre columnas */
+  width: 100vw; /* Ocupa todo el ancho del contenedor */
+  max-width: 900px; /* Asegura que no se desborde */
+  padding: 8px; /* Más espacio alrededor del contenido */
+
+}
+
+/* Estilo de los grupos de formulario */
 .form-group {
-  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px; /* Espacio entre campos */
 }
 
-.form-group .label-usuarios {
+/* Estilo de las etiquetas */
+.form-group .label-form-profile-admi {
   display: flex;
   font-weight: 600;
   color: #333;
-  text-align: left; /* Alinea el texto del label a la izquierda */
+  margin-bottom: 5px; /* Espacio debajo de la etiqueta */
 }
 
-.form-group .input-check-usuarios,
-.form-group .selector-documento {
-  padding: 10px;
+/* Estilo de los campos de entrada */
+.form-group .input-form-profile-admin,
+.form-group .select-form-profile-admin {
+  padding: 12px; /* Mayor padding para mejor usabilidad */
   font-size: 16px;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid #5cb85c;
   border-radius: 8px;
-  width: 100%;
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  box-sizing: border-box; /* Incluye padding y border en el tamaño total */
   transition: border-color 0.3s ease;
 }
 
-.form-group .input-check-usuarios:focus,
-.form-group .selector-documento:focus {
+/* Estilo para el enfoque en campos de entrada */
+.form-group .input-form-profile-admin:focus,
+.form-group .select-form-profile-admin:focus {
   border-color: #5cb85c;
   outline: none;
 }
 
+
 /*Informes css*/
-/*Informes.css*/
 /* Estilo para los encabezados */
-.titulo-informes {
+.titulo1-informes {
   text-align: center;
   margin-top: 12vh;
   margin-bottom: 0.5%;
@@ -419,7 +699,7 @@ swal.fire title {
 }
 
 /* Contenedor del formulario */
-.container-informes {
+.container {
   background-color: #fff;
   border: 1px solid #5CB85C;
   border-radius: 8px;
@@ -449,18 +729,18 @@ swal.fire title {
 }
 
 /* Etiquetas de los botones */
-.date-labelfecha, .select-label-informesl, .number-label-informes {
+.date-label, .select-label, .number-label {
   font-size: 1rem;
   margin-right: 1rem;
 }
 
 /* Inputs de fecha */
-.date-inputs-informes {
+.date-inputs {
   display: flex;
   gap: 0.5rem;
 }
 
-.date-inputs-informes .input-fecha-informes {
+.date-inputs .input-fecha {
   width: 50px;
   padding: 0.5rem;
   border: 1px solid #5CB85C;
@@ -469,7 +749,7 @@ swal.fire title {
 }
 
 /* Selector */
-.select-informes {
+.selector-informe {
   padding: 0.5rem;
   border: 1px solid #5CB85C;
   border-radius: 4px;
@@ -478,7 +758,7 @@ swal.fire title {
 }
 
 /* Input numérico */
-.input-number-informes {
+.numero-informe {
   padding: 0.5rem;
   border: 1px solid #5CB85C;
   border-radius: 4px;
@@ -488,7 +768,6 @@ swal.fire title {
 }
 
 /* Estilo del botón de eliminar */
-/*PENDIENTEEEEEEEEEEEEEEEEEEEEEEEEEEEE!!!!*/
 .btn-eliminar {
   background-color: #5CB85C;
   color: #fff;
@@ -504,9 +783,6 @@ swal.fire title {
 .btn-eliminar:hover {
   background-color: #d9534f;
 }
-/*PENDIENTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!!!*/
-
-
 
 /* Media queries para pantallas más pequeñas */
 @media (max-width: 1024px) {
@@ -515,13 +791,13 @@ swal.fire title {
       width: 100%;
   }
 
-  .container-informes {
+  .container {
       width: 90%;
   }
 
-  .date-inputs-informes .input-fecha-informesa,
-  .select-informes,
-  .input-number-informes {
+  .date-inputs .input-fecha,
+  .selector-informe,
+  .numero-informe {
       width: 100%; /* Asegura que los inputs y select ocupen el ancho completo en pantallas más pequeñas */
   }
 }
@@ -533,7 +809,7 @@ swal.fire title {
       width: 100%;
   }
 
-  .container-informes {
+  .container {
       width: 100%;
       padding: 1rem; /* Ajusta el padding para pantallas pequeñas */
   }
@@ -544,19 +820,19 @@ swal.fire title {
       padding: 0.5rem;
   }
 
-  .date-inputs-informes {
+  .date-inputs {
       flex-direction: column;
   }
 
-  .date-inputs-informes .input-fecha-informes {
+  .date-inputs .input-fecha {
       width: 100%;
   }
 
-  .select-informes {
+  .selector-informe {
       width: 100%;
   }
 
-  .input-number-informes {
+  .numero-informe {
       width: 100%;
   }
 
@@ -573,7 +849,7 @@ swal.fire title {
       width: calc(100% - 250px);
   }
 
-  .container-informes {
+  .container {
       width: 70%; /* Reduce el ancho del contenedor para aprovechar mejor el espacio */
       padding: 2rem; /* Aumenta el padding interno para una mejor presentación */
   }
@@ -582,9 +858,9 @@ swal.fire title {
       padding: 1rem; /* Aumenta el padding para mejor visibilidad en pantallas grandes */
   }
 
-  .date-inputs-informes .input-fecha-informes,
-  .select-informes,
-  .input-number-informes {
+  .date-inputs .input-fecha,
+  .selector-informe,
+  .numero-informe {
       width: auto; /* Permite que los inputs y select se ajusten automáticamente a su contenido */
   }
 
@@ -593,6 +869,7 @@ swal.fire title {
       padding: 8px 16px; /* Aumenta el padding del botón de eliminar */
   }
 }
+
 
 /*v_informes.css*/
 .swal2-title {
@@ -605,35 +882,35 @@ swal.fire title {
 .swal2-html-container {
   font-size: 18px;
 }
-.report-container-informes {
+.report-container {
   text-align: center;
   font-family: 'Work Sans Regular', sans-serif;
   color: #333;
 }
 
-.report-container-informes .parrafo-informe {
+.report-container .texto-informe {
   text-align: left;
 }
 
-.report-header-informes {
+.report-header { 
   display: flex;
   text-align: center;
   margin-bottom: 10px;
   border-bottom: 2px solid #5CB85C;
 }
 
-.report-content-informes {
+.report-content {
   margin-bottom: 20px;
 }
 
-.report-footer-informes {
+.report-footer {
   font-style: italic;
   text-align: center;
   border-top: 2px solid #5CB85C;
   padding-top: 10px;
   margin-top: 20px;
 }
-.download-button-informes {
+.download-button {
   background-color: #5CB85C;
   border: none;
   color: white;
@@ -645,10 +922,9 @@ swal.fire title {
   text-decoration: none;
   margin-top: 10px;
 }
-.download-button-informes .descargar-informe {
+.download-button .fa-fa-download {
   border: none;
 }
-
 
 
 /*CALENDARIOUSUA*/
@@ -1309,7 +1585,6 @@ body {
   font-family: "Work Sans Regular", sans-serif;
 }
 
-/* Estilo del encabezado */
 header {
   display: flex;
   justify-content: space-between;
@@ -1333,7 +1608,7 @@ header {
 }
 
 /* Estilo de la barra de navegación */
-.nav {
+nav {
   display: flex;
   flex-grow: 1;
   justify-content: center;
@@ -1341,21 +1616,21 @@ header {
   margin: 0; /* Elimina el margen derecho para centrar el nav */
 }
 
-.nav .ul {
+nav ul {
   list-style: none;
   padding: 0;
-  margin: 0 75px -20px 0;
+  margin: 0 75px 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.nav .ul .li {
+nav ul li {
   margin: 0 15px;
 }
 
 /* Estilo de los enlaces de la barra de navegación */
-.nav .ul .li .a {
+nav ul li a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1399,7 +1674,7 @@ nav ul li a:hover {
   position: relative; /* Necesario para la línea inferior */
 }
 
-.cerrarSesion a:hover {
+.cerrarSesion a nav:hover {
   background-color: #5cb85cc2;
 }
 
@@ -1421,7 +1696,7 @@ nav ul li a:hover {
   height: 3.4vh;
 }
 
-.cerrarSesion a .icono:hover {
+.cerrarSesion a nav .icono:hover {
   filter: brightness(0.5);
 }
 
@@ -1476,7 +1751,7 @@ nav ul li a:hover {
 
 /* Media queries para pantallas más grandes */
 @media (min-width: 1440px) {
-  header {
+  .header {
     height: 10vh; /* Ajusta la altura del encabezado para pantallas grandes */
     padding: 0 4%; /* Aumenta el padding para centrar mejor el contenido */
   }
@@ -1508,3 +1783,113 @@ nav ul li a:hover {
     font-size: 16px; /* Aumenta el tamaño de la fuente del botón de cerrar sesión */
   }
 }
+
+/*CALENDARIO DE ADMINISTRADOR*/
+.main-calendar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  margin-top: 9vh; /* Espacio para la barra de navegación */
+}
+
+/* Contenedor que agrupa el formulario y el calendario */
+.form-calendar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1000px;
+  width: 100%;
+}
+
+/* Estilos para el contenedor del formulario */
+.form-container {
+  background-color: #fff;
+  padding: 1.5rem;
+  margin-top: 5%;
+  border: 1px solid #5cb85c;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  flex: 1; /* Permite que el formulario se ajuste proporcionalmente */
+}
+
+.form-container .titulo1-calendario {
+  margin-top: 0;
+}
+
+.form-container .label-calendario {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-container .input-calendario {
+  width: calc(100% - 1rem);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-container .buton-calendario {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #5cb85c;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.form-container .buton-calendario:hover {
+  background-color: #4cae4c;
+}
+
+/* Estilos para el contenedor del calendario */
+.calendar-container {
+  background-color: #fff;
+  margin-left: 5%;
+  margin-top: 5%;
+  padding: 1.5rem;
+  border: 1px solid #5cb85c;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  flex: 1; /* Permite que el calendario se ajuste proporcionalmente */
+}
+
+/* Estilos para la cuadrícula del calendario */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px; /* Espacio entre los días */
+}
+
+/* Estilos para los días del calendario */
+.calendar-day {
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Estilo para los días con eventos */
+.calendar-day.event {
+  background-color: #e0ffe0; /* Color de fondo para los días con eventos */
+  border-color: #5cb85c; /* Borde más oscuro para días con eventos */
+  color: #333;
+}
+
+.calendar-day:hover {
+  background-color: #f5f5f5;
+}
+
+.calendar-day.event:hover {
+  background-color: #d4edda; /* Color de fondo más claro para días con eventos */
+}
+

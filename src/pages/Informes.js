@@ -1,14 +1,14 @@
 import React from "react";
 import NavbarAdmin from "../components/layout/NavbarAdmin";
-import Informes from "../components/Informes";
+import Informes1 from "../components/Informes1";
 
-function informes() {
+function Informes() {
   return (
     <div >
         < NavbarAdmin />
-        < Informes />
+        < Informes1 />
     </div>
   );
 };
 
-export default informes;
+export default Informes;

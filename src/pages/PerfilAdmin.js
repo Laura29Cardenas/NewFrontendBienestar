@@ -1,15 +1,15 @@
 import React from "react";
 import NavbarAdmin from "../components/layout/NavbarAdmin";
-import PerfilAdmin from "../components/ProfileAdmin";
 import '../index.css'
+import ProfileAdmin from "../components/ProfileAdmin";
 
-function Perfil() {
+function PerfilAdmin() {
   return (
     <div >
       < NavbarAdmin />
-      < PerfilAdmin />
+      < ProfileAdmin />
     </div>
   );
 };
 
-export default Perfil;
+export default PerfilAdmin;

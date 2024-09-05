@@ -2,7 +2,7 @@ import React from "react";
 import NavbarAdmin from "../components/layout/NavbarAdmin";
 import Calendarioadmin from "../components/CalendarioAdmin";
 
-function calendarioadmin () {
+function CalendarioAdministrador () {
   return (
     <div>
       < NavbarAdmin/>
@@ -11,4 +11,4 @@ function calendarioadmin () {
   );
 };
 
-export default calendarioadmin;
+export default CalendarioAdministrador;

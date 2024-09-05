@@ -19,7 +19,6 @@ function Calendariomain () {
         id="calendar-container"
         style={{ display: "none" }}
       >
-        {/* El calendario se generará aquí */}
       </div>
     </main>
     );

@@ -4,34 +4,34 @@ function Informes1() {
   return (
     <div>
       <div>
-        <h1 className="titulo-informes"> Bienvenido a los informes</h1>
+        <h1 className="titulo1-informes">Bienvenido a los informes</h1>
         <h3 className="titulo2-informes">
           A continuación llena los datos para poder visualizar el informe que
           estas buscando
         </h3>
-        <div className="container-informes">
+        <div className="container">
           {/* Botón de Fecha */}
           <div className="date-button">
-            <label htmlFor="date-field" className="date-labelfecha">
+            <label htmlFor="date-field" className="date-label">
               Fecha
             </label>
-            <div className="date-inputs-informes">
+            <div className="date-inputs">
               <input
-                className="input-fecha-informes"
+                className="input-fecha"
                 type="text"
                 id="day"
                 placeholder="Día"
                 maxLength={2}
               />
               <input
-                className="input-fecha-informes"
+                className="input-fecha"
                 type="text"
                 id="month"
                 placeholder="Mes"
                 maxLength={2}
               />
               <input
-                className="input-fecha-informes"
+                className="input-fecha"
                 type="text"
                 id="year"
                 placeholder="Año"
@@ -41,10 +41,10 @@ function Informes1() {
           </div>
           {/* Botón de Selección */}
           <div className="select-button">
-            <label htmlFor="jornada-select" className="select-label-informes">
+            <label htmlFor="jornada-select" className="select-label">
               Sede
             </label>
-            <select className="select-informes" id="jornada-select">
+            <select className="selector-informe" id="jornada-select">
               <option value disabled selected>
                 Selecciona una opción
               </option>
@@ -54,10 +54,10 @@ function Informes1() {
             </select>
           </div>
           <div className="select-button">
-            <label htmlFor="jornada-select" className="label-informes">
+            <label htmlFor="jornada-select" className="select-label">
               Jornada
             </label>
-            <select className="select-informes" id="jornada-select">
+            <select className="selector-informe" id="jornada-select">
               <option value disabled selected>
                 Selecciona una opción
               </option>
@@ -67,10 +67,10 @@ function Informes1() {
             </select>
           </div>
           <div className="select-button">
-            <label htmlFor="jornada-select" className="label-informes">
+            <label htmlFor="jornada-select" className="select-label">
               Coordinación
             </label>
-            <select className="select-informes" id="jornada-select">
+            <select className="selector-informe" id="jornada-select">
               <option value disabled selected>
                 Selecciona una opción
               </option>
@@ -81,11 +81,11 @@ function Informes1() {
             </select>
           </div>
           <div className="number-button">
-            <label htmlFor="number-input" className="number-label-informes">
+            <label htmlFor="number-input" className="number-label">
               Numero de ficha
             </label>
             <input
-              className="input-number-informes"
+              className="numero-informe"
               type="number"
               id="number-input"
               placeholder="Ingresa un número"
@@ -96,7 +96,7 @@ function Informes1() {
               Ambiente de formación
             </label>
             <input
-              className="input-number-informes"
+              className="numero-informe"
               type="number"
               id="number-input"
               placeholder="Ingresa un número"
@@ -106,6 +106,6 @@ function Informes1() {
       </div>
     </div>
   );
-};
+}
 
 export default Informes1;
