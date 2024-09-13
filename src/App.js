@@ -2,25 +2,27 @@ import { Route, Routes } from "react-router-dom";
 import ProfileUsua from "./pages/ProfileUsua";
 import CalendarioUsuario from "./pages/CalendarioUsuario";
 import ProgramacionUsua from "./pages/ProgramacionUsua";
-import Informes1 from "./components/Informes1";
-import Usuarios1 from "./components/Usuarios1";
-import ProfileAdmin from "./components/ProfileAdmin";
-import CalendarioAdministrador from "./pages/CalendarioAdministrador";
-
-
+import Informes from "./pages/Informes";
+import Usuarios from "./pages/Usuarios";
+import PerfilAdmin from "./pages/PerfilAdmin";
+import ProgramacionAdmin from "./pages/ProgramacionAdmin";
+import Inicio from "./pages/Inicio";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <div className=" App">
       <>
         <Routes>
+          <Route path="/login" element={<Login/>} />
+          <Route path="/inicio" element={<Inicio/>} />
           <Route path="/profileUsua" element={<ProfileUsua/>} />
-          <Route path="/calendarioausua" element={<CalendarioUsuario/>} />
+          <Route path="/calendariousua" element={<CalendarioUsuario/>} />
           <Route path="/programacionesUsua" element={<ProgramacionUsua/>} />
-          <Route path="/informes" element={<Informes1/>} />
-          <Route path="/usuarios" element={<Usuarios1/>} />
-          <Route path="/perfilAdmin" element={<ProfileAdmin/>} />
-          <Route path="/calendarioadmin" element={<CalendarioAdministrador/>} />
+          <Route path="/informes" element={<Informes/>} />
+          <Route path="/usuarios" element={<Usuarios/>} />
+          <Route path="/perfilAdmin" element={<PerfilAdmin/>} />
+          <Route path="/programacionAdmin" element={<ProgramacionAdmin/>} />
         </Routes>
       </>
     </div>

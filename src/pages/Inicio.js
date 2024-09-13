@@ -9,7 +9,7 @@ import Footer from "../components/layout/Footer";
 
 function Inicio() {
   return (
-    <div >
+    <div>
       <NavbarInicio />
       <Iniciosection1 />
       <Iniciosection2 />

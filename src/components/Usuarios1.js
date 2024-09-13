@@ -37,19 +37,19 @@ function Usuarios1() {
                 <label class="label-registrar-usuario" for="nombre">Nombre:</label>
                 <input class="input-registrar-usuario" type="text" id="nombre" name="nombre" required>
               </div>
-              <div class="form-group">
+              <div class="form-group-usuarios">
                 <label class="label-registrar-usuario" for="apellido">Apellido:</label>
                 <input class="input-registrar-usuario" type="text" id="apellido" name="apellido" required>
               </div>
-              <div class="form-group">
+              <div class="form-group-usuarios">
                 <label class="label-registrar-usuario" for="correo">Correo institucional:</label>
                 <input class="input-registrar-usuario" type="email" id="correo" name="correo" required>
               </div>
-              <div class="form-group">
+              <div class="form-group-usuarios">
                 <label class="label-registrar-usuario" for="clave">Clave:</label>
                 <input class="input-registrar-usuario" type="password" id="clave" name="clave" required>
               </div>
-              <div class="form-group">
+              <div class="form-group-usuarios">
                 <label class="label-registrar-usuario" for="tipoDocumento">Tipo de documento:</label>
                 <select class="select-registrar-usuario" id="tipoDocumento" name="tipoDocumento" required>
                   <option value="">Seleccione una opción</option>
@@ -59,7 +59,7 @@ function Usuarios1() {
                   <option value="NIT">NIT</option>
                 </select>
               </div>
-              <div class="form-group">
+              <div class="form-group-usuarios">
                 <label class="label-registrar-usuario" for="genero">Género:</label>
                 <select class="select-registrar-usuario" id="genero" name="genero" required>
                   <option value="">Seleccione una opción</option>
@@ -68,7 +68,7 @@ function Usuarios1() {
                   <option value="otro">Otro</option>
                 </select>
               </div>
-              <div class="form-group">
+              <div class="form-group-usuarios">
                 <label class="label-registrar-usuario" for="rol">Rol:</label>
                 <select class="select-registrar-usuario" id="rol" name="rol" required>
                   <option value="">Seleccione una opción</option>
@@ -80,7 +80,7 @@ function Usuarios1() {
             </form>
           </div>
           <div id="extra-buttons">
-            <button id="add-more" class="agregar-mas-usuarios" style="background-color: #5cb85c; border: none; padding: 10px 20px; color: white; cursor: pointer;">Agregar más de un usuario</button>
+            <button id="add-more" class="agregar-mas-usuarios" style="background-color: #5cb85c; border: none; padding: 10px 20px; color: white; cursor: pointer; border-radius: 8px; margin-left: -28%;">Agregar más de un usuario</button>
           </div>
         </main>
       `,
@@ -138,6 +138,7 @@ function Usuarios1() {
               <label class="label-alert-form-usuarios" for="nombre">Nombre:</label>
               <input class="input-alert-form-usuarios" type="text" id="nombre" name="nombre" value="Juan" readonly>
             </div>
+            <br>
             <div class="column-form-usuarios">
               <label class="label-alert-form-usuarios" for="apellido">Apellido:</label>
               <input class="input-alert-form-usuarios" type="text" id="apellido" name="apellido" value="Pérez" readonly>
@@ -148,6 +149,7 @@ function Usuarios1() {
               <label class="label-alert-form-usuarios" for="correo">Correo institucional:</label>
               <input class="input-alert-form-usuarios" type="email" id="correo" name="correo" value="juan.perez@ejemplo.com" readonly>
             </div>
+            <br>
             <div class="column-form-usuarios">
               <label class="label-alert-form-usuarios" for="clave">Clave:</label>
               <input class="input-alert-form-usuarios" type="password" id="clave" name="clave" value="123456" readonly>
@@ -261,7 +263,7 @@ function Usuarios1() {
                   required
                 />
               </div>
-              <div className="campo">
+              <div className="campo-usuarios">
                 <label
                   className="label-form-registrar-usuarios"
                   htmlFor="nombre"
@@ -271,8 +273,9 @@ function Usuarios1() {
                 <input
                   className="input-form-registrar-usuarios"
                   type="text"
-                  id="nombre"
-                  name="nombre"
+                  id="documento"
+                  name="documento"
+                  required
                 />
               </div>
             </div>

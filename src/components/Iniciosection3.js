@@ -5,9 +5,9 @@ function Iniciosection3() {
     <div>
       <section className="general">
         <div className="general-1">
-          <h2> Acceso a Recursos Adicionales </h2>
-          <h3> Bibliotecas y Centros de Recursos: </h3>
-          <p>
+          <h2 className="titulo-tipoh2"> Acceso a Recursos Adicionales </h2> 
+          <h3>Bibliotecas y Centros de Recursos: </h3>
+          <p className="parrafo-general">
             Las bibliotecas y centros de recursos del SENA proporcionan acceso a
             una extensa colección de materiales educativos, incluidos libros,
             manuales y recursos digitales. Estos centros están diseñados para

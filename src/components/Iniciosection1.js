@@ -6,14 +6,15 @@ import estudio from "../static/img/estudio.png";
 function Iniciosection1() {
   return (
     <div>
-      <section className="coffee">
-        <div className=" coffee-content container">
-          <h2>Los diferentes servicios</h2>
-          <h3>Asesoría Psicológica</h3>
-          <div className="coffee-group" />
-          <div className="coffee-1">
-            <img src={asesoria_psicologica} alt="asesoria_psicologica" />
-            <p className="txt-p ">
+      <section className="section-inicio1-index">
+        <div className="content-uno container-index">
+          <h2 className="titulo-tipoh2">Los diferentes servicios</h2>
+          <h3 className="titulo-tipoh3">Asesoría Psicológica</h3>
+          <div className="item-group" />
+          <div className="item-index">
+            <img className="imagen-index" src={asesoria_psicologica} alt="asesoria_psicologica" />
+            <br/>
+            <p className="txt-p">
               El servicio de asesoría psicológica del SENA ofrece apoyo
               emocional y mental a los estudiantes. Proporciona un espacio
               confidencial para tratar problemas como el estrés académico, la
@@ -27,11 +28,14 @@ function Iniciosection1() {
             <hr className="linea" />
           </div>
           <br />
-          <h3>Actividades Recreativas</h3>
-          <div className="coffee-group" />
-          <div className="coffee-1">
-            <img src={actividades} alt="actividades" />
-            <p>
+          <h3 className="titulo-tipoh3">Actividades Recreativas</h3>
+          <div className="item-group" />
+          <div className="item-index">
+          <br/>
+            <img className="imagen-index" src={actividades} alt="actividades" />
+          <br/>
+            <br/>
+            <p className="txt-p">
               Las actividades recreativas en el SENA están diseñadas para
               promover el desarrollo integral de los estudiantes fuera del
               ámbito académico. Incluyen eventos deportivos, culturales y
@@ -43,12 +47,14 @@ function Iniciosection1() {
             </p>
             <hr className="linea" />
             <br />
-            <h3>Apoyo Académico</h3>
+            <h3 className="titulo-tipoh3">Apoyo Académico</h3>
           </div>
-          <div className="coffee-group" />
-          <div className="coffee-1">
-            <img src={estudio} alt="estudio" />
-            <p>
+          <div className="item-group" />
+          <div className="item-index">
+          <br/>
+            <img className="imagen-index" src={estudio} alt="estudio" />
+          <br/>
+            <p className="txt-p">
               El apoyo académico del SENA proporciona asistencia para mejorar el
               rendimiento educativo de los estudiantes. Ofrece tutorías
               personalizadas, talleres de técnicas de estudio y asesoría en la
@@ -66,3 +72,4 @@ function Iniciosection1() {
 };
 
 export default Iniciosection1;
+ 

@@ -6,9 +6,9 @@ import CardsedeFontibon from "../components/CardsedeFontibon";
 
 function ProgramacionUsua() {
   return (
-    <div >
-      <div className="container"> 
+    <div>
       < NavbarInsCap />
+      <div className="card-container">
       <Cardsedeuno/>
       <Cardsededos/>
       <CardsedeFontibon/>

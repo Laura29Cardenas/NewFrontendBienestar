@@ -2,7 +2,6 @@ import React from "react";
 
 function ProfileAdmin() {
   return (
-    <div>
       <div>
         <div className="title-container">
           <h2 className="section-title-profile-admin">
@@ -17,7 +16,7 @@ function ProfileAdmin() {
               action="#"
               method="post"
             >
-              <div className="form-group">
+              <div className="form-group-perfilAdmin">
                 <label className="label-form-profile-admin" htmlFor="nombre">
                   Nombre:
                 </label>
@@ -105,11 +104,41 @@ function ProfileAdmin() {
                   </option>
                 </select>
               </div>
+              <div className="form-group">
+                <label className="label-form-profile-admin" htmlFor="rol">
+                  Tipo de documento:
+                </label>
+                <select
+                  className="select-form-profile-admin"
+                  id="rol"
+                  name="rol"
+                  disabled
+                >
+                  <option value>Seleccione una opción</option>
+                  <option value="instructor">Cedula de Ciudadania</option>
+                  <option value="capacitador">Cedula de Extranjeria</option>
+                  <option value="administrador" selected>
+                    Tarjeta de Identidad
+                  </option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label className="label-form-profile-admin" htmlFor="correo">
+                  Numero de documento:
+                </label>
+                <input
+                  className="input-form-profile-admin"
+                  type="documento"
+                  id="documento"
+                  name="documento"
+                  defaultValue="123456789"
+                  readOnly
+                />
+              </div>
             </form>
           </div>
         </main>
       </div>
-    </div>
   );
 }
 

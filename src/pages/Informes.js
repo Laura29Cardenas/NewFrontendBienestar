@@ -5,8 +5,8 @@ import Informes1 from "../components/Informes1";
 function Informes() {
   return (
     <div >
-        < NavbarAdmin />
-        < Informes1 />
+      < NavbarAdmin />
+      < Informes1 />
     </div>
   );
 };

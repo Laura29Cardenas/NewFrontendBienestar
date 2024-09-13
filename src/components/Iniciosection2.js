@@ -4,9 +4,9 @@ function Iniciosection2() {
   return (
     <div>
       <main className="services">
-        <div className="services-content container">
-          <h2> Bienestar al Aprendiz SENA</h2>
-          <p>
+        <div className="services-content container-index">
+          <h2 className="titulo-tipoh2">Bienestar al Aprendiz SENA</h2> 
+          <p className="txt-p">
             Es una estrategia institucional para contribui permanencia y el
             desempeño exitoso de los aprendices de la entidad en su proceso
             formativo con enfoque territorial y diferencial. Contribuye a
