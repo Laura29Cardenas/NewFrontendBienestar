@@ -2455,7 +2455,6 @@ margin-bottom: 35px;
   position: relative;
   min-height: 100vh;
   min-height: 100vh;
-  z-index: -3;
   background: url('../src/static/img/SENA.jpg') center center / cover no-repeat;
 }
 
@@ -2488,8 +2487,8 @@ margin-bottom: 35px;
 .logo .logobienestar {
   width: 30vh;
   height: 15vh;
-  margin-left: -85%;
   margin-top: -22px;
+  z-index: 9999;
 }
 
 .logo2 {
@@ -2505,7 +2504,7 @@ margin-bottom: 35px;
   padding: 25px;
   margin: auto;
   border-radius: 20px;
-  border: 2px solid #5CB85C;
+  border: 4px solid #5CB85C;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -2540,6 +2539,7 @@ margin-bottom: 35px;
   background-color: #fff;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
+  z-index: 2;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -2563,3 +2563,71 @@ margin-bottom: 35px;
   color: white;
   text-decoration: none;
 }
+
+/* Archivo de estilos CSS */
+
+/* Estilo para el contenedor del calendario */
+.calendar-container {
+  width: 100%; /* Ajustar tamaño del calendario */
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fc-day-header {
+  background-color: #ffcc00; /* Color de los encabezados de los días */
+  color: #fff;
+}
+
+.fc-event {
+  background-color: #3788d8 !important; /* Azul por defecto de FullCalendar */
+  color: white !important; /* Texto blanco para buena legibilidad */
+}
+
+
+/* Estilo para el contenedor del modal */
+.modal-dialog {
+  max-width: 40%; /* Mismo tamaño que el calendario */
+  max-height: 50vh;
+  margin: 0 auto; /* Centrar el modal horizontalmente */
+}
+
+.modal-content {
+  border-radius: 10px; /* Opcional: para que coincida con el calendario */
+}
+
+
+/* Cambia el color del botón "Agregar" en el modal a verde */
+.modal-footer .btn-primary {
+  background-color: #28a745; /* Verde Bootstrap */
+  border-color: #28a745;
+}
+
+.modal-footer .btn-primary:hover {
+  background-color: #218838; /* Verde más oscuro */
+  border-color: #1e7e34;
+}
+
+/* Aumenta la especificidad para asegurarte de que tus estilos se apliquen */
+.fc-button-primary {
+  background-color: #28a745 !important; /* Verde Bootstrap */
+  border-color: #28a745 !important;
+  color: white !important;
+}
+
+.fc-button-primary:hover {
+  background-color: #218838 !important; /* Verde más oscuro */
+  border-color: #1e7e34 !important;
+}
+
+
+
+/* Elimina la decoración del texto en los días de la semana y los números */
+.fc-daygrid-day-number,
+.fc-daygrid-day-top {
+  text-decoration: none !important;
+  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)) !important;
+}
+

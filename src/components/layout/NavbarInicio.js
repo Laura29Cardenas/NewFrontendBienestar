@@ -17,7 +17,7 @@ function NavbarInicio() {
           <nav className="index-navbar">
             <ul className="ul-navIndex">
               <li className="li-navIndex">
-                <Link className="enlace-iniciarsesion" to="#">Iniciar Sesión</Link>
+                <Link className="enlace-iniciarsesion" to="/login">Iniciar Sesión</Link>
               </li>
             </ul>
           </nav>
