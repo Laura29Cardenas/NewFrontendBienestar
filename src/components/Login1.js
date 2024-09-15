@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { login } from "./api"; // Importa la función de login que realiza la solicitud al backend
+import { login } from "../api/api"; // Importa la función de login que realiza la solicitud al backend
 import logo from "../../src/static/img/Logo de Bienestar.png";
 import logonormal from "../../src/static/img/logo.png";
 
@@ -18,8 +18,18 @@ function Login1() {
       // Guardar el token en el almacenamiento local o session storage si es necesario
       localStorage.setItem("token", data.token);
 
-      // Redirecciona a la página de inicio del administrador
-      window.location.href = "/inicioAdmin";
+      // Dependiendo del rol, redireccionar a diferentes páginas
+      const rol = data.user.rol; // Acceder al rol dentro de "user"
+
+      if (rol === 1) {
+        window.location.href = "/perfilAdmin";
+      } else if (rol === 2) {
+        window.location.href = "/inicioUsuario";
+      } else if (rol === 3){
+        window.location.href = "/inicioAdmin";
+      } else {
+        setError("Rol no reconocido. Contacte con el administrador.");
+      }
     } catch (err) {
       console.error("Error de inicio de sesión:", err);
       setError("Correo o contraseña incorrectos. Inténtalo de nuevo.");
