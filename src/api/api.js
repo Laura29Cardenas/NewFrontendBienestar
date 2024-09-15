@@ -163,14 +163,52 @@ export const putCapacitador = async (id, capacitador) => {
   return response.json();
 };
 
-export const login = async (correo_Usua, clave_Usua) => {
-    try {
-      const response = await axios.post(`${API_URL}/login`, {
-        correo_Usua,
-        clave_Usua,
-      });
-      return response.data;
-    } catch (error) {
-      throw error.response ? error.response.data : new Error('Error de conexión');
+// Función para obtener el perfil del usuario
+export const getPerfil = async (id_Usuario) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/perfil/${id_Usuario}`);
+    
+    if (!response.ok) {
+      throw new Error('Error al obtener el perfil');
     }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error al obtener el perfil:', error.message);
+    throw error; // Re-lanzar el error para que el componente pueda manejarlo
+  }
+};
+
+export const login = async (correo_Usua, clave_Usua) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/login`, {
+      method: 'POST', // Usar el método POST
+      headers: {
+        'Content-Type': 'application/json', // Definir el tipo de contenido
+      },
+      body: JSON.stringify({
+        correo_Usua, // Enviar los datos como JSON
+        clave_Usua,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Error de autenticación'); // Manejar el error si el login falla
+    }
+
+    const data = await response.json(); // Obtener la respuesta en formato JSON
+
+    // Aquí se asume que el ID del usuario está en `data.id`
+    if (data && data.id) {
+          // Guarda el token en localStorage
+      localStorage.setItem('token', data.token);
+        // Guarda el id_Usuario en localStorage
+      localStorage.setItem('id_Usuario', data.user.id);
+    }
+
+    return data;
+  } catch (error) {
+    throw error.message ? new Error(error.message) : new Error('Error de conexión');
+  }
 };
