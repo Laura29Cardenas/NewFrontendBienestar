@@ -63,45 +63,29 @@ function Profile ()  {
             <div className="form-group-perfilUsuario">
               <label className="label-form-profile-usua" htmlFor="genero">Género:</label>
 
-              <select 
+              <input
               className="select-form-profile-usua" 
               id="genero" 
               name="genero" 
-              disabled>
-
-                <option value>Seleccione una opción</option>
-                <option value="masculino" selected>
-                  Masculino
-                </option>
-                <option value="femenino">Femenino</option>
-                <option value="otro">Otro</option>
-              </select>
+              disabled
+              />
             </div>
             <div className="form-group-perfilUsuario">
               <label className="label-form-profile-usua" htmlFor="rol">Rol:</label>
 
-              <select className="select-form-profile-usua" id="rol" name="rol" disabled>
-                
-                <option value>Seleccione una opción</option>
-                <option value="instructor">Instructor</option>
-                <option value="capacitador">Capacitador</option>
-                <option value="administrador" selected>
-                  Administrador
-                </option>
-              </select>
+              < input 
+              className="select-form-profile-usua" 
+              id="rol" 
+              name="rol" disabled
+              />
             </div>
             <div className="form-group-perfilUsuario">
               <label className="label-form-profile-usua" htmlFor="rol">Tipo Documento:</label>
-
-              <select className="select-form-profile-usua" id="rol" name="rol" disabled>
-                
-                <option value>Seleccione una opción</option>
-                <option value="cedula de extranjeria">Cedula de extranjeria</option>
-                <option value="tarjeta de identidad">Tarjeta de identidad</option>
-                <option value="cedula" selected>
-                  Cedula
-                </option>
-              </select>
+              <input 
+              className="select-form-profile-usua" 
+              id="rol" 
+              name="rol" disabled
+              />
             </div>
             <div className="form-group-perfilUsuario">
               <label className="label-form-profile-usua" htmlFor="nombre">Documento:</label>

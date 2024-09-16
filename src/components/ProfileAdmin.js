@@ -35,7 +35,7 @@ function ProfileAdmin() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <div className="body-profile-admin">
       <div className="title-container">
         <h2 className="section-title-profile-admin">Información del Perfil</h2>
       </div>

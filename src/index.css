@@ -1,14 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
-/* NAVBAR ADMINISTRADOR */
-/* NAVBAR ADMINISTRADOR */
+/*NAVBAR ADMINISTRADOR*/
 /* Estilo del cuerpo */
 .body-navbarAdmin {
-  background-color: #5cb85c21;
+  background-color: #218838;
   margin: 0;
   padding: 0;
-  font-family: "Work Sans", sans-serif;
+  font-family: "Work Sans Regular", sans-serif;
   overflow: hidden;
 }
 
@@ -19,20 +18,19 @@
   align-items: center;
   background-color: #f4f4f4;
   top: 0;
-  height: 9vh;
+  height: 10vh;
   width: 100%;
   border-bottom: 2px solid #5cb85c;
   position: fixed;
-  z-index: 1000;
-  padding: 0 2%; /* Asegura que el contenido no esté pegado a los bordes */
+  z-index: 9999;
+  padding: 0 1%; /* Padding para asegurar que el contenido no esté pegado a los bordes */
   box-sizing: border-box;
 }
 
 /* Estilo del logo */
 .logo-navadmin-bienestar {
-  padding: 5px;
-  width: auto;
-  max-height: 8vh; /* Ajusta la altura máxima del logo */
+  width: 15%;
+  max-height: 15vh;
 }
 
 /* Estilo de la barra de navegación */
@@ -41,19 +39,20 @@
   flex-grow: 1;
   justify-content: center;
   align-items: center;
+  margin: 0; /* Elimina el margen derecho para centrar el nav */
 }
 
 .nav-admin .ul-navadmin {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 75px 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .nav-admin .ul-navadmin .li-navadmin {
-  margin: 0 20px; /* Espaciado más amplio entre elementos */
+  margin: 0 15px;
 }
 
 /* Estilo de los enlaces de la barra de navegación */
@@ -61,19 +60,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 12px; /* Aumenta el padding para mejorar la usabilidad */
+  padding: 4px 10px;
   text-decoration: none;
   color: #000000;
   transition: color 0.3s, background-color 0.3s;
-  border-radius: 30px; /* Redondeo más suave */
-  position: relative;
+  border-radius: 50px;
+  position: relative; /* Necesario para la línea inferior */
 }
 
-/* Estilo de los iconos */
+/* Estilo de los iconos dentro de los enlaces */
 .nav-admin .ul-navadmin .li-navadmin .enlaceIcono-navadmin .icono {
-  width: 4vh; /* Aumenta el tamaño del icono */
-  height: 4vh; /* Aumenta el tamaño del icono */
-  margin: 0;
+  width: 3vh;
+  height: 3vh;
+  margin: 0 5px; /* Ajusta el espacio entre iconos */
 }
 
 /* Efecto de hover en los enlaces */
@@ -91,39 +90,41 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 10px; /* Espaciado más amplio */
-  padding: 8px 12px; /* Aumenta el padding */
+  margin-right: 5px;
+  padding: 4px 10px;
   text-decoration: none;
   color: #000000;
   transition: color 0.3s, background-color 0.3s;
-  border-radius: 30px;
-  position: relative;
+  border-radius: 50px;
+  position: relative; /* Necesario para la línea inferior */
 }
 
+/* Efecto de hover en el enlace de cerrar sesión */
 .cerrarSesion .cerrarSesion-navadmin:hover {
   background-color: #5cb85cc2;
 }
 
 /* Estilo de la línea inferior para el botón de cerrar sesión activo */
 .cerrarSesion .cerrarSesion-navadmin.active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 10%;
   right: 10%;
-  height: 4px; /* Aumenta el grosor de la línea */
+  height: 3px;
   background-color: #5cb85c;
   border-radius: 50px;
 }
 
-/* Estilo de los iconos en cerrar sesión */
+/* Estilo de los iconos dentro del enlace de cerrar sesión */
 .cerrarSesion .cerrarSesion-navadmin .icono {
-  width: 4vh; /* Aumenta el tamaño del icono */
-  height: 4vh; /* Aumenta el tamaño del icono */
+  width: 3.4vh;
+  height: 3.4vh;
 }
 
+/* Efecto de hover en los iconos del enlace de cerrar sesión */
 .cerrarSesion .cerrarSesion-navadmin .icono:hover {
-  filter: brightness(0.7); /* Ajusta el brillo del icono */
+  filter: brightness(0.5);
 }
 
 /* Media queries para pantallas más pequeñas */
@@ -179,11 +180,13 @@
 @media (min-width: 1440px) {
   .header-nav-admin {
     height: 10vh; /* Ajusta la altura del encabezado para pantallas grandes */
-    padding: 0 4%; /* Aumenta el padding para centrar mejor el contenido */
+    padding: 0% 0%; /* Aumenta el padding para centrar mejor el contenido */
   }
 
   .logo-navadmin-bienestar {
-    width: 10%; /* Reduce el tamaño del logo para pantallas muy grandes */
+    display: block;
+    margin: 0; /* Centra el logo en su contenedor */
+    width: 17%; /* Reduce el tamaño del logo para pantallas muy grandes */
   }
 
   .nav-admin {
@@ -192,7 +195,7 @@
   }
 
   .nav-admin .ul-navadmin {
-    margin: 0;
+    margin-right: 20%;
   }
 
   .nav-admin .ul-navadmin .li-navadmin {
@@ -205,11 +208,11 @@
   }
 
   .cerrarSesion .cerrarSesion-navadmin {
+    margin-left: 0%;
     padding: 6px 16px; /* Aumenta el padding del botón de cerrar sesión */
     font-size: 16px; /* Aumenta el tamaño de la fuente del botón de cerrar sesión */
   }
 }
-
 
 /*GESTIONUSUARIOS - ADMIN*/
 /*usarios*/
@@ -226,12 +229,12 @@
   max-width: 20%; /* ancho máximo */
   max-height: 59vh;
   margin-left: 20vh;
-  margin-bottom: 0; 
+  margin-bottom: 0;
   padding: 20px;
   float: left;
   background-color: #fff;
   border: 1px solid #5cb85c;
-  border-radius: 10px; 
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -264,8 +267,6 @@
   border-radius: 5px;
 }
 
-
-
 .campo-usuarios .registrar-usuario {
   margin-left: 40px;
   display: flex;
@@ -273,8 +274,8 @@
   padding: 10px;
   background-color: #fff; /* Fondo blanco para un estilo limpio y sencillo */
   color: #fff; /* Texto en el mismo verde que el borde del formulario */
-  border: 2px solid #5CB85C;
-  background-color: #5CB85C; /* Borde en verde para que coincida con el resto del formulario */
+  border: 2px solid #5cb85c;
+  background-color: #5cb85c; /* Borde en verde para que coincida con el resto del formulario */
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s; /* Añade una transición suave para el hover */
@@ -363,10 +364,10 @@ button[type="submit"]:hover {
   padding: 20px;
   background-color: #fff;
   border: 1px solid #5cb85c;
-  border-radius: 10px; 
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
- 
+
 .informacion-container-usuarios .form-group {
   margin-bottom: 1.2%;
   display: flex;
@@ -453,7 +454,7 @@ button[type="submit"]:hover {
 /*registrar*/
 .swal2-html-container {
   z-index: 1;
-  display: flex ;
+  display: flex;
   margin: 0;
   padding: 1em 1.6em 0.3em;
   overflow: auto;
@@ -461,12 +462,12 @@ button[type="submit"]:hover {
   font-size: 1.125em;
   font-weight: normal;
   line-height: normal;
-  text-align:initial;
+  text-align: initial;
   word-wrap: break-word;
   word-break: break-word;
   overflow: hidden;
-} 
- 
+}
+
 swal.fire {
   padding: 0px;
   margin: 0px;
@@ -481,7 +482,7 @@ swal.fire title {
   border-radius: 8px;
   border: 2px solid #5cb85c;
   padding: 0 0 0.03em;
-  display:flex;
+  display: flex;
 }
 
 .swal2-validation-message {
@@ -549,7 +550,7 @@ swal.fire title {
 /*alert gestion usua*/
 .swal2-html-container {
   z-index: 1;
-  display: flex ;
+  display: flex;
   margin: 0;
   padding: 1em 1.6em 0.3em;
   overflow: auto;
@@ -557,13 +558,13 @@ swal.fire title {
   font-size: 1.125em;
   font-weight: normal;
   line-height: normal;
-  text-align:initial;
+  text-align: initial;
   word-wrap: break-word;
   word-break: break-word;
-} 
+}
 
 .swal2-confirm.swal2-styled {
-  background-color: #5CB85C;
+  background-color: #5cb85c;
 }
 
 .swal2-cancel.swal2-styled {
@@ -584,7 +585,7 @@ swal.fire title {
   border-radius: 8px;
   border: 2px solid #5cb85c;
   padding: 0 0 0.03em;
-  display:flex;
+  display: flex;
 }
 
 .swal2-validation-message {
@@ -640,13 +641,33 @@ swal.fire title {
   outline: none;
 }
 
-
-
-
 /*PROFILEADMIN*/
 /*ProfileAdmin.css*/
 /* Estilo del contenedor principal */
 /* Contenedor principal del perfil de administrador */
+html {
+  height: 100% !important; /* Asegura que el html y el body ocupen el 100% del alto */
+  width: 100% !important;
+  margin: 0 !important; /* Elimina el margen predeterminado */
+}
+
+html,
+body {
+  background-color: #5cb85c15 !important ;
+}
+
+html,
+body {
+  height: 100% !important; /* Asegura que el html y el body ocupen el 100% del alto */
+  width: 100% !important;
+  margin: 0 !important; /* Elimina el margen predeterminado */
+}
+
+html,
+body {
+  background-color: #5cb85c15 !important ;
+}
+
 .container-profile-admin {
   display: flex;
   flex-direction: column;
@@ -673,7 +694,10 @@ swal.fire title {
 /* Estilo del formulario de perfil de administrador */
 .profile-admin-container .form-perfil-admin {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(412px, 1fr)); /* Columnas adaptables según el ancho disponible */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(412px, 1fr)
+  ); /* Columnas adaptables según el ancho disponible */
   gap: 35px; /* Espacio entre columnas */
   width: 100%; /* Asegura que ocupe el 100% del contenedor */
   max-width: 900px; /* Asegura que no se desborde en pantallas grandes */
@@ -725,7 +749,6 @@ swal.fire title {
   outline: none;
 }
 
-
 /*Informes css*/
 /* Estilo para los encabezados */
 .titulo1-informes {
@@ -752,7 +775,7 @@ swal.fire title {
 /* Contenedor del formulario */
 .container {
   background-color: #fff;
-  border: 1px solid #5CB85C;
+  border: 1px solid #5cb85c;
   border-radius: 8px;
   padding: 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -768,19 +791,23 @@ swal.fire title {
 }
 
 /* Estilo para los botones de fecha */
-.date-button, .select-button, .number-button {
+.date-button,
+.select-button,
+.number-button {
   display: flex;
   align-items: center;
   gap: 1rem;
   background-color: #fff;
-  border: 1px solid #5CB85C;
+  border: 1px solid #5cb85c;
   border-radius: 8px;
   padding: 0.75rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Etiquetas de los botones */
-.date-label, .select-label, .number-label {
+.date-label,
+.select-label,
+.number-label {
   font-size: 1rem;
   margin-right: 1rem;
 }
@@ -794,7 +821,7 @@ swal.fire title {
 .date-inputs .input-fecha {
   width: 50px;
   padding: 0.5rem;
-  border: 1px solid #5CB85C;
+  border: 1px solid #5cb85c;
   border-radius: 4px;
   text-align: center;
 }
@@ -802,7 +829,7 @@ swal.fire title {
 /* Selector */
 .selector-informe {
   padding: 0.5rem;
-  border: 1px solid #5CB85C;
+  border: 1px solid #5cb85c;
   border-radius: 4px;
   font-size: 1rem;
   background-color: #fff;
@@ -811,7 +838,7 @@ swal.fire title {
 /* Input numérico */
 .numero-informe {
   padding: 0.5rem;
-  border: 1px solid #5CB85C;
+  border: 1px solid #5cb85c;
   border-radius: 4px;
   font-size: 1rem;
   width: 150px;
@@ -828,7 +855,7 @@ swal.fire title {
 .show-report-button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #5CB85C;
+  background-color: #5cb85c;
   color: white;
   border: none;
   border-radius: 5px;
@@ -836,12 +863,12 @@ swal.fire title {
 }
 
 .show-report-button:hover {
-  background-color: #5CB85C;
+  background-color: #5cb85c;
 }
 
 /* Estilo del botón de eliminar */
 .btn-eliminar {
-  background-color: #5CB85C;
+  background-color: #5cb85c;
   color: #fff;
   padding: 5px 10px;
   border: none;
@@ -859,89 +886,92 @@ swal.fire title {
 /* Media queries para pantallas más pequeñas */
 @media (max-width: 1024px) {
   .main-content {
-      margin-left: 0;
-      width: 100%;
+    margin-left: 0;
+    width: 100%;
   }
 
   .container {
-      width: 90%;
+    width: 90%;
   }
 
   .date-inputs .input-fecha,
   .selector-informe,
   .numero-informe {
-      width: 100%; /* Asegura que los inputs y select ocupen el ancho completo en pantallas más pequeñas */
+    width: 100%; /* Asegura que los inputs y select ocupen el ancho completo en pantallas más pequeñas */
   }
 }
 
 /* Media queries para pantallas muy pequeñas (móviles) */
 @media (max-width: 600px) {
   .main-content {
-      margin-left: 0;
-      width: 100%;
+    margin-left: 0;
+    width: 100%;
   }
 
   .container {
-      width: 100%;
-      padding: 1rem; /* Ajusta el padding para pantallas pequeñas */
+    width: 100%;
+    padding: 1rem; /* Ajusta el padding para pantallas pequeñas */
   }
 
-  .date-button, .select-button, .number-button {
-      flex-direction: column;
-      gap: 0.5rem;
-      padding: 0.5rem;
+  .date-button,
+  .select-button,
+  .number-button {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
   }
 
   .date-inputs {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .date-inputs .input-fecha {
-      width: 100%;
+    width: 100%;
   }
 
   .selector-informe {
-      width: 100%;
+    width: 100%;
   }
 
   .numero-informe {
-      width: 100%;
+    width: 100%;
   }
 
   .btn-eliminar {
-      font-size: 12px; /* Reduce el tamaño de la fuente del botón de eliminar en pantallas pequeñas */
-      padding: 4px 8px; /* Reduce el padding del botón de eliminar */
+    font-size: 12px; /* Reduce el tamaño de la fuente del botón de eliminar en pantallas pequeñas */
+    padding: 4px 8px; /* Reduce el padding del botón de eliminar */
   }
 }
 
 /* Media queries para pantallas más grandes (monitores de escritorio de alta resolución) */
 @media (min-width: 1600px) {
   .main-content {
-      margin-left: 250px; /* Mantén el margen izquierdo fijo para pantallas muy grandes */
-      width: calc(100% - 250px);
+    margin-left: 250px; /* Mantén el margen izquierdo fijo para pantallas muy grandes */
+    width: calc(100% - 250px);
   }
 
   .container {
-      width: 70%; /* Reduce el ancho del contenedor para aprovechar mejor el espacio */
-      padding: 2rem; /* Aumenta el padding interno para una mejor presentación */
+    width: 70%; /* Reduce el ancho del contenedor para aprovechar mejor el espacio */
+    padding: 2rem; /* Aumenta el padding interno para una mejor presentación */
   }
 
-  .date-button, .select-button, .number-button {
-      padding: 1rem; /* Aumenta el padding para mejor visibilidad en pantallas grandes */
+  .date-button,
+  .select-button,
+  .number-button {
+    padding: 1rem; /* Aumenta el padding para mejor visibilidad en pantallas grandes */
   }
 
   .date-inputs .input-fecha,
   .selector-informe,
   .numero-informe {
-      width: auto; /* Permite que los inputs y select se ajusten automáticamente a su contenido */
+    width: auto; /* Permite que los inputs y select se ajusten automáticamente a su contenido */
   }
 
   .btn-eliminar {
-      font-size: 16px; /* Aumenta el tamaño de la fuente del botón de eliminar para mejor visibilidad */
-      padding: 8px 16px; /* Aumenta el padding del botón de eliminar */
+    font-size: 16px; /* Aumenta el tamaño de la fuente del botón de eliminar para mejor visibilidad */
+    padding: 8px 16px; /* Aumenta el padding del botón de eliminar */
   }
 }
-
 
 /*v_informes.css*/
 .swal2-title {
@@ -956,7 +986,7 @@ swal.fire title {
 }
 .report-container {
   text-align: center;
-  font-family: 'Work Sans Regular', sans-serif;
+  font-family: "Work Sans Regular", sans-serif;
   color: #333;
 }
 
@@ -964,11 +994,11 @@ swal.fire title {
   text-align: left;
 }
 
-.report-header { 
+.report-header {
   display: flex;
   text-align: center;
   margin-bottom: 10px;
-  border-bottom: 2px solid #5CB85C;
+  border-bottom: 2px solid #5cb85c;
 }
 
 .report-content {
@@ -978,12 +1008,12 @@ swal.fire title {
 .report-footer {
   font-style: italic;
   text-align: center;
-  border-top: 2px solid #5CB85C;
+  border-top: 2px solid #5cb85c;
   padding-top: 10px;
   margin-top: 20px;
 }
 .download-button {
-  background-color: #5CB85C;
+  background-color: #5cb85c;
   border: none;
   color: white;
   padding: 10px 10px;
@@ -998,7 +1028,6 @@ swal.fire title {
   border: none;
 }
 
-
 /*CALENDARIOUSUA*/
 /* Estilos para el contenedor del formulario */
 .form-container-calendariousua {
@@ -1012,8 +1041,10 @@ swal.fire title {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box; /* Asegura que padding no afecte el tamaño total */
   margin-top: 30vh; /* Ajusta el margen superior según sea necesario */
-  margin-left: 65%; 
-  transform: translateX(-160%);/* Ajusta el margen izquierdo según sea necesario */
+  margin-left: 65%;
+  transform: translateX(
+    -160%
+  ); /* Ajusta el margen izquierdo según sea necesario */
 }
 
 .form-container-calendariousua .Titulo-calendariousua {
@@ -1102,194 +1133,107 @@ swal.fire title {
   background-color: #d4edda; /* Color de fondo más claro para días con eventos */
 }
 
-
-
 /*PROFILEUSUA*/
- /* Estilo general para el contenedor principal */
- .container-profile-usua {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    padding: 20px;
-    height: auto;
-    max-width: 1000px;
-    border: 1px solid #5cb85c;
-    border-radius: 8px;
-    background-color: #fff;
-    box-sizing: border-box;
-  }
-  
-    /* Estilo del título */
-  .section-title-profile-usua{
-    text-align: center;
-    font-size: 2.3em;
-    margin-top: 10vh; /* Asegúrate de que el título tenga suficiente espacio arriba */
-    color: #2c3e50;
-  }
-  
-  /* Estilo del contenedor del perfil */
-  .main-perfil {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    padding: 20px;
-    height: auto; /* Ajusta automáticamente la altura */
-    width: 90vw; /* Ajusta el ancho */
-    max-width: 1000px; /* Ancho máximo del contenedor */
-     /* Incluye padding y border en el tamaño total */
-  }
-
-  /* Estilo del título */
-  .section-title-profile-usua {
-    text-align: center;
-    font-size: 2.5em;
-    margin-top: 13vh; /* Ajusta el espaciado superior */
-    color: #2c3e50;
-  }
-  
-  /* Estilo del formulario */
-  .profile-usua-container .form-perfil-usua{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 35px;
-    width: 100vw;
-    max-width: 900px;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  /* Estilo de los grupos de formulario */
-  .form-group-perfilUsuario {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px; /* Espacio entre campos */
-    align-items: flex-start; /* Alinea los elementos a la derecha */
-  }
-  
-  /* Estilo de las etiquetas */
-  .form-group-perfilUsuario .label-form-profile-usua  {
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 5px; /* Espacio debajo de la etiqueta */
-    text-align: left; /* Alinea el texto de la etiqueta a la derecha */
-  }
-  
-  /* Estilo de los campos de entrada */
-  .form-group-perfilUsuario .input-form-profile-usua,
-  .form-group-perfilUsuario .select-form-profile-usua {
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #5cb85c;
-    border-radius: 8px;
-    min-width: 100%;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease;
-  }
-
-  .input-form-profile-usua {
-    max-width: 40%;
-  }
-  
-  .select-form-profile-usua {
-    max-width: 30%;
-  }
-
-/* Estilo para el enfoque en campos de entrada */
-.form-group-perfilUsuario .input-form-profile-usua:focus,
-.form-group-perfilUsuario .select-form-profile:focus {
-border-color: #5cb85c;
-outline: none;
+/* Estilo general para el contenedor principal */
+.container-profile-usua {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 1000px;
+  border: 1px solid #5cb85c;
+  border-radius: 8px;
+  background-color: #fff;
+  box-sizing: border-box; /* Asegura que padding y border estén incluidos en el tamaño total */
 }
 
+/* Estilo del título */
+.section-title-profile-usua {
+  text-align: center;
+  font-size: 2.3em;
+  margin-top: 10vh; /* Asegúrate de que el título tenga suficiente espacio arriba */
+  color: #2c3e50;
+}
 
-  /* Media queries para pantallas más pequeñas */
-  @media (max-width: 768px) {
-    .profile-container {
-        grid-template-columns: 1fr; /* Cambia a una columna en pantallas pequeñas */
-    }
-  
-    .section-title {
-        font-size: 2em; /* Reduce el tamaño del título */
-        margin-top: 10vh; /* Ajusta el margen superior */
-    }
-  }
-  
-  /* Media queries para pantallas muy pequeñas (móviles) */
-  @media (max-width: 480px) {
-    main {
-        padding: 15px; /* Reduce el padding en pantallas pequeñas */
-        width: 95vw; /* Aumenta el ancho para aprovechar más el espacio */
-    }
-  
-    #formulario {
-        gap: 20px; /* Reduce el espacio entre los campos */
-    }
-  
-    .form-group-perfilUsuario .input-form-profile-usua,
-    .form-group-perfilUsuario .select-form-profile-usua {
-        padding: 10px; /* Reduce el padding de los campos de entrada */
-        font-size: 14px; /* Reduce el tamaño de la fuente */
-    }
-  }
-  
-  /* Media queries para pantallas muy grandes (monitores ultra anchos) */
-  @media (min-width: 1440px) {
-    main {
-        width: 70vw; /* Reduce el ancho para evitar que el contenido se extienda demasiado */
-        max-width: 1800px; /* Incrementa el máximo ancho del contenedor principal */
-        padding: 50px; /* Incrementa el padding para dar más espacio alrededor del contenido */
-    }
-  
-    .profile-container {
-        grid-template-columns: repeat(4, 1fr); /* Añade una cuarta columna para aprovechar mejor el espacio */
-        gap: 50px; /* Incrementa el espacio entre los campos */
-    }
-  
-    .section-title {
-        font-size: 3.5em; /* Incrementa el tamaño del título */
-        margin-top: 8vh; /* Ajusta el margen superior para centrar mejor el contenido */
-    }
-  
-    .form-group-perfilUsuario .input-form-profile-usua,
-    .form-group-perfilUsuario .select-form-profile-usua {
-        padding: 18px; /* Mayor padding para campos de entrada */
-        font-size: 20px; /* Incrementa el tamaño de la fuente */
-    }
-  }
-  
-  /* Media queries para pantallas ultra grandes (televisores y pantallas de más de 1920px) */
-  @media (min-width: 1920px) {
-    main {
-        width: 60vw; /* Reduce aún más el ancho para evitar que el contenido se extienda demasiado */
-        max-width: 2000px; /* Incrementa el máximo ancho del contenedor principal */
-        padding: 60px; /* Incrementa el padding para dar más espacio alrededor del contenido */
-    }
-  
-    .profile-container {
-      padding: 20px;
-      background-color: #fff; /* Fondo blanco para el contenedor del formulario */
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Incrementa el espacio entre los campos */
-    }
-  
-    .section-title {
-        font-size: 4em; /* Incrementa el tamaño del título */
-        margin-top: 6vh; /* Ajusta el margen superior */
-    }
-  
-    .form-group-perfilUsuario.input-form-profile-admin,
-    .form-group-perfilUsuario .select-form-profile-admin {
-        padding: 20px; /* Mayor padding para campos de entrada */
-        font-size: 22px; /* Incrementa el tamaño de la fuente */
-    }
-  }
+/* Estilo del contenedor del perfil */
+.main-perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 1000px;
+  border: 1px solid #5cb85c;
+  border-radius: 8px;
+  background-color: #fff;
+  box-sizing: border-box; /* Asegura que padding y border estén incluidos en el tamaño total */
+}
 
+/* Estilo del título */
+.section-title-profile-usua {
+  text-align: center;
+  font-size: 2.5em;
+  margin-top: 13vh; /* Ajusta el espaciado superior */
+  margin-bottom: 1%;
+  color: #2c3e50;
+}
 
+/* Estilo del formulario */
+.profile-usua-container .form-perfil-usua {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(412px, 1fr)); /* Columnas adaptables según el ancho disponible */
+  gap: 35px; /* Espacio entre columnas */
+  width: 100%; /* Asegura que ocupe el 100% del contenedor */
+  max-width: 900px; /* Asegura que no se desborde en pantallas grandes */
+  padding: 20px; /* Espacio interior ajustado */
+  text-align: left;
+  box-sizing: border-box;
+}
 
+/* Estilo de los grupos de formulario */
+.form-group-perfilUsuario {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
+/* Estilo de las etiquetas */
+.form-group-perfilUsuario .label-form-profile-usua {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px; /* Mayor espacio debajo de la etiqueta */
+  text-align: left;
+}
 
+/* Estilo de los campos de entrada */
+.input-form-profile-usua,
+.select-form-profile-usua {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #5cb85c;
+  border-radius: 8px;
+  width: 100%; /* Asegura que los inputs ocupen todo el ancho disponible */
+  box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+  transition: border-color 0.3s ease; /* Transición suave para el enfoque */
+}
+
+.input-form-profile-usua {
+  max-width: 100%; /* Se adapta al tamaño del contenedor */
+}
+
+.select-form-profile-usua {
+  max-width: 100%; /* Se adapta al tamaño del contenedor */
+}
+
+/* Estilo para el enfoque en campos de entrada */
+.input-form-profile-usua:focus,
+.select-form-profile:focus {
+    border-color: #5cb85c; /* Color de borde al hacer foco */
+    outline: none;
+}
 
 
 
@@ -1297,12 +1241,14 @@ outline: none;
 /* General container to center the cards */
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columnas automáticas con un mínimo de 300px y un máximo de 1 fracción del espacio disponible */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Columnas automáticas con un mínimo de 300px y un máximo de 1 fracción del espacio disponible */
   gap: 5px; /* Espacio entre tarjetas */
   margin: 2px; /* Margen opcional alrededor del contenedor */
   margin-top: 10%;
 }
-
 
 .main-content {
   padding: 20px;
@@ -1357,7 +1303,12 @@ outline: none;
 
 /* Hover effect for cuadro-info */
 .cuadro-info:hover {
-  background-color: rgba(0, 100, 0, 0.95); /* Darker green with high opacity on hover */
+  background-color: rgba(
+    0,
+    100,
+    0,
+    0.95
+  ); /* Darker green with high opacity on hover */
   color: transparent; /* Hide text color */
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Darker shadow on hover */
 }
@@ -1405,30 +1356,14 @@ outline: none;
   opacity: 1; /* Show text on hover */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*NAVUSUARIO*/
+/* NAVBAR USUARIO */
+/* Estilo del cuerpo */
 .body-navbarUsuario {
+  background-color: #218838; /* Igual que el fondo de nav-admin */
   margin: 0;
   padding: 0;
   font-family: "Work Sans Regular", sans-serif;
+  overflow: hidden;
 }
 
 /* Estilo del encabezado */
@@ -1438,34 +1373,35 @@ outline: none;
   align-items: center;
   background-color: #f4f4f4;
   top: 0;
-  height: 9vh;
+  height: 10vh; /* Ajustado al mismo tamaño que nav-admin */
   width: 100%;
   border-bottom: 2px solid #5cb85c;
   position: fixed;
-  z-index: 1000;
-  padding: 0 1%; /* Agrega padding horizontal */
+  z-index: 9999; /* Igual que nav-admin */
+  padding: 0 1%;
+  box-sizing: border-box;
 }
 
 /* Estilo del logo */
 .logoBienestar-navUsuario {
-  padding: 5px;
   width: 15%;
   max-height: 15vh;
-  object-fit: contain; /* Asegura que el logo se ajuste correctamente */
+  object-fit: contain;
 }
 
 /* Estilo de la barra de navegación */
 .navbar-usuario {
   display: flex;
+  flex-grow: 1;
   justify-content: center;
   align-items: center;
-  width: auto; /* Permite que el nav se ajuste al contenido */
+  margin: 0;
 }
 
 .navbar-usuario .ul-nav-usuario {
   list-style: none;
   padding: 0;
-  margin: 0 60px 0 0;
+  margin: 0 75px 0 0; /* Igual que nav-admin */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1488,12 +1424,11 @@ outline: none;
   position: relative;
 }
 
-/* Estilo de los iconos */
+/* Estilo de los iconos dentro de los enlaces */
 .navbar-usuario .ul-nav-usuario .li-navUsuario .enlace-navUsuario .icono {
   width: 3vh;
   height: 3vh;
-  padding: 0px 5px;
-  margin: 0;
+  margin: 0 5px;
 }
 
 /* Efecto de hover en los enlaces */
@@ -1504,7 +1439,6 @@ outline: none;
 /* Estilo de los enlaces de cerrar sesión */
 .cerrarSesion {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
 }
 
@@ -1521,28 +1455,30 @@ outline: none;
   position: relative;
 }
 
+/* Efecto de hover en el enlace de cerrar sesión */
 .cerrarSesion .enlaceCerrar-navUsuario:hover {
   background-color: #5cb85cc2;
 }
 
 /* Estilo de la línea inferior para el botón de cerrar sesión activo */
 .cerrarSesion .enlaceCerrar-navUsuario.active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 10%;
   right: 10%;
   height: 3px;
-  background-color: #5cb85c2c;
+  background-color: #5cb85c;
   border-radius: 50px;
 }
 
-/* Estilo de los iconos en cerrar sesión */
+/* Estilo de los iconos dentro del enlace de cerrar sesión */
 .cerrarSesion .enlaceCerrar-navUsuario .icono {
   width: 3.4vh;
   height: 3.4vh;
 }
 
+/* Efecto de hover en los iconos del enlace de cerrar sesión */
 .cerrarSesion .enlaceCerrar-navUsuario .icono:hover {
   filter: brightness(0.5);
 }
@@ -1600,11 +1536,11 @@ outline: none;
 @media (min-width: 1440px) {
   .header-navusuario {
     height: 10vh; /* Ajusta la altura del encabezado para pantallas grandes */
-    padding: 0 4%; /* Aumenta el padding para centrar mejor el contenido */
+    padding: 0 0.5%; /* Aumenta el padding para centrar mejor el contenido */
   }
 
   .logoBienestar-navUsuario {
-    width: 10%; /* Reduce el tamaño del logo para pantallas muy grandes */
+    width: 17%; /* Ajusta el tamaño del logo para pantallas muy grandes */
   }
 
   .navbar-usuario {
@@ -1613,7 +1549,7 @@ outline: none;
   }
 
   .navbar-usuario .ul-nav-usuario {
-    margin: 0;
+    margin-right: 20%;
   }
 
   .navbar-usuario .ul-nav-usuario .li-navUsuario {
@@ -1630,18 +1566,6 @@ outline: none;
     font-size: 16px; /* Aumenta el tamaño de la fuente del botón de cerrar sesión */
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*PROGRAMACION DE ADMINISTRADOR*/
 .dropdown-container {
@@ -2008,153 +1932,149 @@ button[type="submit"]:hover {
   }
 }
 
-
-
-
-
-
-
 /*ESTILOS DEL INDEX PRINCIPAL*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-  margin:0;
-	padding:0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.row{
-	display: flex;
-	flex-wrap: wrap;
+.row {
+  display: flex;
+  flex-wrap: wrap;
 }
-.ul-navIndex{
-	list-style: none;
+.ul-navIndex {
+  list-style: none;
 }
-body{
-    font-family: "Poppins", sans-serif;
-    line-height: 1.5;
-	font-family: 'Poppins', sans-serif;
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  font-family: "Poppins", sans-serif;
   overflow-y: auto;
 }
 
 .container-index {
-    max-width: 1200px;
-    margin: 0 auto;
-    max-width: 1170px;
-	margin:auto;
+  max-width: 1200px;
+  margin: 0 auto;
+  max-width: 1170px;
+  margin: auto;
 }
 
-.encabezado-index{
-    background-image: linear-gradient(
-        rgba(0,0,0,0.7),
-        rgba(0,0,0,0.7)),
-        url(static/img/fondo1.jpg);
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 50vh;
-    display: flex;
-    align-items: center;
+.encabezado-index {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(static/img/fondo1.jpg);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
 }
 
 .menu-index {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo-index {
-    color: #FFFDFC;
-    font-size: 25px;
-    font-weight: 800;
+  color: #fffdfc;
+  font-size: 25px;
+  font-weight: 800;
 }
 
-.menu-index .index-navbar .ul-navIndex .li-navIndex{
-    position: relative;
-    float: left;
+.menu-index .index-navbar .ul-navIndex .li-navIndex {
+  position: relative;
+  float: left;
 }
 
 .menu-index .index-navbar .ul-navIndex .li-navIndex .enlace-iniciarsesion {
-font-size: 18px;
-padding: 20px;
-color: #FFFDFC;
-display: block;
-font-weight: 600;
+  font-size: 18px;
+  padding: 20px;
+  color: #fffdfc;
+  display: block;
+  font-weight: 600;
 }
-.menu-index .index-navbar .ul-navIndex .li-navIndex .enlace-iniciarsesion:hover{
-color: #CE967B;
+.menu-index
+  .index-navbar
+  .ul-navIndex
+  .li-navIndex
+  .enlace-iniciarsesion:hover {
+  color: #ce967b;
 }
 
-#menu{
-    display: none;
+#menu {
+  display: none;
 }
 
-.menu-icono{
-    width: 25px;
+.menu-icono {
+  width: 25px;
 }
 
 .menu-index .menu-label-index {
-    cursor: pointer;
-    display: none;
+  cursor: pointer;
+  display: none;
 }
 
-.header2-index{
-    text-align: center;
+.header2-index {
+  text-align: center;
 }
 .header2-index .titulo1-bienestar {
-font-size: 75px;
-line-height: 80px;
-color: #F9FAFC;
-text-transform: uppercase;
-margin-bottom: 35px;
+  font-size: 75px;
+  line-height: 80px;
+  color: #f9fafc;
+  text-transform: uppercase;
+  margin-bottom: 35px;
 }
 
 .header2-index .txt-p {
-    font-size: 16px;
-    color: #C5C5C5;
-    padding: 0 250px;
-    margin-bottom: 25px;
+  font-size: 16px;
+  color: #c5c5c5;
+  padding: 0 250px;
+  margin-bottom: 25px;
 }
-.section-inicio1-index{
-    padding: 100px 0;
-    background-color: #E1E2E6;
-    position: relative;
+.section-inicio1-index {
+  padding: 100px 0;
+  background-color: #e1e2e6;
+  position: relative;
 }
 
 .content-uno {
-    text-align: center;
+  text-align: center;
 }
 
 .content-uno .titulo-tipoh2 {
-    font-size: 55px;
-    line-height: 70px;
-    color: #323337;
-    text-transform: uppercase;
-    padding: 0 250px;
-    margin-bottom: 15px;
+  font-size: 55px;
+  line-height: 70px;
+  color: #323337;
+  text-transform: uppercase;
+  padding: 0 250px;
+  margin-bottom: 15px;
 }
 
-.txt-p{
-    font-size: 16px;
-    color: #414247;
-    padding: 0 250px;
-    margin-bottom: 35px;
-    margin-top: -2%;
+.txt-p {
+  font-size: 16px;
+  color: #414247;
+  padding: 0 250px;
+  margin-bottom: 35px;
+  margin-top: -2%;
 }
 
-.linea{
-    border: 1px solid grey;
-    margin-top: 4%;
+.linea {
+  border: 1px solid grey;
+  margin-top: 4%;
 }
 
 .linea2 {
@@ -2162,23 +2082,23 @@ margin-bottom: 35px;
   margin-top: -3%;
 }
 
-.item-group{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px;
+.item-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
 }
 
 .item-index {
-    padding: 0 25px;
+  padding: 0 25px;
 }
 .item-index .imagen-index {
-    width: 200px;
+  width: 200px;
 }
 
 .coffee-img {
-    position: absolute;
-    top: 0;
-    right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .titulo-tipoh3 {
@@ -2187,56 +2107,54 @@ margin-bottom: 35px;
 }
 
 .item-index .titulo-tipoh3 {
-    color: #323337;
-    margin-bottom: 15px;
+  color: #323337;
+  margin-bottom: 15px;
 }
 
 .services {
-    background-image: linear-gradient(
-        rgba(0,0,0,0.7),
-        rgba(0,0,0,0.7)),
-        url(static/img/fondo2.jpg);
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-attachment: fixed;
-        padding: 100px 0;
-        width: 100%;
-        border: none;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(static/img/fondo2.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 100px 0;
+  width: 100%;
+  border: none;
 }
 
 .services-content {
-    text-align: center;
+  text-align: center;
 }
 
 .services-content .titulo-tipoh2 {
-    font-size: 55px;
-    line-height: 70px;
-    color: #F9FAFC;
-    text-transform: uppercase;
-    margin-bottom: 50px;
+  font-size: 55px;
+  line-height: 70px;
+  color: #f9fafc;
+  text-transform: uppercase;
+  margin-bottom: 50px;
 }
 
 .services-content .txt-p {
-    font-size: 16px;
-    color: #C5C5C5;
-    margin-bottom: 50px;
-    padding: 0 100px;
+  font-size: 16px;
+  color: #c5c5c5;
+  margin-bottom: 50px;
+  padding: 0 100px;
 }
 
 .services-group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
 }
 
-.services-1{
-    padding: 0 100px;
+.services-1 {
+  padding: 0 100px;
 }
 
-.services-1 .imagen-index{
-    width: 25px;
-    margin-bottom: 15px;
+.services-1 .imagen-index {
+  width: 25px;
+  margin-bottom: 15px;
 }
 
 /* styles.css */
@@ -2246,209 +2164,204 @@ margin-bottom: 35px;
   margin-left: 40%;
 }
 
-
-.general-1{
-    width: 50%;
-    padding: 100px 250px 100px 100px;
-    background-color: #E1E2E6;
+.general-1 {
+  width: 50%;
+  padding: 100px 250px 100px 100px;
+  background-color: #e1e2e6;
 }
 
-
 .titulo-tipoh2 {
-    font-size: 55px;
-    line-height: 70px;
-    color: #323337;
-    text-transform: uppercase;
-    margin-bottom: 20px;
+  font-size: 55px;
+  line-height: 70px;
+  color: #323337;
+  text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
 .parrafo-general {
-    font-size: 16px;
-    color: #414247;
-    margin: 25px 0 45px 0;
+  font-size: 16px;
+  color: #414247;
+  margin: 25px 0 45px 0;
 }
 
 .blog {
-    padding: 100px 0;
-    text-align: center;
+  padding: 100px 0;
+  text-align: center;
 }
 
 .blog-content {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
-.blog-1{
-    padding: 15px 55px;
+.blog-1 {
+  padding: 15px 55px;
 }
 
 .blog-1 .imagen-index {
-    width: 250px;
-    height: 40%;
-    border-radius: 15px;
-    margin-bottom: 15px;
+  width: 250px;
+  height: 40%;
+  border-radius: 15px;
+  margin-bottom: 15px;
 }
 
-.blog-1 .titulo-tipoh3{
-    font-size: 25px;
-    color: #323337;
-    margin-left: 29px;
+.blog-1 .titulo-tipoh3 {
+  font-size: 25px;
+  color: #323337;
+  margin-left: 29px;
 }
 
-.header{
-    min-width: 0vh;
+.header {
+  min-width: 0vh;
 }
 
 .header-content {
-    padding: 100px 30px;
+  padding: 100px 30px;
 }
 
 .header-content .txt-p {
-    padding: 0;
+  padding: 0;
 }
 
 .content-uno .titulo-tipoh2 {
-    padding: 0;
+  padding: 0;
 }
 
-.txt-p{
-    padding: 0;
+.txt-p {
+  padding: 0;
 }
 
 .item-group {
-    flex-direction: column;
-    margin-bottom: 0;
+  flex-direction: column;
+  margin-bottom: 0;
 }
 
-.coffee-img{
-    display: none;
+.coffee-img {
+  display: none;
 }
 
 .services {
-    padding: 30px;
+  padding: 30px;
 }
 
 .services-content .txt-p {
-    padding: 0;
+  padding: 0;
 }
 
 .services-group {
-    flex-direction: column;
-    margin-bottom: 0;
+  flex-direction: column;
+  margin-bottom: 0;
 }
 
 .services-1 {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 .general {
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .general-1 {
-    width: 100%;
-    padding: 30px;
-    text-align: center;
+  width: 100%;
+  padding: 30px;
+  text-align: center;
 }
 
-.general-2, .general-3 {
-    display: none;
+.general-2,
+.general-3 {
+  display: none;
 }
 
 .blog {
-    padding: 30px;
+  padding: 30px;
 }
 
 .blog-content {
-    flex-direction: column;
+  flex-direction: column;
 }
 
-.footer{
-	background-color: #24262b;
-    padding: 70px 0;
+.footer {
+  background-color: #24262b;
+  padding: 70px 0;
 }
-.footer-col{
-   width: 25%;
-   padding: 0 15px;
+.footer-col {
+  width: 25%;
+  padding: 0 15px;
 }
-.footer-col h4{
-	font-size: 18px;
-	color: #ffffff;
-	text-transform: capitalize;
-	margin-bottom: 35px;
-	font-weight: 500;
-	position: relative;
+.footer-col h4 {
+  font-size: 18px;
+  color: #ffffff;
+  text-transform: capitalize;
+  margin-bottom: 35px;
+  font-weight: 500;
+  position: relative;
 }
-.footer-col h4::before{
-	content: '';
-	position: absolute;
-	left:0;
-	bottom: -10px;
-	background-color: #e91e63;
-	height: 2px;
-	box-sizing: border-box;
-	width: 50px;
+.footer-col h4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  background-color: #e91e63;
+  height: 2px;
+  box-sizing: border-box;
+  width: 50px;
 }
-.footer-col .ul-navIndex .li-navIndex:not(:last-child){
-	margin-bottom: 10px;
+.footer-col .ul-navIndex .li-navIndex:not(:last-child) {
+  margin-bottom: 10px;
 }
-.footer-col .ul-navIndex .li-navIndex .enlace-iniciarsesion{
-	font-size: 16px;
-	text-transform: capitalize;
-	color: #ffffff;
-	text-decoration: none;
-	font-weight: 300;
-	color: #bbbbbb;
-	display: block;
-	transition: all 0.3s ease;
+.footer-col .ul-navIndex .li-navIndex .enlace-iniciarsesion {
+  font-size: 16px;
+  text-transform: capitalize;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 300;
+  color: #bbbbbb;
+  display: block;
+  transition: all 0.3s ease;
 }
-.footer-col .ul-navIndex .li-navIndex .enlace-iniciarsesion:hover{
-	color: #ffffff;
-	padding-left: 8px;
+.footer-col .ul-navIndex .li-navIndex .enlace-iniciarsesion:hover {
+  color: #ffffff;
+  padding-left: 8px;
 }
-.footer-col .social-links a{
-	display: inline-block;
-	height: 40px;
-	width: 40px;
-	background-color: rgba(255,255,255,0.2);
-	margin:0 10px 10px 0;
-	text-align: center;
-	line-height: 40px;
-	border-radius: 50%;
-	color: #ffffff;
-	transition: all 0.5s ease;
+.footer-col .social-links a {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 10px 10px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #ffffff;
+  transition: all 0.5s ease;
 }
-.footer-col .social-links a:hover{
-	color: #24262b;
-	background-color: #ffffff;
+.footer-col .social-links a:hover {
+  color: #24262b;
+  background-color: #ffffff;
 }
 
 /*responsive*/
-@media(max-width: 767px){
-  .footer-col{
+@media (max-width: 767px) {
+  .footer-col {
     width: 50%;
     margin-bottom: 30px;
+  }
 }
-}
-@media(max-width: 574px){
-  .footer-col{
+@media (max-width: 574px) {
+  .footer-col {
     width: 100%;
+  }
 }
-}
-
-
-
 
 /*ESTILOS DEL LOGIN*/
 .body-login {
   position: relative;
   min-height: 100vh;
-  min-height: 100vh;
-  background: url('../src/static/img/SENA.jpg') center center / cover no-repeat;
+  background: url("../src/static/img/SENA.jpg") center center / cover no-repeat;
 }
 
 .body-login::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
@@ -2462,12 +2375,12 @@ margin-bottom: 35px;
   margin-bottom: 13vh;
   height: 100%;
   padding: inherit;
-  border-bottom: 2px solid #5CB85C;
+  border-bottom: 2px solid #5cb85c;
 }
 
 .logo {
   background: #fffffffd;
-  border-bottom: 2px solid #5CB85C;
+  border-bottom: 2px solid #5cb85c;
   height: 11vh;
   width: 100%;
   padding: 0%;
@@ -2493,7 +2406,7 @@ margin-bottom: 35px;
   padding: 25px;
   margin: auto;
   border-radius: 20px;
-  border: 4px solid #5CB85C;
+  border: 4px solid #5cb85c;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -2537,7 +2450,7 @@ margin-bottom: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #5CB85C;
+  background-color: #5cb85c;
   width: 110px;
   color: white;
   border: none;
@@ -2551,6 +2464,35 @@ margin-bottom: 35px;
 .botonLogin-inicio .enlace-inicio-login {
   color: white;
   text-decoration: none;
+}
+
+/* Estilos para el contenedor de la contraseña */
+.password-container {
+  position: relative;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.form-control-login {
+  padding-right: 2.5rem; /* Espacio para el ícono */
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 15px;
+  top: 7px;
+  cursor: pointer;
+  color: #6c757d;
+  font-size: 1.2rem;
+  z-index: 1000;
+}
+
+.password-toggle-icon:hover {
+  color: #495057;
 }
 
 /* Archivo de estilos CSS */
@@ -2575,7 +2517,6 @@ margin-bottom: 35px;
   color: white !important; /* Texto blanco para buena legibilidad */
 }
 
-
 /* Estilo para el contenedor del modal */
 .modal-dialog {
   max-width: 40%; /* Mismo tamaño que el calendario */
@@ -2586,7 +2527,6 @@ margin-bottom: 35px;
 .modal-content {
   border-radius: 10px; /* Opcional: para que coincida con el calendario */
 }
-
 
 /* Cambia el color del botón "Agregar" en el modal a verde */
 .modal-footer .btn-primary {
@@ -2611,12 +2551,9 @@ margin-bottom: 35px;
   border-color: #1e7e34 !important;
 }
 
-
-
 /* Elimina la decoración del texto en los días de la semana y los números */
 .fc-daygrid-day-number,
 .fc-daygrid-day-top {
   text-decoration: none !important;
   color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)) !important;
 }
-

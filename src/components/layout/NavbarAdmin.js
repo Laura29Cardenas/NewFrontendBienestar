@@ -21,6 +21,7 @@ function NavbarAdmin() {
           <ul className="ul-navadmin">
             <li className="li-navadmin">
               <Link
+                to="/perfilAdmin"
                 className="enlaceIcono-navadmin"
                 href="ProfileAdmin.html"
                 title="Perfil"
@@ -34,6 +35,7 @@ function NavbarAdmin() {
             </li>
             <li className="li-navadmin">
               <Link
+                to="/calendarioAdmin"
                 className="enlaceIcono-navadmin"
                 href="calendarioAdmin.html"
                 title="Ver calendario"
@@ -47,6 +49,7 @@ function NavbarAdmin() {
             </li>
             <li className="li-navadmin">
               <Link
+                to="/informes"
                 className="enlaceIcono-navadmin"
                 href="InformesAdmin.html"
                 title="Informes"
@@ -60,6 +63,7 @@ function NavbarAdmin() {
             </li>
             <li className="li-navadmin">
               <Link
+                to="/programacionAdmin"
                 className="enlaceIcono-navadmin"
                 href="Programacion.html"
                 title="Programaciones"
@@ -73,6 +77,7 @@ function NavbarAdmin() {
             </li>
             <li className="li-navadmin">
               <Link
+                to="/usuarios"
                 className="enlaceIcono-navadmin"
                 href="usuariosAdmin.html"
                 title="Usuarios"
@@ -88,6 +93,7 @@ function NavbarAdmin() {
         </nav>
         <div className="cerrarSesion">
           <Link
+            to="/"
             className="cerrarSesion-navadmin" 
             href="cerrar_sesion" 
             title="Cerrar sesión"

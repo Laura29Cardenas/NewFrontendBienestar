@@ -15,6 +15,7 @@ function Navbarinscap() {
           <ul className="ul-nav-usuario">
             <li className="li-navUsuario">
               <Link
+                to="/calendariousua"
                 href="calendarioUsua.html"
                 title="Ver calendario"
                 className="enlace-navUsuario"
@@ -24,13 +25,21 @@ function Navbarinscap() {
               </Link>
             </li>
             <li className="li-navUsuario">
-              <Link className="enlace-navUsuario" href="profileUsua.html" title="Perfil">
+              <Link 
+                to="/profileUsua"
+                className="enlace-navUsuario" 
+                href="profileUsua.html" 
+                title="Perfil">
                 <img src={perfil} alt="Perfil" className="icono" />
                 Perfil
               </Link>
             </li>
             <li className="li-navUsuario">
-              <Link className="enlace-navUsuario" href="programacionUsua.html" title="Programaciones">
+              <Link 
+                to="/programacionesUsua"
+                className="enlace-navUsuario" 
+                href="programacionUsua.html" 
+                title="Programaciones">
                 <img
                   src={programaciones}
                   alt="Programaciones"
@@ -42,7 +51,11 @@ function Navbarinscap() {
           </ul>
         </nav>
         <div className="cerrarSesion">
-          <Link className="enlaceCerrar-navUsuario" href="#" title="Cerrar sesión">
+          <Link 
+            to="/"
+            className="enlaceCerrar-navUsuario" 
+            href="#" 
+            title="Cerrar sesión">
             <img src={cerrar_sesion} className="icono" alt="cerrar_sesion" />
             Cerrar sesión
           </Link>

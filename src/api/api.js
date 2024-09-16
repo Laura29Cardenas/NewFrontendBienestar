@@ -180,6 +180,23 @@ export const getPerfil = async (id_Usuario) => {
   }
 };
 
+export const getbuscarUsuario = async (tipoDocumento, numeroDocumento, nombre) => {
+  try {
+    // Construir la URL con los parámetros correctos
+    const response = await fetch(`${API_BASE_URL}/usuario?tipoDocumento=${tipoDocumento}&numeroDocumento=${numeroDocumento}&nombre=${nombre || ''}`);
+    
+    if (!response.ok) {
+      throw new Error('Error al buscar el usuario');
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error al buscar el usuario:', error.message);
+    throw error;
+  }
+};
+
 export const login = async (correo_Usua, clave_Usua) => {
   try {
     const response = await fetch(`${API_BASE_URL}/login`, {
@@ -199,16 +216,20 @@ export const login = async (correo_Usua, clave_Usua) => {
 
     const data = await response.json(); // Obtener la respuesta en formato JSON
 
-    // Aquí se asume que el ID del usuario está en `data.id`
-    if (data && data.id) {
-          // Guarda el token en localStorage
+    // Verificar si hay un usuario y token en la respuesta
+    if (data && data.user && data.token) {
+      // Guarda el token en localStorage
       localStorage.setItem('token', data.token);
-        // Guarda el id_Usuario en localStorage
+
+      // Guarda el id_Usuario en localStorage
       localStorage.setItem('id_Usuario', data.user.id);
+
+      // Puedes también almacenar más información del usuario si lo necesitas
+      localStorage.setItem('nombre_Usuario', data.user.nombre);  // Ejemplo: guardar el nombre
     }
 
     return data;
   } catch (error) {
-    throw error.message ? new Error(error.message) : new Error('Error de conexión');
+    throw new Error(error.message || 'Error de conexión');
   }
 };

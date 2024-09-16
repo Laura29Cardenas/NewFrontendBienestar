@@ -4,7 +4,7 @@ import ProfileAdmin from "../components/ProfileAdmin";
 
 function PerfilAdmin() {
   return (
-    <div >
+    <div className="body-profile-admin">
       < NavbarAdmin />
       < ProfileAdmin />
     </div>

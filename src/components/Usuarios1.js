@@ -1,24 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import { utils, writeFile } from 'xlsx';
+import { getbuscarUsuario } from '../api/api'; // Asegúrate de que la ruta a tu archivo api.js es correcta
 
 function Usuarios1() {
+  const [usuario, setUsuario] = useState(null);
+
   // Función para generar el archivo Excel
   const generarArchivoExcel = () => {
     try {
-      // Datos de ejemplo para el archivo Excel
       const data = [
-        { Nombre: '', Apellido: '', Correo: '', Clave: '', Tipo_Documento: '', Genero: '', Rol: '' } // Encabezados de columna vacíos para entrada de datos
+        { Nombre: '', Apellido: '', Correo: '', Clave: '', Tipo_Documento: '', Genero: '', Rol: '' }
       ];
 
-      // Crear una nueva hoja de Excel
       const ws = utils.json_to_sheet(data, { header: ["Nombre", "Apellido", "Correo", "Clave", "Tipo_Documento", "Genero", "Rol"] });
-
-      // Crear un nuevo libro de Excel y agregar la hoja
       const wb = utils.book_new();
       utils.book_append_sheet(wb, ws, 'Registro');
-
-      // Guardar el libro como un archivo
       writeFile(wb, 'registro_personas.xlsx');
     } catch (error) {
       console.error('Error al generar el archivo Excel:', error);
@@ -29,61 +26,7 @@ function Usuarios1() {
   const handleRegister = () => {
     Swal.fire({
       title: "Registrar Usuario",
-      html: `
-        <main class="registrar">
-          <div class="registrar-container">
-            <form class="form-registrar-usuario" id="registrar-form" action="#" method="post">
-              <div class="form-group-usuarios">
-                <label class="label-registrar-usuario" for="nombre">Nombre:</label>
-                <input class="input-registrar-usuario" type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="form-group-usuarios">
-                <label class="label-registrar-usuario" for="apellido">Apellido:</label>
-                <input class="input-registrar-usuario" type="text" id="apellido" name="apellido" required>
-              </div>
-              <div class="form-group-usuarios">
-                <label class="label-registrar-usuario" for="correo">Correo institucional:</label>
-                <input class="input-registrar-usuario" type="email" id="correo" name="correo" required>
-              </div>
-              <div class="form-group-usuarios">
-                <label class="label-registrar-usuario" for="clave">Clave:</label>
-                <input class="input-registrar-usuario" type="password" id="clave" name="clave" required>
-              </div>
-              <div class="form-group-usuarios">
-                <label class="label-registrar-usuario" for="tipoDocumento">Tipo de documento:</label>
-                <select class="select-registrar-usuario" id="tipoDocumento" name="tipoDocumento" required>
-                  <option value="">Seleccione una opción</option>
-                  <option value="Cedula de Ciudadania">Cédula de Ciudadanía</option>
-                  <option value="Cedula de Extranjeria">Cédula de Extranjería</option>
-                  <option value="PEP">PEP</option>
-                  <option value="NIT">NIT</option>
-                </select>
-              </div>
-              <div class="form-group-usuarios">
-                <label class="label-registrar-usuario" for="genero">Género:</label>
-                <select class="select-registrar-usuario" id="genero" name="genero" required>
-                  <option value="">Seleccione una opción</option>
-                  <option value="masculino">Masculino</option>
-                  <option value="femenino">Femenino</option>
-                  <option value="otro">Otro</option>
-                </select>
-              </div>
-              <div class="form-group-usuarios">
-                <label class="label-registrar-usuario" for="rol">Rol:</label>
-                <select class="select-registrar-usuario" id="rol" name="rol" required>
-                  <option value="">Seleccione una opción</option>
-                  <option value="instructor">Instructor</option>
-                  <option value="capacitador">Capacitador</option>
-                  <option value="administrador">Administrador</option>
-                </select>
-              </div>
-            </form>
-          </div>
-          <div id="extra-buttons">
-            <button id="add-more" class="agregar-mas-usuarios" style="background-color: #5cb85c; border: none; padding: 10px 20px; color: white; cursor: pointer; border-radius: 8px; margin-left: -28%;">Agregar más de un usuario</button>
-          </div>
-        </main>
-      `,
+      html: `...`, // Tu HTML del formulario de registro aquí
       showConfirmButton: true,
       confirmButtonText: "Guardar usuario",
       showCancelButton: true,
@@ -121,188 +64,203 @@ function Usuarios1() {
   };
 
   // Función para manejar el botón de "Buscar"
-  const handleSearch = () => {
-    // Elimina el formulario de información anterior si existe
-    const existingForm = document.querySelector(".informacion-container-usuarios");
-    if (existingForm) {
-      existingForm.remove();
-    }
+  const handleSearch = async (event) => {
+    event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
 
-    const searchFormContainer = document.querySelector(".buscador-usuarios");
-    const formHTML = `
-      <div class="informacion-container-usuarios">
-        <h2 class="titulo-info-usuarios">Información del usuario</h2>
-        <form id="formulario" action="#" method="post">
-          <div class="form-group">
-            <div class="column-form-usuarios">
-              <label class="label-alert-form-usuarios" for="nombre">Nombre:</label>
-              <input class="input-alert-form-usuarios" type="text" id="nombre" name="nombre" value="Juan" readonly>
-            </div>
-            <br>
-            <div class="column-form-usuarios">
-              <label class="label-alert-form-usuarios" for="apellido">Apellido:</label>
-              <input class="input-alert-form-usuarios" type="text" id="apellido" name="apellido" value="Pérez" readonly>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="column-form-usuarios">
-              <label class="label-alert-form-usuarios" for="correo">Correo institucional:</label>
-              <input class="input-alert-form-usuarios" type="email" id="correo" name="correo" value="juan.perez@ejemplo.com" readonly>
-            </div>
-            <br>
-            <div class="column-form-usuarios">
-              <label class="label-alert-form-usuarios" for="clave">Clave:</label>
-              <input class="input-alert-form-usuarios" type="password" id="clave" name="clave" value="123456" readonly>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="label-alert-form-usuarios" for="genero">Género:</label>
-            <select class="select-alert-form-usuarios" id="genero" name="genero" disabled>
-              <option value="">Seleccione una opción</option>
-              <option value="masculino" selected>Masculino</option>
-              <option value="femenino">Femenino</option>
-              <option value="otro">Otro</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="label-alert-form-usuarios" for="rol">Rol:</label>
-            <select class="select-alert-form-usuarios" id="rol" name="rol" disabled>
-              <option value="">Seleccione una opción</option>
-              <option value="instructor">Instructor</option>
-              <option value="capacitador">Capacitador</option>
-              <option value="administrador" selected>Administrador</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <div>
-              <button type="button" id="modificarButton" class="modificar-usuario">Modificar</button>
-            </div>
-            <div>
-              <button type="submit" id="inactivarButton" class="inactivar-usuario">Inactivar</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    `;
-    searchFormContainer.insertAdjacentHTML("afterend", formHTML);
+    try {
+      // Extraer valores directamente desde el formulario
+      const tipoDocumento = document.getElementById("tipo-documento").value;
+      const numeroDocumento = document.getElementById("documento").value;
+      const nombre = document.getElementById("nombre-busqueda").value;
 
-    // Asignar el evento 'onclick' al botón 'Modificar' después de que el formulario se haya insertado en el DOM
-    document.getElementById("modificarButton").onclick = function (event) {
-      event.preventDefault(); // Evita el envío del formulario
-
-      const button = document.getElementById("modificarButton");
-
-      if (button.textContent === "Modificar") {
-        // Hacer que los campos sean editables
-        document.getElementById("nombre").removeAttribute("readonly");
-        document.getElementById("apellido").removeAttribute("readonly");
-        document.getElementById("correo").removeAttribute("readonly");
-        document.getElementById("clave").removeAttribute("readonly");
-        document.getElementById("genero").removeAttribute("disabled");
-        document.getElementById("rol").removeAttribute("disabled");
-
-        // Cambiar el texto del botón a "Guardar"
-        button.textContent = "Guardar";
-
-      } else if (button.textContent === "Guardar") {
-        // Aquí puedes agregar la lógica para guardar los cambios, por ejemplo, enviando el formulario
-        // document.getElementById("formulario").submit();
-
-        // Hacer que los campos vuelvan a ser de solo lectura
-        document.getElementById("nombre").setAttribute("readonly", true);
-        document.getElementById("apellido").setAttribute("readonly", true);
-        document.getElementById("correo").setAttribute("readonly", true);
-        document.getElementById("clave").setAttribute("readonly", true);
-        document.getElementById("genero").setAttribute("disabled", true);
-        document.getElementById("rol").setAttribute("disabled", true);
-
-        // Cambiar el texto del botón de nuevo a "Modificar"
-        button.textContent = "Modificar";
+      // Verificar que los campos requeridos no estén vacíos
+      if (!tipoDocumento || !numeroDocumento) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Campos incompletos',
+          text: 'Por favor completa el tipo y número de documento.'
+        });
+        return;
       }
-    };
+
+      // Llamar a la API para buscar el usuario
+      const data = await getbuscarUsuario(tipoDocumento, numeroDocumento, nombre);
+
+      if (data) {
+        const searchFormContainer = document.querySelector(".buscador-usuarios");
+        const formHTML = `
+          <div class="informacion-container-usuarios">
+            <h2 class="titulo-info-usuarios">Información del usuario</h2>
+            <form id="formulario" action="#" method="post">
+              <div class="form-group">
+                <div class="column-form-usuarios">
+                  <label class="label-alert-form-usuarios" for="nombre-info">Nombre:</label>
+                  <input class="input-alert-form-usuarios" type="text" id="nombre-info" name="nombre" value="${data.nombre || ''}" readonly>
+                </div>
+                <br>
+                <div className="column-form-usuarios">
+                  <label class="label-alert-form-usuarios" for="apellido-info">Apellido:</label>
+                  <input class="input-alert-form-usuarios" type="text" id="apellido-info" name="apellido" value="${data.apellido || ''}" readonly>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="column-form-usuarios">
+                  <label class="label-alert-form-usuarios" for="correo-info">Correo institucional:</label>
+                  <input class="input-alert-form-usuarios" type="email" id="correo-info" name="correo" value="${data.correo || ''}" readonly>
+                </div>
+                <br>
+                <div class="column-form-usuarios">
+                  <label class="label-alert-form-usuarios" for="clave-info">Clave:</label>
+                  <input class="input-alert-form-usuarios" type="password" id="clave-info" name="clave" value="${data.clave || ''}" readonly>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="label-alert-form-usuarios" for="genero-info">Género:</label>
+                <select class="select-alert-form-usuarios" id="genero-info" name="genero" disabled>
+                  <option value="">Seleccione una opción</option>
+                  <option value="masculino" ${data.genero === 'masculino' ? 'selected' : ''}>Masculino</option>
+                  <option value="femenino" ${data.genero === 'femenino' ? 'selected' : ''}>Femenino</option>
+                  <option value="otro" ${data.genero === 'otro' ? 'selected' : ''}>Otro</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="label-alert-form-usuarios" for="rol-info">Rol:</label>
+                <select class="select-alert-form-usuarios" id="rol-info" name="rol" disabled>
+                  <option value="">Seleccione una opción</option>
+                  <option value="instructor" ${data.rol === 'instructor' ? 'selected' : ''}>Instructor</option>
+                  <option value="capacitador" ${data.rol === 'capacitador' ? 'selected' : ''}>Capacitador</option>
+                  <option value="administrador" ${data.rol === 'administrador' ? 'selected' : ''}>Administrador</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <div>
+                  <button type="button" id="modificarButton" class="modificar-usuario">Modificar</button>
+                </div>
+                <div>
+                  <button type="submit" id="inactivarButton" class="inactivar-usuario">Inactivar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        `;
+        searchFormContainer.insertAdjacentHTML("afterend", formHTML);
+
+        // Asignar el evento 'onclick' al botón 'Modificar' después de que el formulario se haya insertado en el DOM
+        document.getElementById("modificarButton").onclick = function (event) {
+          event.preventDefault(); // Evita el envío del formulario
+
+          const button = document.getElementById("modificarButton");
+
+          if (button.textContent === "Modificar") {
+            document.getElementById("nombre-info").removeAttribute("readonly");
+            document.getElementById("apellido-info").removeAttribute("readonly");
+            document.getElementById("correo-info").removeAttribute("readonly");
+            document.getElementById("clave-info").removeAttribute("readonly");
+            document.getElementById("genero-info").removeAttribute("disabled");
+            document.getElementById("rol-info").removeAttribute("disabled");
+
+            button.textContent = "Guardar";
+
+          } else if (button.textContent === "Guardar") {
+            // Aquí puedes agregar la lógica para guardar los cambios, por ejemplo, enviando el formulario
+            // document.getElementById("formulario").submit();
+
+            document.getElementById("nombre-info").setAttribute("readonly", true);
+            document.getElementById("apellido-info").setAttribute("readonly", true);
+            document.getElementById("correo-info").setAttribute("readonly", true);
+            document.getElementById("clave-info").setAttribute("readonly", true);
+            document.getElementById("genero-info").setAttribute("disabled", true);
+            document.getElementById("rol-info").setAttribute("disabled", true);
+
+            button.textContent = "Modificar";
+          }
+        };
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo encontrar el usuario. Por favor, revisa los datos y vuelve a intentarlo.'
+        });
+      }
+    } catch (error) {
+      console.error('Error al buscar el usuario:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un problema al buscar el usuario. Por favor, inténtalo de nuevo más tarde.'
+      });
+    }
   };
 
   return (
     <div>
-      <div>
-        <h2 className="titulo-usuarios">¿Cuál usuario desea buscar?</h2>
-        <div className="buscador-usuarios">
-          <form>
-            <div className="form-busqueda-usuarios">
-              <div className="campo-usuarios">
-                <label
-                  className="label-form-registrar-usuarios"
-                  htmlFor="tipo-documento"
-                >
-                  Tipo de documento:
-                </label>
-                <select
-                  className="select-form-registrar-usuarios"
-                  id="tipo-documento"
-                  name="tipo-documento"
-                >
-                  <option value="">Seleccione un tipo de documento</option>
-                  <option value="CC">Cédula de ciudadanía</option>
-                  <option value="CE">Cédula de extranjería</option>
-                  <option value="PEP">PEP</option>
-                  <option value="NIT">NIT</option>
-                </select>
-              </div>
-              <div className="campo-usuarios">
-                <label
-                  className="label-form-registrar-usuarios"
-                  htmlFor="documento"
-                >
-                  Número de documento:
-                </label>
-                <input
-                  className="input-form-registrar-usuarios"
-                  type="text"
-                  id="documento"
-                  name="documento"
-                  required
-                />
-              </div>
-              <div className="campo-usuarios">
-                <label
-                  className="label-form-registrar-usuarios"
-                  htmlFor="nombre"
-                >
-                  Nombre (opcional):
-                </label>
-                <input
-                  className="input-form-registrar-usuarios"
-                  type="text"
-                  id="documento"
-                  name="documento"
-                  required
-                />
-              </div>
+      <h2 className="titulo-usuarios">¿Cuál usuario desea buscar?</h2>
+      <div className="buscador-usuarios">
+        <form onSubmit={handleSearch}>
+          <div className="form-busqueda-usuarios">
+            <div className="campo-usuarios">
+              <label className="label-form-registrar-usuarios" htmlFor="tipo-documento">
+                Tipo de documento:
+              </label>
+              <select
+                className="select-form-registrar-usuarios"
+                id="tipo-documento"
+                name="tipo-documento"
+                required
+              >
+                <option value="">Seleccione un tipo de documento</option>
+                <option value="CC">Cédula de ciudadanía</option>
+                <option value="CE">Cédula de extranjería</option>
+                <option value="PEP">PEP</option>
+                <option value="NIT">NIT</option>
+              </select>
             </div>
-            <div className="form-group">
-              <div className="campo-usuarios">
-                <button
-                  type="button"
-                  id="buscarButton"
-                  className="buscar-usuario"
-                  onClick={handleSearch}
-                >
-                  Buscar
-                </button>
-              </div>
-              <div className="campo-usuarios">
-                <button
-                  type="button"
-                  id="registrar"
-                  className="registrar-usuario"
-                  onClick={handleRegister}
-                >
-                  Registrar nuevo usuario
-                </button>
-              </div>
+            <div className="campo-usuarios">
+              <label className="label-form-registrar-usuarios" htmlFor="documento">
+                Número de documento:
+              </label>
+              <input
+                className="input-form-registrar-usuarios"
+                type="text"
+                id="documento"
+                name="documento"
+                required
+              />
             </div>
-          </form>
-        </div>
+            <div className="campo-usuarios">
+              <label className="label-form-registrar-usuarios" htmlFor="nombre-busqueda">
+                Nombre (opcional):
+              </label>
+              <input
+                className="input-form-registrar-usuarios"
+                type="text"
+                id="nombre-busqueda"
+                name="nombre"
+              />
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="campo-usuarios">
+              <button
+                type="submit"
+                id="buscarButton"
+                className="buscar-usuario"
+              >
+                Buscar
+              </button>
+            </div>
+            <div className="campo-usuarios">
+              <button
+                type="button"
+                id="registrar"
+                className="registrar-usuario"
+                onClick={handleRegister}
+              >
+                Registrar nuevo usuario
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );
