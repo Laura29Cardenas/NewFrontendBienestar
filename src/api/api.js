@@ -182,20 +182,32 @@ export const getPerfil = async (id_Usuario) => {
 
 export const getbuscarUsuario = async (tipoDocumento, numeroDocumento, nombre) => {
   try {
-    // Construir la URL con los parámetros correctos
-    const response = await fetch(`${API_BASE_URL}/usuario?tipoDocumento=${tipoDocumento}&numeroDocumento=${numeroDocumento}&nombre=${nombre || ''}`);
+    const url = new URL(`${API_BASE_URL}/usuario/tipoDoc/${tipoDocumento}/documento/${numeroDocumento}/nombre/${nombre || ''}`);
+    console.log('Generated URL:', url.toString()); // Verificar la URL
+    
+    const response = await fetch(url);
+    
+    console.log('Response status:', response.status); // Verifica el estado de la respuesta
     
     if (!response.ok) {
-      throw new Error('Error al buscar el usuario');
+      throw new Error(`Error al buscar el usuario: ${response.status}`);
     }
 
     const data = await response.json();
+    
+    // Verifica el formato de los datos
+    console.log('Data received:', data);
+
     return data;
   } catch (error) {
     console.error('Error al buscar el usuario:', error.message);
     throw error;
   }
 };
+
+
+
+
 
 export const login = async (correo_Usua, clave_Usua) => {
   try {
