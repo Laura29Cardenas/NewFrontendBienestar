@@ -4,7 +4,7 @@ import { utils, writeFile } from "xlsx";
 import { getbuscarUsuario } from "../api/api"; // Asegúrate de que la ruta a tu archivo api.js es correcta
 
 function Usuarios1() {
-  const [usuario, setUsuario] = useState(null);
+  const [user, setUser] = useState(null);
 
   // Función para generar el archivo Excel
   const generarArchivoExcel = () => {
@@ -97,7 +97,6 @@ function Usuarios1() {
     });
   };
 
-  // Función para manejar el botón de "Buscar"
   const handleSearch = async (event) => {
     event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
 
@@ -122,14 +121,13 @@ function Usuarios1() {
         nombre
       );
 
-      if (response && response[0] && response[0]["0"]) {
-        // Verifica que la respuesta contenga datos y accede a '0'
-        const user = response[0]["0"]; // Acceder al primer elemento del array y luego a '0'
+      // Verifica que la respuesta contenga datos
+      if (response && response[0]) {
+        const user = response[0]; // Acceder directamente al objeto del usuario
 
         if (user) {
           const searchFormContainer =
             document.querySelector(".buscador-usuarios");
-          console.log(searchFormContainer); // Asegúrate de que no sea 'null'
 
           // Eliminar el formulario existente
           const existingForm = document.querySelector(
@@ -152,7 +150,7 @@ function Usuarios1() {
                     }" readonly>
                   </div>
                   <br>
-                  <div className="column-form-usuarios">
+                  <div class="column-form-usuarios">
                     <label class="label-alert-form-usuarios" for="apellido-info">Apellido:</label>
                     <input class="input-alert-form-usuarios" type="text" id="apellido-info" name="apellido" value="${
                       user.apellido || ""
@@ -160,14 +158,14 @@ function Usuarios1() {
                   </div>
                 </div>
                 <div class="form-group">
-                  <div className="column-form-usuarios">
+                  <div class="column-form-usuarios">
                     <label class="label-alert-form-usuarios" for="correo-info">Correo institucional:</label>
                     <input class="input-alert-form-usuarios" type="email" id="correo-info" name="correo" value="${
                       user.correo || ""
                     }" readonly>
                   </div>
                   <br>
-                  <div className="column-form-usuarios">
+                  <div class="column-form-usuarios">
                     <label class="label-alert-form-usuarios" for="clave-info">Clave:</label>
                     <input class="input-alert-form-usuarios" type="password" id="clave-info" name="clave" value="${
                       user.clave || ""
@@ -215,7 +213,6 @@ function Usuarios1() {
               </form>
             </div>
           `;
-          console.log("Formulario generado con éxito");
           searchFormContainer.insertAdjacentHTML("afterend", formHTML);
 
           // Asignar el evento 'onclick' al botón 'Modificar'
@@ -241,7 +238,6 @@ function Usuarios1() {
                 .getElementById("genero-info")
                 .removeAttribute("disabled");
               document.getElementById("rol-info").removeAttribute("disabled");
-
               button.textContent = "Guardar";
             } else if (button.textContent === "Guardar") {
               // Aquí puedes agregar la lógica para guardar los cambios
@@ -285,6 +281,7 @@ function Usuarios1() {
     }
   };
 
+  // Renderizar condicionalmente el formulario con los datos del usuario
   return (
     <div>
       <h2 className="titulo-usuarios">¿Cuál usuario desea buscar?</h2>
