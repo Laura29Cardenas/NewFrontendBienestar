@@ -271,7 +271,7 @@
 
 .campo-usuarios .registrar-usuario {
   margin-left: -115px;
-  margin-top: 4vh;
+  margin-top: 7vh;
   display: flex;
   justify-content: center;
   padding: 10px;
@@ -362,7 +362,7 @@ button[type="submit"]:hover {
 /*gestion usua*/
 .informacion-container-usuarios {
   max-width: 50%;
-  max-height: 58vh;
+  max-height: 67vh;
   display: block;
   margin: 0 0 0 70vh; /* adjust margin top and left to position the container */
   padding: 20px;
@@ -424,25 +424,8 @@ button[type="submit"]:hover {
 .modificar-usuario[type="button"] {
   display: flex;
   justify-content: center;
-  margin-top: 3vh;
-  margin-left: 10vh;
-  width: 30vh;
-  font-size: 1rem;
-  text-align: center;
-  padding: 10px;
-  background-color: #5cb85c;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.inactivar-usuario[type="submit"] {
-  display: flex;
-  justify-content: center;
-  margin-right: 1vh;
-  margin-top: 3vh;
-  margin-left: 19vh;
+  margin-top: 1vh;
+  margin-left: 32vh;
   width: 30vh;
   font-size: 1rem;
   text-align: center;
@@ -1036,6 +1019,7 @@ body {
   border: none;
 }
 
+
 /*CALENDARIOUSUA*/
 /* Estilos para el contenedor del formulario */
 .form-container-calendariousua {
@@ -1140,6 +1124,9 @@ body {
 .calendar-day.event:hover {
   background-color: #d4edda; /* Color de fondo más claro para días con eventos */
 }
+
+
+
 
 /*PROFILEUSUA*/
 /* Estilo general para el contenedor principal */
@@ -2565,3 +2552,160 @@ body {
   text-decoration: none !important;
   color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)) !important;
 }
+
+
+/*Calendario admin*/
+/* Archivo de estilos CSS */
+/* Estilo para el contenedor del calendario */
+.calendar-container {
+  width: 100%; /* Ajustar tamaño del calendario */
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fc-day-header {
+  background-color: #ffcc00; /* Color de los encabezados de los días */
+  color: #fff;
+}
+
+.fc-event {
+  background-color: #3788d8 !important; /* Azul por defecto de FullCalendar */
+  color: white !important; /* Texto blanco para buena legibilidad */
+}
+
+/* Estilo para el contenedor del modal */
+.modal-dialog {
+  max-width: 40%; /* Mismo tamaño que el calendario */
+  max-height: 50vh;
+  margin: 0 auto; /* Centrar el modal horizontalmente */
+}
+
+.modal-content {
+  border-radius: 10px; /* Opcional: para que coincida con el calendario */
+}
+
+/* Cambia el color del botón "Agregar" en el modal a verde */
+.modal-footer .btn-primary {
+  background-color: #28a745; /* Verde Bootstrap */
+  border-color: #28a745;
+}
+
+.modal-footer .btn-primary:hover {
+  background-color: #218838; /* Verde más oscuro */
+  border-color: #1e7e34;
+}
+
+/* Aumenta la especificidad para asegurarte de que tus estilos se apliquen */
+.fc-button-primary {
+  background-color: #28a745 !important; /* Verde Bootstrap */
+  border-color: #28a745 !important;
+  color: white !important;
+}
+
+.fc-button-primary:hover {
+  background-color: #218838 !important; /* Verde más oscuro */
+  border-color: #1e7e34 !important;
+}
+
+/* Elimina la decoración del texto en los días de la semana y los números */
+.fc-daygrid-day-number,
+.fc-daygrid-day-top {
+  text-decoration: none !important;
+  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)) !important;
+}
+
+
+/*Calendario admin*/
+/* Archivo de estilos CSS */
+/* Estilo para el contenedor del calendario */
+.calendar-container {
+      margin: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 600px;
+      height: 315px;
+      padding: 10px;
+      border: 2px solid #5cb85c;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      margin-top: -22%;
+      margin-left: 50%;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .titulo-calendario {
+      text-align: center;
+      margin: 0; /* Sin margen */
+      padding: 0; /* Sin padding */
+      font-size: 1.5rem;
+      position: relative; /* Habilita el uso de top y left */
+      top: -60vh; /* Ajusta para moverlo hacia arriba */
+      left: 100px; /* Ajusta este valor para moverlo hacia la derecha */
+    }
+       
+    
+  
+  .fc-day-header {
+    background-color: #ffcc00; /* Color de los encabezados de los días */
+    color: #fff;
+  }
+  
+  .fc-event {
+    background-color: #3788d8 !important; /* Azul por defecto de FullCalendar */
+    color: white !important; /* Texto blanco para buena legibilidad */
+  }
+  
+  
+  /* Estilo para el contenedor del modal */
+  .modal-dialog {
+    max-width: 40%; /* Mismo tamaño que el calendario */
+    max-height: 50vh;
+    margin: 0 auto; /* Centrar el modal horizontalmente */
+  }
+  
+  .modal-content {
+    border-radius: 10px; /* Opcional: para que coincida con el calendario */
+  }
+  
+  
+  /* Cambia el color del botón "Agregar" en el modal a verde */
+  .modal-footer .btn-primary {
+    background-color: #28a745; /* Verde Bootstrap */
+    border-color: #28a745;
+  }
+  
+  .modal-footer .btn-primary:hover {
+    background-color: #218838; /* Verde más oscuro */
+    border-color: #1e7e34;
+  }
+  
+  /* Aumenta la especificidad para asegurarte de que tus estilos se apliquen */
+  .fc-button-primary {
+    background-color: #28a745 !important; /* Verde Bootstrap */
+    border-color: #28a745 !important;
+    color: white !important;
+  }
+  
+  .fc-button-primary:hover {
+    background-color: #218838 !important; /* Verde más oscuro */
+    border-color: #1e7e34 !important;
+  }
+  
+  
+  
+  /* Elimina la decoración del texto en los días de la semana y los números */
+  .fc-daygrid-day-number,
+  .fc-daygrid-day-top {
+    text-decoration: none !important;
+    color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)) !important;
+  }
+  
+  

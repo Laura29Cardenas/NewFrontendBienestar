@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { utils, writeFile } from "xlsx";
 import { getbuscarUsuario } from "../api/api"; // Asegúrate de que la ruta a tu archivo api.js es correcta
+import { updateUsuario } from "../api/api";
+import { getIdUsuarioGlobal } from "../api/api"; // Asegúrate de que la ruta sea correcta
 
 function Usuarios1() {
   const [user, setUser] = useState(null);
@@ -124,7 +126,7 @@ function Usuarios1() {
       // Verifica que la respuesta contenga datos
       if (response && response[0]) {
         const user = response[0]; // Acceder directamente al objeto del usuario
-
+        console.log(user);
         if (user) {
           const searchFormContainer =
             document.querySelector(".buscador-usuarios");
@@ -176,38 +178,44 @@ function Usuarios1() {
                   <label class="label-alert-form-usuarios" for="genero-info">Género:</label>
                   <select class="select-alert-form-usuarios" id="genero-info" name="genero" disabled>
                     <option value="">Seleccione una opción</option>
-                    <option value="masculino" ${
-                      user.genero === "masculino" ? "selected" : ""
+                    <option value="Masculino" ${
+                      user.genero === "Masculino" ? "selected" : ""
                     }>Masculino</option>
-                    <option value="femenino" ${
-                      user.genero === "femenino" ? "selected" : ""
+                    <option value="Femenino" ${
+                      user.genero === "Femenino" ? "selected" : ""
                     }>Femenino</option>
-                    <option value="otro" ${
-                      user.genero === "otro" ? "selected" : ""
-                    }>Otro</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label class="label-alert-form-usuarios" for="rol-info">Rol:</label>
                   <select class="select-alert-form-usuarios" id="rol-info" name="rol" disabled>
                     <option value="">Seleccione una opción</option>
-                    <option value="instructor" ${
+                    <option value="2" ${
                       user.tipo_rol === "Instructor" ? "selected" : ""
                     }>Instructor</option>
                     <option value="capacitador" ${
-                      user.tipo_rol === "Capacitador" ? "selected" : ""
+                      user.tipo_rol === "3" ? "selected" : ""
                     }>Capacitador</option>
-                    <option value="administrador" ${
+                    <option value="1" ${
                       user.tipo_rol === "Administrador" ? "selected" : ""
                     }>Administrador</option>
                   </select>
                 </div>
                 <div class="form-group">
+                  <label class="label-alert-form-usuarios" for="estado-info">Estado del usuario:</label>
+                  <select class="select-alert-form-usuarios" id="estado-info" name="estado" disabled>
+                    <option value="">Seleccione una opción</option>
+                    <option value=1 ${
+                      user.estado === 1 ? "selected" : ""
+                    }>Activo</option>
+                    <option value=0 ${
+                      user.estado === 0 ? "selected" : ""
+                    }>Inactivo</option>
+                  </select>
+                </div>
+                <div class="form-group">
                   <div>
                     <button type="button" id="modificarButton" class="modificar-usuario">Modificar</button>
-                  </div>
-                  <div>
-                    <button type="submit" id="inactivarButton" class="inactivar-usuario">Inactivar</button>
                   </div>
                 </div>
               </form>
@@ -215,8 +223,7 @@ function Usuarios1() {
           `;
           searchFormContainer.insertAdjacentHTML("afterend", formHTML);
 
-          // Asignar el evento 'onclick' al botón 'Modificar'
-          document.getElementById("modificarButton").onclick = function (
+          document.getElementById("modificarButton").onclick = async function (
             event
           ) {
             event.preventDefault(); // Evita el envío del formulario
@@ -224,6 +231,7 @@ function Usuarios1() {
             const button = document.getElementById("modificarButton");
 
             if (button.textContent === "Modificar") {
+              // Habilitar campos de edición
               document
                 .getElementById("nombre-info")
                 .removeAttribute("readonly");
@@ -238,29 +246,94 @@ function Usuarios1() {
                 .getElementById("genero-info")
                 .removeAttribute("disabled");
               document.getElementById("rol-info").removeAttribute("disabled");
+              document.getElementById("estado-info").removeAttribute("disabled");
               button.textContent = "Guardar";
             } else if (button.textContent === "Guardar") {
-              // Aquí puedes agregar la lógica para guardar los cambios
-              document
-                .getElementById("nombre-info")
-                .setAttribute("readonly", true);
-              document
-                .getElementById("apellido-info")
-                .setAttribute("readonly", true);
-              document
-                .getElementById("correo-info")
-                .setAttribute("readonly", true);
-              document
-                .getElementById("clave-info")
-                .setAttribute("readonly", true);
-              document
-                .getElementById("genero-info")
-                .setAttribute("disabled", true);
-              document
-                .getElementById("rol-info")
-                .setAttribute("disabled", true);
+              // Obtener los valores del formulario
+              const id_Usuario = getIdUsuarioGlobal();
 
-              button.textContent = "Modificar";
+              // Validar que idUsuario no sea null
+              if (!id_Usuario) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Error",
+                  text: "No se encontró el ID del usuario. Asegúrate de que el usuario esté cargado correctamente.",
+                });
+                return; // Detener la ejecución
+              }
+              console.log("ID de usuario global:", id_Usuario);
+              // Obtener los valores del formulario
+              const nombre = document.getElementById("nombre-info").value;
+              const apellido = document.getElementById("apellido-info").value;
+              const correo = document.getElementById("correo-info").value;
+              const clave = document.getElementById("clave-info").value; // O puedes omitir si no deseas cambiar la clave
+              const genero = document.getElementById("genero-info").value;
+              const tipoRol = document.getElementById("rol-info").value;
+              const estado = document.getElementById("estado-info").value;
+
+              // Crear el objeto usuario actualizado
+              const usuarioActualizado = {
+                nombre,
+                apellido,
+                correo_Usua: correo,
+                clave_Usua: clave,
+                genero,
+                id_Rol1FK: tipoRol,
+                estado
+              };
+
+              try {
+                // Llamar a la función que conecta con el backend
+                const response = await updateUsuario(
+                  id_Usuario,
+                  usuarioActualizado
+                );
+
+                if (response.message === "Usuario actualizado con éxito") {
+                  Swal.fire({
+                    icon: "success",
+                    title: "Éxito",
+                    text: "Usuario actualizado correctamente",
+                  });
+
+                  // Deshabilitar los campos de nuevo
+                  document
+                    .getElementById("nombre-info")
+                    .setAttribute("readonly", true);
+                  document
+                    .getElementById("apellido-info")
+                    .setAttribute("readonly", true);
+                  document
+                    .getElementById("correo-info")
+                    .setAttribute("readonly", true);
+                  document
+                    .getElementById("clave-info")
+                    .setAttribute("readonly", true);
+                  document
+                    .getElementById("genero-info")
+                    .setAttribute("disabled", true);
+                  document
+                    .getElementById("rol-info")
+                    .setAttribute("disabled", true);
+                    document
+                    .getElementById("estado-info")
+                    .setAttribute("disabled", true);
+                  button.textContent = "Modificar";
+                } else {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "No se pudo actualizar el usuario.",
+                  });
+                }
+              } catch (error) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Error",
+                  text: "Hubo un problema al actualizar el usuario. Inténtalo de nuevo.",
+                });
+                console.error(error);
+              }
             }
           };
         } else {

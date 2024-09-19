@@ -1,12 +1,12 @@
 import React from "react";
 import NavbarInsCap from "../components/layout/NavbarInsCap";
-import Profile from "../components/Profile";
+import ProfileAdmin from "../components/ProfileAdmin";
 
 function ProfileUsua() {
   return (
     <div >
       < NavbarInsCap />
-      < Profile/>
+      < ProfileAdmin />
     </div>
   );
 };

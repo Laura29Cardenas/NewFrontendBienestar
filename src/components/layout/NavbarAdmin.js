@@ -35,7 +35,7 @@ function NavbarAdmin() {
             </li>
             <li className="li-navadmin">
               <Link
-                to="/calendarioAdmin"
+                to="/CalendarioAdmin"
                 className="enlaceIcono-navadmin"
                 href="calendarioAdmin.html"
                 title="Ver calendario"

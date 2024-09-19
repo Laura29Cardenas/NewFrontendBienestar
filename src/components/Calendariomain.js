@@ -1,111 +1,112 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import { getProgramacionesPorFichaYCoordinacion } from '../api/api';
 
 function Calendariomain() {
-  const [calendarHtml, setCalendarHtml] = useState('');
   const [calendarVisible, setCalendarVisible] = useState(false);
+  const [events, setEvents] = useState([]);
+  const [daysInMonth, setDaysInMonth] = useState([]);
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
-  // Función para generar el calendario del mes
-  const generateCalendar = (year, month, events) => {
+  const generateDaysArray = (year, month, events) => {
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    let calendarHtml = '<div class="calendar-grid">';
+    const daysArray = [];
 
     for (let i = 1; i <= daysInMonth; i++) {
       const date = new Date(year, month, i);
       const dateStr = date.toISOString().split('T')[0];
-      const hasEvent = events.includes(dateStr);
-      calendarHtml += `
-        <div class="calendar-day ${hasEvent ? 'event' : ''}" data-date="${dateStr}">
-          ${i}
-        </div>
-      `;
+      const event = events.find(e => e.fecha === dateStr);
+      daysArray.push({
+        day: i,
+        dateStr: dateStr,
+        hasEvent: !!event,
+      });
     }
 
-    calendarHtml += '</div>';
-    return calendarHtml;
+    return daysArray;
   };
 
-  // Función para manejar el envío del formulario
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const ficha = event.target.ficha.value;
     const coordinacion = event.target.coordinacion.value;
 
-    // Lógica para obtener eventos de la ficha y coordinación seleccionada (ejemplo estático)
-    const events = {
-      '2024-08-05': 'Taller de Programación',
-      '2024-08-06': 'Taller de Diseño',
-      '2024-08-07': 'Taller de Marketing',
-      '2024-08-08': 'Taller de Ventas',
-      '2024-08-09': 'Taller de Finanzas',
-    };
+    try {
+      const response = await getProgramacionesPorFichaYCoordinacion(ficha, coordinacion);
+      console.log("Response de API:", response);
 
-    // Filtrar eventos para el mes actual
-    const currentMonth = new Date().getMonth();
-    const currentYear = new Date().getFullYear();
+      // Usar un Set para eliminar duplicados basados en la fecha y el taller
+      const uniqueEvents = [];
+      const seen = new Set();
 
-    // Obtener solo las fechas de eventos en el mes actual
-    const eventsInMonth = Object.keys(events).filter((dateStr) => {
-      const date = new Date(dateStr);
-      return (
-        date.getMonth() === currentMonth && date.getFullYear() === currentYear
-      );
-    });
-
-    setCalendarHtml(generateCalendar(currentYear, currentMonth, eventsInMonth));
-    setCalendarVisible(true);
-  };
-
-  // Función para manejar clic en los días del calendario
-  const handleDayClick = (event) => {
-    const dateStr = event.target.dataset.date;
-
-    if (dateStr) {
-      const events = {
-        '2024-08-05': 'Taller de Programación',
-        '2024-08-06': 'Taller de Diseño',
-        '2024-08-07': 'Taller de Marketing',
-        '2024-08-08': 'Taller de Ventas',
-        '2024-08-09': 'Taller de Finanzas',
-      };
-
-      const schedule = events[dateStr];
-
-      if (schedule) {
-        Swal.fire({
-          title: `Programación para ${dateStr}`,
-          text: schedule,
-          confirmButtonText: 'Cerrar',
+      response.forEach(item => {
+        Object.values(item).forEach(event => {
+          const key = `${event.fecha_procaptall}-${event.nombre_Taller}`; // Clave única
+          if (!seen.has(key)) {
+            seen.add(key);
+            uniqueEvents.push({
+              sede_procaptall: event.sede_procaptall,
+              descripcion_procaptall: event.descripcion_procaptall,
+              ambiente_procaptall: event.ambiente_procaptall,
+              fecha: event.fecha_procaptall.split('T')[0], // Solo la fecha
+              horaInicio_procaptall: event.horaInicio_procaptall,
+              horaFin_procaptall: event.horaFin_procaptall,
+              numero_FichaFK: event.numero_FichaFK,
+              nombre_Taller: event.nombre_Taller,
+              nombre_Capacitador: event.nombre_Capacitador,
+            });
+          }
         });
-      } else {
-        Swal.fire({
-          title: 'Sin Programación',
-          text: 'No hay eventos programados para este día.',
-          icon: 'info',
-          confirmButtonText: 'Cerrar',
-        });
-      }
+      });
+
+      console.log("Eventos únicos mapeados:", uniqueEvents);
+      setEvents(uniqueEvents);
+
+      const daysArray = generateDaysArray(currentYear, currentMonth, uniqueEvents);
+      setDaysInMonth(daysArray);
+      setCalendarVisible(true);
+    } catch (error) {
+      console.error("Error al obtener programaciones:", error);
+      Swal.fire({
+        title: 'Error',
+        text: 'No se pudo obtener la programación.',
+        icon: 'error',
+        confirmButtonText: 'Cerrar',
+      });
     }
   };
 
-  // Ejecutar el manejador de clics cuando el calendario se vuelve visible
-  useEffect(() => {
-    if (calendarVisible) {
-      // Agregar manejador de clics a los días del calendario
-      const calendarContainer = document.getElementById('calendar-container');
-      if (calendarContainer) {
-        calendarContainer.addEventListener('click', handleDayClick);
-      }
+  const handleDayClick = (dateStr) => {
+    const dailyEvents = events.filter(e => e.fecha === dateStr);
+    if (dailyEvents.length > 0) {
+      const eventDetails = dailyEvents.map(e => 
+        `<div style="text-align: left;">
+          <strong>Taller:</strong> ${e.nombre_Taller}<br>
+          <strong>Capacitador:</strong> ${e.nombre_Capacitador}<br>
+          <strong>Descripción:</strong> ${e.descripcion_procaptall}<br>
+          <strong>Sede:</strong> ${e.sede_procaptall}<br>
+          <strong>Ambiente:</strong> ${e.ambiente_procaptall}<br>
+          <strong>Fecha:</strong> ${e.fecha}<br>
+          <strong>Hora Inicio:</strong> ${e.horaInicio_procaptall}<br>
+          <strong>Hora Fin:</strong> ${e.horaFin_procaptall}
+        </div>`).join('<hr/>');
 
-      // Limpia el manejador de clics cuando el componente se desmonte o se oculten los días del calendario
-      return () => {
-        if (calendarContainer) {
-          calendarContainer.removeEventListener('click', handleDayClick);
-        }
-      };
+      Swal.fire({
+        title: `Programación para ${dateStr}`,
+        html: eventDetails,
+        confirmButtonText: 'Cerrar',
+      });
+    } else {
+      Swal.fire({
+        title: 'Sin Programación',
+        text: 'No hay eventos programados para este día.',
+        icon: 'info',
+        confirmButtonText: 'Cerrar',
+      });
     }
-  }, [calendarVisible]);
+  };
 
   return (
     <main>
@@ -119,12 +120,21 @@ function Calendariomain() {
           <button className="boton-calendarioUsuario" type="submit">Mostrar Calendario</button>
         </form>
       </div>
-      <div
-        className="calendar-container"
-        id="calendar-container"
-        dangerouslySetInnerHTML={{ __html: calendarHtml }}
-        style={{ display: calendarVisible ? 'block' : 'none' }}
-      />
+      {calendarVisible && (
+        <div className="calendar-container">
+          <div className="calendar-grid">
+            {daysInMonth.map(day => (
+              <div
+                key={day.dateStr}
+                className={`calendar-day ${day.hasEvent ? 'event' : ''}`}
+                onClick={() => handleDayClick(day.dateStr)}
+              >
+                {day.day}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </main>
   );
 }

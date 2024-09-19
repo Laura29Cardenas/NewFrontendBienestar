@@ -18,12 +18,6 @@ export const getProgramacionesPorSede = async (sede) => {
   return response.json();
 };
 
-// Obtener programaciones por ficha
-export const getProgramacionesPorFicha = async (ficha, cordinacion) => {
-  const response = await fetch(`${API_BASE_URL}/programacion/ficha/${ficha}/cordinacion/${cordinacion}`);
-  return response.json();
-};
-
 // Crear una nueva programación
 export const createProgramacion = async (programacion) => {
   const response = await fetch(`${API_BASE_URL}/programacion`, {
@@ -180,24 +174,34 @@ export const getPerfil = async (id_Usuario) => {
   }
 };
 
+
+let idUsuarioGlobal = null;
+
 export const getbuscarUsuario = async (tipoDocumento, numeroDocumento, nombre) => {
   try {
     const url = new URL(`${API_BASE_URL}/usuario/tipoDoc/${tipoDocumento}/documento/${numeroDocumento}/nombre/${nombre || ''}`);
-    console.log('Generated URL:', url.toString()); // Verificar la URL
     
+    console.log('Generated URL:', url.toString());
+
     const response = await fetch(url);
-    
-    console.log('Response status:', response.status); // Verifica el estado de la respuesta
+    console.log('Response status:', response.status);
     
     if (!response.ok) {
       throw new Error(`Error al buscar el usuario: ${response.status}`);
     }
 
     const data = await response.json();
-    
-    // Verifica el formato de los datos
     console.log('Data received:', data);
 
+    // Verificar si `data` es un array o un objeto indexado
+    if (data && data[0] && typeof data[0].id_Usuario !== 'undefined') {
+      idUsuarioGlobal = data[0].id_Usuario;  // Accede a data[0] para obtener el ID
+      console.log("ID del usuario asignado:", idUsuarioGlobal);
+    } else {
+      console.error("No se encontró el campo 'id_Usuario' en los datos recibidos.");
+      idUsuarioGlobal = null; // Asegúrate de que sea null si no se encuentra el ID
+    }
+    
     return data;
   } catch (error) {
     console.error('Error al buscar el usuario:', error.message);
@@ -205,9 +209,36 @@ export const getbuscarUsuario = async (tipoDocumento, numeroDocumento, nombre) =
   }
 };
 
+// Función para obtener el ID del usuario global
+export const getIdUsuarioGlobal = () => {
+  console.log("Valor de idUsuarioGlobal en la llamada:", idUsuarioGlobal);
+  return idUsuarioGlobal;
+};
 
 
+// API para actualizar un usuario existente
+export const updateUsuario = async (id_Usuario, usuario) => { 
+  try {
+    const response = await fetch(`${API_BASE_URL}/usuario/${id_Usuario}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(usuario),
+    });
 
+    if (!response.ok) {
+      throw new Error(`Error en la actualización: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error('Error al actualizar el usuario:', error.message);
+    throw error;
+  }
+};
 
 export const login = async (correo_Usua, clave_Usua) => {
   try {
@@ -243,5 +274,18 @@ export const login = async (correo_Usua, clave_Usua) => {
     return data;
   } catch (error) {
     throw new Error(error.message || 'Error de conexión');
+  }
+};
+
+export const getProgramacionesPorFichaYCoordinacion = async (ficha, coordinacion) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/programacion/ficha/${ficha}/cordinacion/${coordinacion}`);
+    if (!response.ok) {
+      throw new Error('Error en la respuesta de la API');
+    }
+    return response.json();
+  } catch (error) {
+    console.error('Error al obtener las programaciones:', error);
+    throw error;
   }
 };
