@@ -289,3 +289,55 @@ export const getProgramacionesPorFichaYCoordinacion = async (ficha, coordinacion
     throw error;
   }
 };
+
+
+// Función para registrar usuario
+export const registrarUsuario = async (nuevoUsuario) => {
+  try {
+    console.log("Datos enviados a la API:", nuevoUsuario); // Verifica los datos antes de enviarlos
+    const response = await fetch(`${API_BASE_URL}/usuario`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        correo: nuevoUsuario.correo,
+        clave: nuevoUsuario.clave,
+        rol: nuevoUsuario.rol,
+        nombre: nuevoUsuario.nombre,
+        apellido: nuevoUsuario.apellido,
+        tipoDocumento: nuevoUsuario.tipoDocumento,
+        documento: nuevoUsuario.documento,
+        genero: nuevoUsuario.genero
+      }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Error en la respuesta de la API al registrar el usuario');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error(`Error al registrar el usuario: ${error.message}`);
+    throw error;
+  }
+};
+
+
+export const registrarUsuariosDesdeExcel = async (formData) => {
+  const response = await fetch(`${API_BASE_URL}/usuarios/cargar-masivo`, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Content-Type': 'multipart/form-data', // Esto normalmente no se necesita ya que se lo maneja automáticamente
+    },
+  });
+  
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Error al registrar los usuarios');
+  }
+  
+  return response.json();
+};

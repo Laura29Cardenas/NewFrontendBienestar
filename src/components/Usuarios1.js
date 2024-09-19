@@ -4,6 +4,8 @@ import { utils, writeFile } from "xlsx";
 import { getbuscarUsuario } from "../api/api"; // Asegúrate de que la ruta a tu archivo api.js es correcta
 import { updateUsuario } from "../api/api";
 import { getIdUsuarioGlobal } from "../api/api"; // Asegúrate de que la ruta sea correcta
+import { registrarUsuario } from "../api/api";
+import { registrarUsuariosDesdeExcel } from "../api/api";
 
 function Usuarios1() {
   const [user, setUser] = useState(null);
@@ -11,18 +13,41 @@ function Usuarios1() {
   // Función para generar el archivo Excel
   const generarArchivoExcel = () => {
     try {
+      // Datos de ejemplo con el formato necesario
       const data = [
         {
-          Nombre: "",
-          Apellido: "",
-          Correo: "",
-          Clave: "",
-          Tipo_Documento: "",
-          Genero: "",
-          Rol: "",
+          Nombre: "Juan",
+          Apellido: "Pérez",
+          Correo: "juan.perez@example.com",
+          Clave: "password123",
+          Tipo_Documento: "CC",
+          Documento: "12345678", // Agregado para Documento
+          Genero: "Masculino",
+          Rol: "Administrador", // Nombre del rol
+        },
+        {
+          Nombre: "María",
+          Apellido: "López",
+          Correo: "maria.lopez@example.com",
+          Clave: "securepass",
+          Tipo_Documento: "CE",
+          Documento: "X123456", // Agregado para Documento
+          Genero: "Femenino",
+          Rol: "Instructor", // Nombre del rol
+        },
+        {
+          Nombre: "Carlos",
+          Apellido: "González",
+          Correo: "carlos.gonzalez@example.com",
+          Clave: "cap123456",
+          Tipo_Documento: "NIT",
+          Documento: "987654321", // Agregado para Documento
+          Genero: "Masculino",
+          Rol: "Capacitador", // Nombre del rol
         },
       ];
 
+      // Crear hoja de cálculo con los datos de ejemplo
       const ws = utils.json_to_sheet(data, {
         header: [
           "Nombre",
@@ -30,49 +55,104 @@ function Usuarios1() {
           "Correo",
           "Clave",
           "Tipo_Documento",
+          "Documento", // Agregado campo Documento
           "Genero",
           "Rol",
         ],
       });
+
+      // Crear libro de trabajo y añadir la hoja de datos
       const wb = utils.book_new();
       utils.book_append_sheet(wb, ws, "Registro");
-      writeFile(wb, "registro_personas.xlsx");
+
+      // Generar archivo Excel para descarga
+      writeFile(wb, "registro_personas_ejemplo.xlsx");
+
+      console.log("Archivo Excel generado con éxito.");
     } catch (error) {
       console.error("Error al generar el archivo Excel:", error);
     }
   };
 
-  // Función para manejar el botón de "Registrar"
   const handleRegister = () => {
     Swal.fire({
       title: "Registrar Usuario",
-      html: `...`, // Tu HTML del formulario de registro aquí
+      html: `
+      <main class="registrar">
+        <div class="registrar-container">
+          <form class="form-registrar-usuario" id="registrar-form" action="#" method="post">
+            <div class="form-group-usuarios">
+              <label class="label-registrar-usuario" for="nombre_Usua">Nombre:</label>
+              <input class="input-registrar-usuario" type="text" id="nombre_Usua" name="nombre" required>
+            </div>
+            <div class="form-group-usuarios">
+              <label class="label-registrar-usuario" for="apellido_Usua">Apellido:</label>
+              <input class="input-registrar-usuario" type="text" id="apellido_Usua" name="apellido" required>
+            </div>
+            <div class="form-group-usuarios">
+              <label class="label-registrar-usuario" for="correo_Usua">Correo institucional:</label>
+              <input class="input-registrar-usuario" type="email" id="correo_Usua" name="correo" required>
+            </div>
+            <div class="form-group-usuarios">
+              <label class="label-registrar-usuario" for="clave_Usua">Clave:</label>
+              <input class="input-registrar-usuario" type="password" id="clave_Usua" name="clave" required>
+            </div>
+            <div class="form-group-usuarios">
+              <label class="label-registrar-usuario" for="tipo_documento">Tipo de documento:</label>
+              <select class="select-registrar-usuario" id="tipo_documento" name="tipoDocumento" required>
+                <option value="">Seleccione una opción</option>
+                <option value="CC">Cédula de Ciudadanía</option>
+                <option value="CE">Cédula de Extranjería</option>
+                <option value="PEP">PEP</option>
+                <option value="NIT">NIT</option>
+              </select>
+            </div>
+            <div class="form-group-usuarios">
+              <label class="label-registrar-usuario" for="documento_1">Número documento:</label>
+              <input class="input-registrar-usuario" type="text" id="documento_1" name="documento" required>
+            </div>
+            <div class="form-group-usuarios">
+              <label class="label-registrar-usuario" for="genero">Género:</label>
+              <select class="select-registrar-usuario" id="genero" name="genero" required>
+                <option value="">Seleccione una opción</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+              </select>
+            </div>
+            <div class="form-group-usuarios">
+              <label class="label-registrar-usuario" for="id_Rol1FK">Rol:</label>
+              <select class="select-registrar-usuario" id="id_Rol1FK" name="rol" required>
+                <option value="">Seleccione una opción</option>
+                <option value="1">Administrador</option>
+                <option value="2">Instructor</option>
+                <option value="3">Capacitador</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div>
+      </main>
+    `,
       showConfirmButton: true,
       confirmButtonText: "Guardar usuario",
       showCancelButton: true,
       cancelButtonText: "Cancelar",
       focusConfirm: false,
-      didOpen: () => {
-        document.getElementById("add-more").addEventListener("click", () => {
-          Swal.fire({
-            title: "Generar archivo Excel para registrar",
-            text: "Aquí podrías abrir un nuevo formulario para registrar los usuarios que desees",
-            icon: "info",
-            confirmButtonText: "Generar archivo Excel",
-            preConfirm: () => {
-              generarArchivoExcel(); // Llama a la función cuando se confirme
-            },
-          });
-        });
-      },
-      preConfirm: () => {
-        const nombre = document.getElementById("nombre").value;
-        const apellido = document.getElementById("apellido").value;
-        const correo = document.getElementById("correo").value;
-        const clave = document.getElementById("clave").value;
-        const tipoDocumento = document.getElementById("tipoDocumento").value;
-        const genero = document.getElementById("genero").value;
-        const rol = document.getElementById("rol").value;
+      preConfirm: async () => {
+        // Obtener los valores del formulario
+        const nombre = document.getElementById("nombre_Usua").value.trim();
+        const apellido = document.getElementById("apellido_Usua").value.trim();
+        const correo = document.getElementById("correo_Usua").value.trim();
+        const clave = document.getElementById("clave_Usua").value.trim();
+        const tipoDocumento = document
+          .getElementById("tipo_documento")
+          .value.trim();
+        const documento = document.getElementById("documento_1").value.trim();
+        const genero = document.getElementById("genero").value.trim();
+        const rol = document.getElementById("id_Rol1FK").value.trim();
+
+        // Validación de campos
+        const rolesValidos = [1, 2, 3]; // Define los roles válidos según tu base de datos
 
         if (
           !nombre ||
@@ -80,20 +160,44 @@ function Usuarios1() {
           !correo ||
           !clave ||
           !tipoDocumento ||
+          tipoDocumento === "" ||
+          !documento ||
           !genero ||
-          !rol
+          genero === "" ||
+          !rol ||
+          rol === "" ||
+          !rolesValidos.includes(parseInt(rol, 10))
         ) {
-          Swal.showValidationMessage(`Por favor completa todos los campos`);
+          Swal.showValidationMessage(
+            `Por favor completa todos los campos correctamente`
+          );
         } else {
-          return {
-            nombre,
-            apellido,
-            correo,
-            clave,
-            tipoDocumento,
-            genero,
-            rol,
+          const nuevoUsuario = {
+            nombre: nombre,
+            apellido: apellido,
+            correo: correo,
+            clave: clave,
+            tipoDocumento: tipoDocumento,
+            documento: documento,
+            genero: genero,
+            rol: rol,
           };
+
+          try {
+            console.log("Datos enviados:", nuevoUsuario); // Verificar los datos antes de enviarlos
+            const response = await registrarUsuario(nuevoUsuario); // Enviar usuario a la API
+            Swal.fire({
+              icon: "success",
+              title: "Usuario registrado",
+              text: `El usuario ${nombre} ha sido registrado exitosamente.`,
+            });
+          } catch (error) {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: `Hubo un problema al registrar el usuario: ${error.message}`,
+            });
+          }
         }
       },
     });
@@ -246,7 +350,9 @@ function Usuarios1() {
                 .getElementById("genero-info")
                 .removeAttribute("disabled");
               document.getElementById("rol-info").removeAttribute("disabled");
-              document.getElementById("estado-info").removeAttribute("disabled");
+              document
+                .getElementById("estado-info")
+                .removeAttribute("disabled");
               button.textContent = "Guardar";
             } else if (button.textContent === "Guardar") {
               // Obtener los valores del formulario
@@ -279,7 +385,7 @@ function Usuarios1() {
                 clave_Usua: clave,
                 genero,
                 id_Rol1FK: tipoRol,
-                estado
+                estado,
               };
 
               try {
@@ -315,7 +421,7 @@ function Usuarios1() {
                   document
                     .getElementById("rol-info")
                     .setAttribute("disabled", true);
-                    document
+                  document
                     .getElementById("estado-info")
                     .setAttribute("disabled", true);
                   button.textContent = "Modificar";
@@ -349,6 +455,46 @@ function Usuarios1() {
         icon: "error",
         title: "Error en la búsqueda",
         text: "Hubo un problema con la búsqueda del usuario. Por favor, intenta nuevamente más tarde.",
+      });
+      console.error(error);
+    }
+  };
+
+  const handleFileUpload = async (event) => {
+    const file = event.target.files[0];
+    if (!file) {
+      Swal.fire({
+        icon: "warning",
+        title: "No se seleccionó archivo",
+        text: "Por favor, selecciona un archivo Excel para cargar.",
+      });
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await registrarUsuariosDesdeExcel(formData);
+
+      if (response.message === "Usuarios cargados con éxito") {
+        Swal.fire({
+          icon: "success",
+          title: "Carga masiva exitosa",
+          text: "Los usuarios se han cargado correctamente.",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error en la carga",
+          text: "Hubo un problema al cargar los usuarios. Inténtalo de nuevo.",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Hubo un problema al subir el archivo. Inténtalo de nuevo.",
       });
       console.error(error);
     }
@@ -430,6 +576,24 @@ function Usuarios1() {
               >
                 Registrar nuevo usuario
               </button>
+            </div>
+            <div className="campo-usuarios">
+              <div className="subtitulo-boton">
+                <span
+                  className="agregar-mas-usuarios"
+                  onClick={handleFileUpload}
+                >
+                  Seleccionar archivo
+                </span>
+              </div>
+              <div className="subtitulo-boton">
+                <button
+                  onClick={generarArchivoExcel}
+                  className="agregar-mas-usuarios"
+                >
+                  Generar archivo Excel (formato)
+                </button>
+              </div>
             </div>
           </div>
         </form>
