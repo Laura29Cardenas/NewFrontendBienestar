@@ -4,6 +4,9 @@ import ProgramacionCapaTallerController  from "../controllers/programacion_capa_
 
 const router = Router();
 
+router.get('/api/programaciones/sede52', ProgramacionCapaTallerController.getProgramacionesPorSede52)
+router.get('/api/programaciones/sede64', ProgramacionCapaTallerController.getProgramacionesPorSede64)
+router.get('/api/programaciones/sedeFotibon', ProgramacionCapaTallerController.getProgramacionesPorSedeFontibon)
 router.get( '/api/programacion',  ProgramacionCapaTallerController.getProgramacionesCT )
 router.get( '/api/programacion/:id',  ProgramacionCapaTallerController.getProgramacionCT )
 router.get('/api/programaciones/:sede', ProgramacionCapaTallerController.getProgramacionesPorSede)
