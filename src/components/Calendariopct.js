@@ -29,7 +29,7 @@ const Calendariopct = () => {
     endTime: "",
     taller: null,
     capacitador: null,
-    ficha: null,
+    ficha: [],
     allDay: false,
   });
   const [sede] = useState([
@@ -44,19 +44,10 @@ const Calendariopct = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Llamadas a la API para obtener los datos
-        const [talleresData, capacitadoresData, fichasData] = await Promise.all([
-          getTalleres(),
-          getCapacitadores(),
-          getFichas(),
-        ]);
+        const [talleresData, capacitadoresData, fichasData] = await Promise.all(
+          [getTalleres(), getCapacitadores(), getFichas()]
+        );
 
-        // Verificamos si los datos se están obteniendo correctamente
-        console.log("Talleres data:", talleresData);
-        console.log("Capacitadores data:", capacitadoresData);
-        console.log("Fichas data:", fichasData);
-
-        // Mapeamos los datos para usarlos en react-select
         setTalleres(
           talleresData.map((taller) => ({
             value: taller.id_Taller,
@@ -118,7 +109,7 @@ const Calendariopct = () => {
       endTime: "",
       taller: null,
       capacitador: null,
-      ficha: null,
+      ficha: [],
       allDay: false,
     });
     setIsEditMode(false);
@@ -141,7 +132,8 @@ const Calendariopct = () => {
         capacitadores.find(
           (capacitador) => capacitador.value === eventProps.capacitador
         ) || null,
-      ficha: fichas.find((ficha) => ficha.value === eventProps.ficha) || null,
+      ficha:
+        fichas.filter((ficha) => eventProps.ficha.includes(ficha.value)) || [],
       allDay: info.event.allDay || false,
     });
     setIsEditMode(true);
@@ -149,15 +141,23 @@ const Calendariopct = () => {
   };
 
   const handleEventSubmit = async () => {
-    if ( !newEvent.date || !newEvent.startTime) {
+    if (
+      !newEvent.date ||
+      !newEvent.startTime ||
+      !newEvent.taller ||
+      !newEvent.capacitador ||
+      !newEvent.sede
+    ) {
       alert(
-        "Por favor complete los campos obligatorios: título, fecha y hora de inicio."
+        "Por favor complete todos los campos obligatorios: sede, taller, capacitador, fecha y hora de inicio."
       );
       return;
     }
 
     const start = `${newEvent.date}T${newEvent.startTime}`;
-    const end = newEvent.endTime ? `${newEvent.date}T${newEvent.endTime}` : null;
+    const end = newEvent.endTime
+      ? `${newEvent.date}T${newEvent.endTime}`
+      : null;
 
     const event = {
       id: newEvent.id || null,
@@ -168,7 +168,7 @@ const Calendariopct = () => {
         descripcion: newEvent.descripcion || "",
         taller: newEvent.taller ? newEvent.taller.value : "",
         capacitador: newEvent.capacitador ? newEvent.capacitador.value : "",
-        ficha: newEvent.ficha ? newEvent.ficha.value : "",
+        ficha: newEvent.ficha ? newEvent.ficha.map((f) => f.value) : [],
       },
     };
 
@@ -213,7 +213,7 @@ const Calendariopct = () => {
 
   return (
     <>
-      <div className="calendar-container">
+      <div className="calendar-container-ptc">
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
@@ -225,95 +225,21 @@ const Calendariopct = () => {
         />
       </div>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)} size="lg">
+      <Modal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        size="lg"
+        className="modal-dialog-ptc"
+      >
         <Modal.Header closeButton>
           <Modal.Title>
             {isEditMode ? "Editar Programación" : "Agregar Programación"}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="eventSede">
-              <Form.Label>Sede</Form.Label>
-              <Select
-                name="sede"
-                options={sede}
-                value={newEvent.sede}
-                onChange={handleSelectChange}
-                placeholder="Selecciona la sede"
-              />
-            </Form.Group>
-            <Form.Group controlId="eventDescripcion">
-              <Form.Label>Descripción</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                name="descripcion"
-                value={newEvent.descripcion}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="eventDate">
-              <Form.Label>Fecha</Form.Label>
-              <Form.Control
-                type="date"
-                name="date"
-                value={newEvent.date}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="eventStartTime">
-              <Form.Label>Hora de Inicio</Form.Label>
-              <Form.Control
-                type="time"
-                name="startTime"
-                value={newEvent.startTime}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="eventEndTime">
-              <Form.Label>Hora de Fin</Form.Label>
-              <Form.Control
-                type="time"
-                name="endTime"
-                value={newEvent.endTime}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="eventTaller">
-              <Form.Label>Taller</Form.Label>
-              <Select
-                name="taller"
-                options={talleres}
-                value={newEvent.taller}
-                onChange={handleSelectChange}
-                placeholder="Selecciona el taller"
-              />
-            </Form.Group>
-            <Form.Group controlId="eventCapacitador">
-              <Form.Label>Capacitador</Form.Label>
-              <Select
-                name="capacitador"
-                options={capacitadores}
-                value={newEvent.capacitador}
-                onChange={handleSelectChange}
-                placeholder="Selecciona el capacitador"
-              />
-            </Form.Group>
-            <Form.Group controlId="eventFicha">
-              <Form.Label>Ficha</Form.Label>
-              <Select
-                name="ficha"
-                options={fichas}
-                value={newEvent.ficha}
-                onChange={handleSelectChange}
-                placeholder="Selecciona la ficha"
-                isMulti
-              />
-            </Form.Group>
-          </Form>
+        <Modal.Body className="modal-content-ptc">
+          <Form>{/* ... tus campos del formulario ... */}</Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="modal-footer-ptc">
           {isEditMode && (
             <Button variant="danger" onClick={handleDeleteEvent}>
               Eliminar
@@ -322,8 +248,11 @@ const Calendariopct = () => {
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Cancelar
           </Button>
+          <Button className="btn-volver-ptc" >
+            Volver
+          </Button>
           <Button variant="primary" onClick={handleEventSubmit}>
-            {isEditMode ? "Guardar Cambios" : "Crear Programación"}
+            {isEditMode ? "Guardar Cambios" : "Agregar"}
           </Button>
         </Modal.Footer>
       </Modal>

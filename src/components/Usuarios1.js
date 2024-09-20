@@ -577,7 +577,7 @@ function Usuarios1() {
                 Registrar nuevo usuario
               </button>
             </div>
-            <div className="campo-usuarios">
+            {/* <div className="campo-usuarios">
               <div className="subtitulo-boton">
                 <span
                   className="agregar-mas-usuarios"
@@ -594,7 +594,8 @@ function Usuarios1() {
                   Generar archivo Excel (formato)
                 </button>
               </div>
-            </div>
+              </div> 
+            */}
           </div>
         </form>
       </div>

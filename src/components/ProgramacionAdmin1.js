@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import Insertar from '../static/img/enlaceInsertar.png'; 
+import { createFicha } from  '../api/api';
+import 
+{  
+    updateFicha, 
+    deleteFicha,
+    postTaller,
+    consultarTallerPorNombre
+}
+     from '../api/api';
 
 const ProgramacionAdmin1 = () => {
     const [coordinacion, setCoordinacion] = useState('');
@@ -69,9 +79,23 @@ const ProgramacionAdmin1 = () => {
             `,
             showConfirmButton: false,
             didOpen: () => {
-                document.getElementById('guardarFichaBtn').addEventListener('click', () => {
-                    Swal.fire('Guardado', 'Se ha guardado exitosamente', 'success');
+                document.getElementById('guardarFichaBtn').addEventListener('click', async () => {
+                    const coordinacion = document.getElementById('coordinacionAdd').value;
+                    const numeroFicha = document.getElementById('fichaAdd').value;
+    
+                    if (!coordinacion || !numeroFicha) {
+                        Swal.fire('Error', 'Por favor complete todos los campos.', 'error');
+                        return;
+                    }
+    
+                    try {
+                        const result = await createFicha(numeroFicha, coordinacion);
+                        Swal.fire('Guardado', result.message, 'success');
+                    } catch (error) {
+                        Swal.fire('Error', error.message, 'error');
+                    }
                 });
+    
                 document.getElementById('cancelarFichaBtn').addEventListener('click', () => {
                     Swal.close(); // Close the current modal
                 });
@@ -96,34 +120,66 @@ const ProgramacionAdmin1 = () => {
             `,
             showConfirmButton: false,
             didOpen: () => {
-                document.getElementById('actualizarBtn').addEventListener('click', () => {
-                    Swal.fire({
-                        title: 'Actualizar Ficha',
-                        html: `
-                            <div style="display: flex; flex-direction: column;">
-                                <label>Coordinación</label>
-                                <input type="text" id="coordinacionUpdate" class="swal2-input" placeholder="Ingrese la coordinación">
-                                <label>Ficha</label>
-                                <input type="text" id="fichaNumeroUpdate" class="swal2-input" placeholder="Ingrese el número de ficha">
-                            </div>
-                            <div style="margin-top: 20px; text-align: center;">
-                                <button id="guardarUpdateBtn" class="swal2-confirm swal2-styled">Guardar</button>
-                                <button id="cancelarUpdateBtn" class="swal2-cancel swal2-styled" style="margin-left: 10px;">Cancelar</button>
-                            </div>
-                        `,
-                        showConfirmButton: false,
-                        didOpen: () => {
-                            document.getElementById('guardarUpdateBtn').addEventListener('click', () => {
-                                Swal.fire('Guardado', 'Se ha guardado exitosamente', 'success');
+                document.getElementById('actualizarBtn').addEventListener('click', async () => {
+                    const coordinacion = document.getElementById('coordinacionConsult').value;
+                    const numeroFicha = document.getElementById('fichaConsult').value;
+    
+                    if (!coordinacion || !numeroFicha) {
+                        Swal.fire('Error', 'Por favor complete todos los campos.', 'error');
+                        return;
+                    }
+    
+                    try {
+                        // Llama a la API para obtener la ficha
+                        const response = await fetch(`http://localhost:7777/api/ficha/${numeroFicha}`);
+                        const ficha = await response.json();
+    
+                        if (response.ok) {
+                            // Mostrar datos en la ventana de actualización
+                            Swal.fire({
+                                title: 'Actualizar Ficha',
+                                html: `
+                                    <div style="display: flex; flex-direction: column;">
+                                        <label>Coordinación</label>
+                                        <input type="text" id="coordinacionUpdate" class="swal2-input" value="${ficha.cordinacion_Ficha}" placeholder="Ingrese la coordinación">
+                                        <label>Ficha</label>
+                                        <input type="text" id="fichaNumeroUpdate" class="swal2-input" value="${ficha.numero_Ficha}" placeholder="Ingrese el número de ficha" readonly>
+                                    </div>
+                                    <div style="margin-top: 20px; text-align: center;">
+                                        <button id="guardarUpdateBtn" class="swal2-confirm swal2-styled">Guardar</button>
+                                        <button id="cancelarUpdateBtn" class="swal2-cancel swal2-styled" style="margin-left: 10px;">Cancelar</button>
+                                    </div>
+                                `,
+                                showConfirmButton: false,
+                                didOpen: () => {
+                                    document.getElementById('guardarUpdateBtn').addEventListener('click', async () => {
+                                        const updatedCoordinacion = document.getElementById('coordinacionUpdate').value;
+    
+                                        try {
+                                            // Llama a la API para actualizar la ficha
+                                            await updateFicha(numeroFicha, { cordinacion_Ficha: updatedCoordinacion });
+                                            Swal.fire('Guardado', 'Se ha guardado exitosamente', 'success');
+                                        } catch (error) {
+                                            Swal.fire('Error', error.message, 'error');
+                                        }
+                                    });
+    
+                                    document.getElementById('cancelarUpdateBtn').addEventListener('click', () => {
+                                        Swal.close();
+                                    });
+                                }
                             });
-                            document.getElementById('cancelarUpdateBtn').addEventListener('click', () => {
-                                Swal.close(); // Close the current modal
-                            });
+                        } else {
+                            Swal.fire('Error', ficha.message, 'error');
                         }
-                    });
+                    } catch (error) {
+                        Swal.fire('Error', 'Error de conexión al servidor', 'error');
+                    }
                 });
-
+    
                 document.getElementById('eliminarBtn').addEventListener('click', () => {
+                    const numeroFicha = document.getElementById('fichaConsult').value;
+    
                     Swal.fire({
                         title: 'Eliminar Ficha',
                         text: '¿Estás seguro de que deseas eliminar esta ficha?',
@@ -131,9 +187,15 @@ const ProgramacionAdmin1 = () => {
                         showCancelButton: true,
                         confirmButtonText: 'Eliminar',
                         cancelButtonText: 'Cancelar'
-                    }).then((result) => {
+                    }).then(async (result) => {
                         if (result.isConfirmed) {
-                            Swal.fire('Eliminado', 'La ficha ha sido eliminada', 'success');
+                            try {
+                                // Llama a la API para eliminar la ficha
+                                await deleteFicha(numeroFicha);
+                                Swal.fire('Eliminado', 'La ficha ha sido eliminada', 'success');
+                            } catch (error) {
+                                Swal.fire('Error', error.message, 'error');
+                            }
                         }
                     });
                 });
@@ -158,11 +220,21 @@ const ProgramacionAdmin1 = () => {
             `,
             showConfirmButton: false,
             didOpen: () => {
-                document.getElementById('guardarTallerBtn').addEventListener('click', () => {
-                    Swal.fire('Guardado', 'El taller ha sido guardado exitosamente', 'success');
+                document.getElementById('guardarTallerBtn').addEventListener('click', async () => {
+                    const tipoTaller = document.getElementById('tipoTaller').value;
+                    const nombreTaller = document.getElementById('nombreTaller').value;
+    
+                    try {
+                        await postTaller({ tipo_Taller: tipoTaller, nombre_Taller: nombreTaller });
+                        Swal.fire('Guardado', 'El taller ha sido guardado exitosamente', 'success');
+                        Swal.close(); // Cerrar el modal después de guardar
+                    } catch (error) {
+                        Swal.fire('Error', error.message, 'error');
+                    }
                 });
+    
                 document.getElementById('cancelarTallerBtn').addEventListener('click', () => {
-                    Swal.close(); // Close the current modal
+                    Swal.close(); // Cerrar el modal
                 });
             }
         });
@@ -182,8 +254,24 @@ const ProgramacionAdmin1 = () => {
             `,
             showConfirmButton: false,
             didOpen: () => {
-                document.getElementById('consultarTallerBtn').addEventListener('click', () => {
-                    Swal.fire('Consulta', 'Consulta del taller realizada', 'info');
+                document.getElementById('consultarTallerBtn').addEventListener('click', async () => {
+                    const nombreTaller = document.getElementById('nombreTallerConsult').value;
+    
+                    if (nombreTaller) {
+                        try {
+                            const taller = await consultarTallerPorNombre(nombreTaller);
+                            Swal.fire({
+                                title: 'Taller Encontrado',
+                                text: JSON.stringify(taller, null, 2), // Formateo para mejor legibilidad
+                                icon: 'info',
+                                confirmButtonText: 'Cerrar'
+                            });
+                        } catch (error) {
+                            Swal.fire('Error', error.message || 'Error al consultar el taller', 'error');
+                        }
+                    } else {
+                        Swal.fire('Advertencia', 'Por favor, ingresa el nombre del taller', 'warning');
+                    }
                 });
             }
         });
@@ -194,7 +282,7 @@ const ProgramacionAdmin1 = () => {
             <div className="cuadros-insertar">
                 <div className="cuadro-programacion" onClick={() => document.getElementById('file-upload1').click()}>
                     <label className="cuadro-label" htmlFor="file-upload1">
-                        <img className="icono-cuadro" src="../Assets/img/enlaceInsertar.png" alt="Insertar" />
+                        <img className="icono-cuadro" src={Insertar} alt="insertar" />
                         <p className="text-programacion-agregar">Agregar horario</p>
                     </label>
                     <input type="file" id="file-upload1" style={{ display: 'none' }} />
@@ -266,10 +354,10 @@ const ProgramacionAdmin1 = () => {
             {showInfo && (
                 <div id="infoDisplay" className="info-display">
                     <div className="info-item">
-                        <strong>Coordinación:</strong> <span className="espaciado" id="infoCoordinacion">{coordinacion}</span>
+                        <label>Coordinación:</label> <input type='text' className="espaciado" id="infoCoordinacion"/>
                     </div>
                     <div className="info-item">
-                        <strong>Ficha:</strong> <span className="espaciado" id="infoFicha">{ficha}</span>
+                        <label>Ficha:</label> <input className="espaciado" id="infoFicha"/>
                     </div>
                     <div className="info-box">
                         {/* Space for further content */}
@@ -282,6 +370,11 @@ const ProgramacionAdmin1 = () => {
                     <div className="info-buttons">
                         <button className="buton-horario-eliminar" id="eliminarButton" onClick={handleEliminar}>
                             Eliminar
+                        </button>
+                    </div>
+                    <div className='info-buttons-agregarProgramacion'>
+                        <button className="agregarProgramacion" id="agregarProgramacion" >
+                            Agregar programación
                         </button>
                     </div>
                 </div>
