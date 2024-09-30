@@ -26,9 +26,9 @@ function Login1() {
       if (rol === 1) {
         window.location.href = "/perfilAdmin";
       } else if (rol === 2) {
-        window.location.href = "/inicioUsuario";
+        window.location.href = "/profileUsua";
       } else if (rol === 3) {
-        window.location.href = "/inicioAdmin";
+        window.location.href = "/profileUsua";
       } else {
         setError("Rol no reconocido. Contacte con el administrador.");
       }

@@ -1598,7 +1598,7 @@ body {
   background: #5cb85c;
   color: #fff;
   cursor: pointer;
-  width: 30vh;
+  width: 27vh;
 }
 
 .arrow {
@@ -1635,7 +1635,7 @@ body {
   margin-bottom: 1rem;
   text-align: center;
   border: 1px solid #4caf50;
-  border-radius: 8px;
+  border-radius: 8px; 
   padding: 1rem;
   background-color: #f9f9f9;
   position: relative;

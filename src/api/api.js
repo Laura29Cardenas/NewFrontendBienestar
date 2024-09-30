@@ -46,7 +46,58 @@ export const deleteProgramacion = async (id) => {
   return response.json();
 };
 
+// Obtener programacion por sede (Sede 52)
+export const getProgramacionesPorSede52 = async () => {
+  const response = await fetch(`${API_BASE_URL}/programaciones/sede52`);
+  if (!response.ok) {
+    throw new Error('Error al obtener las programaciones');
+  }
+  return response.json();
+};
+
+// Obtener programacion por sede (Sede 64)
+export const getProgramacionesPorSede64 = async () => {
+  const response = await fetch(`${API_BASE_URL}/programaciones/sede64`);
+  if (!response.ok) {
+    throw new Error('Error al obtener las programaciones');
+  }
+  return response.json();
+};
+
+// Obtener programacion por sede (Sede fontibon)
+export const getProgramacionesPorSedeFontibon = async () => {
+  const response = await fetch(`${API_BASE_URL}/programaciones/sedeFontibon`);
+  if (!response.ok) {
+    throw new Error('Error al obtener programaciones de la sede Fontibón');
+  }
+  return response.json();
+};
+
+// Obtener programaciones por ficha
+export const getProgramacionesPorFicha = async (ficha, cordinacion) => {
+  const response = await fetch(`${API_BASE_URL}/programacion/ficha/${ficha}/cordinacion/${cordinacion}`);
+  return response.json();
+};
+
 // Talleres
+// En api.js
+export const createTaller = async (tipoTaller, nombreTaller) => {
+  const response = await fetch(`${API_BASE_URL}/taller`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tipo_Taller: tipoTaller, nombre_Taller: nombreTaller }),
+  });
+  
+  if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Error desconocido');
+  }
+
+  return await response.json();
+};
+
+
+
 export const getTalleres = async () => {
   const response = await fetch(`${API_BASE_URL}/taller`);
   return response.json();
@@ -58,57 +109,67 @@ export const getTaller = async (id) => {
 };
 
 export const consultarTallerPorNombre = async (nombreTaller) => {
-    try {
-        const response = await fetch(`${API_BASE_URL}/taller/${nombreTaller}`);
-        
-        if (!response.ok) {
-            throw new Error('Taller no encontrado');
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw error; // Propaga el error
-    }
-};
-
-
-export const postTaller = async (tallerData) => {
   try {
-      const response = await fetch(`${API_BASE_URL}/taller`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(tallerData),
-      });
+    const response = await fetch(`${API_BASE_URL}/taller/${nombreTaller}`);
+    
+    if (!response.ok) {
+      throw new Error('Taller no encontrado');
+    }
 
-      if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || 'Error desconocido');
-      }
-
-      return await response.json();
+    return await response.json();
   } catch (error) {
-      console.error('Error al agregar el taller:', error);
-      throw error;
+    throw error;
   }
 };
 
-export const putTaller = async (id, taller) => {
+export const postTaller = async (tallerData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/taller`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(tallerData),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Error desconocido');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error al agregar el taller:', error);
+    throw error;
+  }
+};
+
+// Actualizar un taller existente
+export const updateTaller = async (id, taller) => {
   const response = await fetch(`${API_BASE_URL}/taller/${id}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(taller),
   });
+  
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Error al actualizar el taller');
+  }
+  
   return response.json();
 };
 
+// Eliminar un taller
 export const deleteTaller = async (id) => {
-  await fetch(`${API_BASE_URL}/taller/${id}`, {
+  const response = await fetch(`${API_BASE_URL}/taller/${id}`, {
     method: 'DELETE',
   });
+  
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Error al eliminar el taller');
+  }
+  
+  return response.json();
 };
 
 // Fichas
@@ -124,67 +185,62 @@ export const getFicha = async (id) => {
 
 export const createFicha = async (numero_Ficha, cordinacion_Ficha) => {
   try {
-      const response = await fetch(`${API_BASE_URL}/ficha`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-              numero_Ficha,
-              cordinacion_Ficha,
-          }),
-      });
+    const response = await fetch(`${API_BASE_URL}/ficha`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        numero_Ficha,
+        cordinacion_Ficha,
+      }),
+    });
 
-      if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || 'Error desconocido');
-      }
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Error desconocido');
+    }
 
-      return await response.json();
+    return await response.json();
   } catch (error) {
-      console.error('Error en la conexión a la API:', error);
-      throw error;
+    console.error('Error en la conexión a la API:', error);
+    throw error;
   }
 };
 
 export const updateFicha = async (numero_Ficha, updateData) => {
   try {
-      const response = await fetch(`${API_BASE_URL}/ficha/${numero_Ficha}`, {
-          method: 'PUT',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(updateData),
-      });
+    const response = await fetch(`${API_BASE_URL}/ficha/${numero_Ficha}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updateData),
+    });
 
-      if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || 'Error desconocido');
-      }
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Error desconocido');
+    }
 
-      return await response.json();
+    return await response.json();
   } catch (error) {
-      console.error('Error en la conexión a la API:', error);
-      throw error;
+    console.error('Error en la conexión a la API:', error);
+    throw error;
   }
 };
 
-
 export const deleteFicha = async (numero_Ficha) => {
   try {
-      const response = await fetch(`${API_BASE_URL}/ficha/${numero_Ficha}`, {
-          method: 'DELETE',
-      });
+    const response = await fetch(`${API_BASE_URL}/ficha/${numero_Ficha}`, {
+      method: 'DELETE',
+    });
 
-      if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || 'Error desconocido');
-      }
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Error desconocido');
+    }
 
-      return await response.json();
+    return await response.json();
   } catch (error) {
-      console.error('Error en la conexión a la API:', error);
-      throw error;
+    console.error('Error en la conexión a la API:', error);
+    throw error;
   }
 };
 
@@ -202,9 +258,7 @@ export const getCapacitador = async (id) => {
 export const postCapacitador = async (capacitador) => {
   const response = await fetch(`${API_BASE_URL}/capacitador`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(capacitador),
   });
   return response.json();
@@ -213,9 +267,7 @@ export const postCapacitador = async (capacitador) => {
 export const putCapacitador = async (id, capacitador) => {
   const response = await fetch(`${API_BASE_URL}/capacitador/${id}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(capacitador),
   });
   return response.json();
@@ -234,10 +286,9 @@ export const getPerfil = async (id_Usuario) => {
     return data;
   } catch (error) {
     console.error('Error al obtener el perfil:', error.message);
-    throw error; // Re-lanzar el error para que el componente pueda manejarlo
+    throw error;
   }
 };
-
 
 let idUsuarioGlobal = null;
 
@@ -257,13 +308,12 @@ export const getbuscarUsuario = async (tipoDocumento, numeroDocumento, nombre) =
     const data = await response.json();
     console.log('Data received:', data);
 
-    // Verificar si `data` es un array o un objeto indexado
     if (data && data[0] && typeof data[0].id_Usuario !== 'undefined') {
-      idUsuarioGlobal = data[0].id_Usuario;  // Accede a data[0] para obtener el ID
+      idUsuarioGlobal = data[0].id_Usuario;
       console.log("ID del usuario asignado:", idUsuarioGlobal);
     } else {
       console.error("No se encontró el campo 'id_Usuario' en los datos recibidos.");
-      idUsuarioGlobal = null; // Asegúrate de que sea null si no se encuentra el ID
+      idUsuarioGlobal = null;
     }
     
     return data;
@@ -279,15 +329,12 @@ export const getIdUsuarioGlobal = () => {
   return idUsuarioGlobal;
 };
 
-
 // API para actualizar un usuario existente
 export const updateUsuario = async (id_Usuario, usuario) => { 
   try {
     const response = await fetch(`${API_BASE_URL}/usuario/${id_Usuario}`, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(usuario),
     });
 
@@ -307,32 +354,24 @@ export const updateUsuario = async (id_Usuario, usuario) => {
 export const login = async (correo_Usua, clave_Usua) => {
   try {
     const response = await fetch(`${API_BASE_URL}/login`, {
-      method: 'POST', // Usar el método POST
-      headers: {
-        'Content-Type': 'application/json', // Definir el tipo de contenido
-      },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        correo_Usua, // Enviar los datos como JSON
+        correo_Usua,
         clave_Usua,
       }),
     });
 
     if (!response.ok) {
-      throw new Error('Error de autenticación'); // Manejar el error si el login falla
+      throw new Error('Error de autenticación');
     }
 
-    const data = await response.json(); // Obtener la respuesta en formato JSON
+    const data = await response.json();
 
-    // Verificar si hay un usuario y token en la respuesta
     if (data && data.user && data.token) {
-      // Guarda el token en localStorage
       localStorage.setItem('token', data.token);
-
-      // Guarda el id_Usuario en localStorage
       localStorage.setItem('id_Usuario', data.user.id);
-
-      // Puedes también almacenar más información del usuario si lo necesitas
-      localStorage.setItem('nombre_Usuario', data.user.nombre);  // Ejemplo: guardar el nombre
+      localStorage.setItem('nombre_Usuario', data.user.nombre);
     }
 
     return data;
@@ -354,16 +393,13 @@ export const getProgramacionesPorFichaYCoordinacion = async (ficha, coordinacion
   }
 };
 
-
 // Función para registrar usuario
 export const registrarUsuario = async (nuevoUsuario) => {
   try {
-    console.log("Datos enviados a la API:", nuevoUsuario); // Verifica los datos antes de enviarlos
+    console.log("Datos enviados a la API:", nuevoUsuario);
     const response = await fetch(`${API_BASE_URL}/usuario`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         correo: nuevoUsuario.correo,
         clave: nuevoUsuario.clave,
@@ -376,28 +412,26 @@ export const registrarUsuario = async (nuevoUsuario) => {
       }),
     });
 
-    const data = await response.json(); // Solo lee el cuerpo una vez
+    const data = await response.json();
     console.log('Respuesta del servidor:', data);
     
     if (!response.ok) {
       throw new Error(data.message || 'Error en la respuesta de la API al registrar el usuario');
     }
 
-    return data; // Retorna los datos ya leídos
+    return data;
   } catch (error) {
     console.error(`Error al registrar el usuario: ${error.message}`);
     throw error;
   }
 };
 
-
-
 export const registrarUsuariosDesdeExcel = async (formData) => {
   const response = await fetch(`${API_BASE_URL}/usuarios/cargar-masivo`, {
     method: 'POST',
     body: formData,
     headers: {
-      'Content-Type': 'multipart/form-data', // Esto normalmente no se necesita ya que se lo maneja automáticamente
+      'Content-Type': 'multipart/form-data',
     },
   });
   

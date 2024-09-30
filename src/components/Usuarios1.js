@@ -294,14 +294,14 @@ function Usuarios1() {
                   <label class="label-alert-form-usuarios" for="rol-info">Rol:</label>
                   <select class="select-alert-form-usuarios" id="rol-info" name="rol" disabled>
                     <option value="">Seleccione una opción</option>
-                    <option value="2" ${
-                      user.tipo_rol === "Instructor" ? "selected" : ""
+                    <option value=2 ${
+                      user.tipo_rol === 2 ? "selected" : ""
                     }>Instructor</option>
-                    <option value="capacitador" ${
-                      user.tipo_rol === "3" ? "selected" : ""
+                    <option value=3 ${
+                      user.tipo_rol === 3 ? "selected" : ""
                     }>Capacitador</option>
-                    <option value="1" ${
-                      user.tipo_rol === "Administrador" ? "selected" : ""
+                    <option value=1 ${
+                      user.tipo_rol === 1 ? "selected" : ""
                     }>Administrador</option>
                   </select>
                 </div>
