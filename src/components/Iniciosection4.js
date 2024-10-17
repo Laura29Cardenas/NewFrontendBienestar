@@ -2,7 +2,7 @@ import React from "react";
 
 function Iniciosection4() {
   return (
-    <div>
+    <div> 
       <section className="general">
         <div className="general-3" />
         <div className="general-1"> 

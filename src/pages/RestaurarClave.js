@@ -7,4 +7,4 @@ function RestaurarClave (){
     );
 };
 
-export default RestaurarClave;
+export default RestaurarClave; 

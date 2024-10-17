@@ -11,7 +11,7 @@ function CambiarClave({ email }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (password === confirmPassword) {
+    if (password === confirmPassword) { 
       try {
         const response = await axios.post('http://localhost:3000/api/cambiar-clave', { email, password });
         setMessage('La contraseña ha sido cambiada exitosamente.');

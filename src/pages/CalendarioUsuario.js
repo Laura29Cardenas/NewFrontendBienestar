@@ -9,6 +9,6 @@ function CalendarioPrograma () {
       < Calendariomain />
     </div>
   );
-};
+}; 
 
 export default CalendarioPrograma;

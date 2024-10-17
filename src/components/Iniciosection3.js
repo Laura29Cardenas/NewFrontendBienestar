@@ -2,7 +2,7 @@ import React from "react";
 
 function Iniciosection3() {
   return (
-    <div>
+    <div> 
       <section className="general">
         <div className="general-1">
           <h2 className="titulo-tipoh2"> Acceso a Recursos Adicionales </h2> 

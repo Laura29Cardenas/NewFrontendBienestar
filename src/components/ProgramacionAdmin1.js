@@ -7,7 +7,7 @@ import { createTaller } from '../api/api'; // Ajusta la ruta según tu estructur
 
 import { 
     updateFicha, 
-    deleteFicha, 
+    deleteFicha,  
     postTaller, 
     consultarTallerPorNombre, 
     updateTaller,  // Asegúrate de agregar esta línea

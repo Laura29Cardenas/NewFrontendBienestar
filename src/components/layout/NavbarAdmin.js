@@ -13,7 +13,7 @@ function NavbarAdmin() {
     <div className="body-navbarAdmin">
       <header className="header-nav-admin">
         <img
-          src={logo}
+          src={logo} 
           className="logo-navadmin-bienestar"
           alt="logo-bienestar"
         />

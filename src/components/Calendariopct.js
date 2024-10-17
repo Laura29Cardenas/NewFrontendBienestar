@@ -11,7 +11,7 @@ import {
   updateProgramacion,
   deleteProgramacion,
   getTalleres,
-  getCapacitadores,
+  getCapacitadores, 
   getFichas,
 } from "../api/api";
 

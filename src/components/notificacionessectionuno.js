@@ -8,7 +8,7 @@ function Notificacionessectionuno() {
         <div classname="search-filter-container">
           <input
             type="text"
-            classname="search-bar"
+            classname="search-bar" 
             placeholder="Buscar notificaciones..."
           />
           <button classname="search-button" id="buscarNotificacion">

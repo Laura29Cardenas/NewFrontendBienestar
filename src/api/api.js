@@ -80,7 +80,7 @@ export const getProgramacionesPorFicha = async (ficha, cordinacion) => {
 };
 
 // Talleres
-// En api.js
+// En api.js 
 export const createTaller = async (tipoTaller, nombreTaller) => {
   const response = await fetch(`${API_BASE_URL}/taller`, {
       method: 'POST',

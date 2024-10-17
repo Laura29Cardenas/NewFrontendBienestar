@@ -7,7 +7,7 @@ function CalendarioAdmin (){
     return (
         <div>
             < NavbarAdmin />
-            < Calendariomain />
+            < Calendariomain /> 
         </div>
     );
 };

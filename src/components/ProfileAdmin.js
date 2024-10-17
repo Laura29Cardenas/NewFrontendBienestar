@@ -144,7 +144,7 @@ function ProfileAdmin() {
         </div>
       </main>
     </div>
-  );
+  ); 
 }
 
 export default ProfileAdmin;

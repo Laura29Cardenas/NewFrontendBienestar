@@ -83,7 +83,7 @@ function Login1() {
                 >
                   {mostrarContraseña ? <FaEyeSlash /> : <FaEye />}
                 </span>
-              </div>
+              </div> 
             </div>
             {error && <p style={{ color: "red" }}>{error}</p>}
             <button className="botonLogin-inicio" type="submit">

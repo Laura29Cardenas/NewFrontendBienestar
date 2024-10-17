@@ -56,7 +56,7 @@ function Iniciosection5() {
             <br />
             <img className="imagen-index" src={discapacidad} alt="discapacidad" />
             <br />
-            <p className="txt-p">
+            <p className="txt-p"> 
               Además de las becas y ayudas generales, Bienestar al Aprendiz
               ofrece programas diseñados para apoyar a grupos específicos de
               estudiantes. Esto incluye ayudas para estudiantes con

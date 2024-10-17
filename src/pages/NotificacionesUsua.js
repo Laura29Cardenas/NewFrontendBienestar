@@ -10,7 +10,7 @@ function NotificacionesUsua() {
     < Notificacionessectionuno />
     < Notificacionessectiondos />
     </div>
-  );
+  ); 
 };
 
 export default NotificacionesUsua;

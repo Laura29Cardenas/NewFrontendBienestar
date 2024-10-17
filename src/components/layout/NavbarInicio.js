@@ -9,7 +9,7 @@ function NavbarInicio() {
         <div className="menu-index container-index">
           <Link to="#" className="logo-index">
             AVA
-          </Link>
+          </Link> 
           <input type="checkbox" id="menu" />
           <label className="menu-label-index" htmlFor="menu">
             <img src={actividades} className="menu-icono" alt="actividades" />

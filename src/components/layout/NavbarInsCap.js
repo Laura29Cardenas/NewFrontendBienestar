@@ -12,7 +12,7 @@ function Navbarinscap() {
       <header className="header-navusuario">
         <img src={logo} className="logoBienestar-navUsuario" alt="logo" />
         <nav className="navbar-usuario">
-          <ul className="ul-nav-usuario">
+          <ul className="ul-nav-usuario"> 
             <li className="li-navUsuario">
               <Link
                 to="/calendariousua"

@@ -9,6 +9,6 @@ function Informes() {
       < Informes1 />
     </div>
   );
-};
+}; 
 
 export default Informes;

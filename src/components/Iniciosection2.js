@@ -1,7 +1,7 @@
 import React from "react";
 
 function Iniciosection2() {
-  return (
+  return ( 
     <div>
       <main className="services">
         <div className="services-content container-index">

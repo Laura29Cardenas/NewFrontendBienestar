@@ -10,7 +10,7 @@ function Informes1() {
         ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam incidunt, asperiores iusto nesciunt delectus nemo, porro esse adipisci suscipit repellendus at ipsum accusantium. Vel accusamus molestiae omnis nihil aspernatur iste! ',
       date: "2023-05-12",
       time: "10:00 AM",
-      specialty: "Tele - informatica",
+      specialty: "Tele - informatica", 
       trainers: ["Juan Pérez", "María López"], 
       locations: ["Sede Central", "Sede Norte"],
       duration: "4 horas",

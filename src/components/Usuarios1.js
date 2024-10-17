@@ -8,8 +8,7 @@ import { registrarUsuario } from "../api/api";
 import { registrarUsuariosDesdeExcel } from "../api/api";
 
 function Usuarios1() {
-  const [user, setUser] = useState(null);
-
+  const [user, setUser] = useState(null); 
   // Función para generar el archivo Excel
   const generarArchivoExcel = () => {
     try {

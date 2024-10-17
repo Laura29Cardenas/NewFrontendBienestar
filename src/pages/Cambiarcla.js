@@ -7,6 +7,6 @@ function Cambiarcla() {
         <Cambiarclave/>
         </div>
     );
-};
+}; 
 
 export default Cambiarcla;

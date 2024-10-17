@@ -10,7 +10,7 @@ function Calendariomain() {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
   const generateDaysArray = (year, month, events) => {
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInMonth = new Date(year, month + 1, 0).getDate(); 
     const daysArray = [];
 
     for (let i = 1; i <= daysInMonth; i++) {

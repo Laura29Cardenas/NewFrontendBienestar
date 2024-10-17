@@ -9,6 +9,6 @@ function ProgramacionAdmin() {
     < ProgramacionAdmin1 />
   </div>
   );
-};
+}; 
 
 export default ProgramacionAdmin;

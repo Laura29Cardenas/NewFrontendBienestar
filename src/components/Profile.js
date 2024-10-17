@@ -12,7 +12,7 @@ function Profile ()  {
       <main className='container-profile-usua'>
         <div className="profile-usua-container">
           <form 
-          className="form-perfil-usua"
+          className="form-perfil-usua" 
           id="formulario" 
           action="#" 
           method="post">

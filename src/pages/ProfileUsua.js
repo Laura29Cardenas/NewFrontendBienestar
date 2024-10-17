@@ -9,6 +9,6 @@ function ProfileUsua() {
       < ProfileAdmin />
     </div>
   );
-};
+}; 
 
 export default ProfileUsua;

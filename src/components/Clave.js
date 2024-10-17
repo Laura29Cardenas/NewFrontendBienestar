@@ -14,7 +14,7 @@ function Clave() {
       messageElement.textContent = 'Por favor, introduce un correo válido: usuario@soy.sena.edu.co o usuario@sena.edu.co';
       return;
     }
-  
+   
     try {
       // Asegúrate de que la URL apunte al puerto correcto
       const response = await axios.post('http://localhost:3000/api/enviar-enlace', { email });

@@ -67,7 +67,7 @@ function Cardsedeuno() {
               </ul>
             </div>
           ))
-        ) : (
+        ) : ( 
           <p>No hay programaciones disponibles.</p>
         )}
       </div>

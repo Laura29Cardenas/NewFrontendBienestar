@@ -36,7 +36,7 @@ function Cardsededos() {
   return (
     <div className="card">
       <h2 className="title">Sede 64</h2>
-      <div className="card-content">
+      <div className="card-content"> 
         <div className="cuadro-info" onClick={showTallerAlert}>
           <ul className="text-info">
             <li className="li-card-usua">{tallerData.descripcion_procaptall}</li>
