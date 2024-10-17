@@ -641,26 +641,30 @@ swal.fire title {
 /* Estilo del contenedor principal */
 /* Contenedor principal del perfil de administrador */
 html {
-  height: 100% !important; /* Asegura que el html y el body ocupen el 100% del alto */
+  height: 100% !important;
+  /* Asegura que el html y el body ocupen el 100% del alto */
   width: 100% !important;
-  margin: 0 !important; /* Elimina el margen predeterminado */
+  margin: 0 !important;
+  /* Elimina el margen predeterminado */
 }
 
 html,
 body {
-  background-color: #5cb85c15 !important ;
+  background-color: #5cb85c15 !important;
 }
 
 html,
 body {
-  height: 100% !important; /* Asegura que el html y el body ocupen el 100% del alto */
+  height: 100% !important;
+  /* Asegura que el html y el body ocupen el 100% del alto */
   width: 100% !important;
-  margin: 0 !important; /* Elimina el margen predeterminado */
+  margin: 0 !important;
+  /* Elimina el margen predeterminado */
 }
 
 html,
 body {
-  background-color: #5cb85c15 !important ;
+  background-color: #5cb85c15 !important;
 }
 
 .container-profile-admin {
@@ -674,29 +678,34 @@ body {
   border: 1px solid #5cb85c;
   border-radius: 8px;
   background-color: #fff;
-  box-sizing: border-box; /* Asegura que padding y border estén incluidos en el tamaño total */
+  box-sizing: border-box;
+  /* Asegura que padding y border estén incluidos en el tamaño total */
 }
 
 /* Estilo del título */
 .section-title-profile-admin {
   text-align: center;
-  margin-bottom: 3.5vh;
+  margin-bottom: 2vh;
   font-size: 2.5em;
-  margin-top: 15vh; /* Espaciado superior ajustado */
+  margin-top: 12vh;
+  /* Espaciado superior ajustado */
   color: #2c3e50;
 }
 
 /* Estilo del formulario de perfil de administrador */
 .profile-admin-container .form-perfil-admin {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(412px, 1fr)
-  ); /* Columnas adaptables según el ancho disponible */
-  gap: 35px; /* Espacio entre columnas */
-  width: 100%; /* Asegura que ocupe el 100% del contenedor */
-  max-width: 900px; /* Asegura que no se desborde en pantallas grandes */
-  padding: 20px; /* Espacio interior ajustado */
+  grid-template-columns: repeat(auto-fit,
+      minmax(412px, 1fr));
+  /* Columnas adaptables según el ancho disponible */
+  gap: 35px;
+  /* Espacio entre columnas */
+  width: 100%;
+  /* Asegura que ocupe el 100% del contenedor */
+  max-width: 900px;
+  /* Asegura que no se desborde en pantallas grandes */
+  padding: 20px;
+  /* Espacio interior ajustado */
   text-align: left;
   box-sizing: border-box;
 }
@@ -712,7 +721,8 @@ body {
 .label-form-profile-admin {
   font-weight: 600;
   color: #333;
-  margin-bottom: 8px; /* Mayor espacio debajo de la etiqueta */
+  margin-bottom: 8px;
+  /* Mayor espacio debajo de la etiqueta */
   text-align: left;
 }
 
@@ -723,26 +733,33 @@ body {
   font-size: 16px;
   border: 1px solid #5cb85c;
   border-radius: 8px;
-  width: 100%; /* Asegura que los inputs ocupen todo el ancho disponible */
-  box-sizing: border-box; /* Incluye padding y border en el tamaño total */
-  transition: border-color 0.3s ease; /* Transición suave para el enfoque */
+  width: 100%;
+  /* Asegura que los inputs ocupen todo el ancho disponible */
+  box-sizing: border-box;
+  /* Incluye padding y border en el tamaño total */
+  transition: border-color 0.3s ease;
+  /* Transición suave para el enfoque */
 }
 
 /* Ajustes específicos para la apariencia de los campos */
 .input-form-profile-admin {
-  max-width: 100%; /* Se adapta al tamaño del contenedor */
+  max-width: 100%;
+  /* Se adapta al tamaño del contenedor */
 }
 
 .select-form-profile-admin {
-  max-width: 100%; /* Se adapta al tamaño del contenedor */
+  max-width: 100%;
+  /* Se adapta al tamaño del contenedor */
 }
 
 /* Estilo de enfoque en los campos de entrada */
 .input-form-profile-admin:focus,
 .select-form-profile-admin:focus {
-  border-color: #5cb85c; /* Color de borde al hacer foco */
+  border-color: #5cb85c;
+  /* Color de borde al hacer foco */
   outline: none;
 }
+
 
 /*Informes css*/
 /* Estilo para los encabezados */
@@ -844,7 +861,8 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 10px;
-  margin-left: 17%; /* Espacio entre el último input y el botón */
+  margin-left: 17%;
+  /* Espacio entre el último input y el botón */
 }
 
 .show-report-button {
@@ -892,7 +910,8 @@ body {
   .date-inputs .input-fecha,
   .selector-informe,
   .numero-informe {
-    width: 100%; /* Asegura que los inputs y select ocupen el ancho completo en pantallas más pequeñas */
+    width: 100%;
+    /* Asegura que los inputs y select ocupen el ancho completo en pantallas más pequeñas */
   }
 }
 
@@ -905,7 +924,8 @@ body {
 
   .container {
     width: 100%;
-    padding: 1rem; /* Ajusta el padding para pantallas pequeñas */
+    padding: 1rem;
+    /* Ajusta el padding para pantallas pequeñas */
   }
 
   .date-button,
@@ -933,38 +953,47 @@ body {
   }
 
   .btn-eliminar {
-    font-size: 12px; /* Reduce el tamaño de la fuente del botón de eliminar en pantallas pequeñas */
-    padding: 4px 8px; /* Reduce el padding del botón de eliminar */
+    font-size: 12px;
+    /* Reduce el tamaño de la fuente del botón de eliminar en pantallas pequeñas */
+    padding: 4px 8px;
+    /* Reduce el padding del botón de eliminar */
   }
 }
 
 /* Media queries para pantallas más grandes (monitores de escritorio de alta resolución) */
 @media (min-width: 1600px) {
   .main-content {
-    margin-left: 250px; /* Mantén el margen izquierdo fijo para pantallas muy grandes */
+    margin-left: 250px;
+    /* Mantén el margen izquierdo fijo para pantallas muy grandes */
     width: calc(100% - 250px);
   }
 
   .container {
-    width: 70%; /* Reduce el ancho del contenedor para aprovechar mejor el espacio */
-    padding: 2rem; /* Aumenta el padding interno para una mejor presentación */
+    width: 70%;
+    /* Reduce el ancho del contenedor para aprovechar mejor el espacio */
+    padding: 2rem;
+    /* Aumenta el padding interno para una mejor presentación */
   }
 
   .date-button,
   .select-button,
   .number-button {
-    padding: 1rem; /* Aumenta el padding para mejor visibilidad en pantallas grandes */
+    padding: 1rem;
+    /* Aumenta el padding para mejor visibilidad en pantallas grandes */
   }
 
   .date-inputs .input-fecha,
   .selector-informe,
   .numero-informe {
-    width: auto; /* Permite que los inputs y select se ajusten automáticamente a su contenido */
+    width: auto;
+    /* Permite que los inputs y select se ajusten automáticamente a su contenido */
   }
 
   .btn-eliminar {
-    font-size: 16px; /* Aumenta el tamaño de la fuente del botón de eliminar para mejor visibilidad */
-    padding: 8px 16px; /* Aumenta el padding del botón de eliminar */
+    font-size: 16px;
+    /* Aumenta el tamaño de la fuente del botón de eliminar para mejor visibilidad */
+    padding: 8px 16px;
+    /* Aumenta el padding del botón de eliminar */
   }
 }
 
@@ -979,6 +1008,7 @@ body {
 .swal2-html-container {
   font-size: 18px;
 }
+
 .report-container {
   text-align: center;
   font-family: "Work Sans Regular", sans-serif;
@@ -1007,6 +1037,7 @@ body {
   padding-top: 10px;
   margin-top: 20px;
 }
+
 .download-button {
   background-color: #5cb85c;
   border: none;
@@ -1019,9 +1050,12 @@ body {
   text-decoration: none;
   margin-top: 10px;
 }
+
 .download-button .fa-fa-download {
   border: none;
 }
+
+
 
 
 /*CALENDARIOUSUA*/
@@ -1610,8 +1644,23 @@ body {
 }
 
 .icono-cuadro {
-  height: 20px;
-  width: 20px;
+  max-height: 20%;
+  max-width: 20%;
+  margin-right: 2px;
+}
+
+.text-programacion-agregar {
+  margin-bottom: 30%;
+  left: 40vh;
+}
+
+.input-form-programacion {
+  width: 98%;
+  height: 35px;
+  border: 1px solid #5cb85c;
+  border-radius: 5px;
+  padding-left: 13px;
+  box-sizing: border-box;
 }
 
 .contenedor-principal {
@@ -1623,12 +1672,27 @@ body {
 }
 /* Estilo para el contenedor de los cuadros de inserción */
 .cuadros-insertar {
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   height: 30%;
   width: 15%;
   margin: 6vh;
   margin-top: 19vh;
+}
+
+.agregar-horario {
+  width: 100%;
+  height: 33px;
+  font-size: 0.9rem;
+  padding: 10px;
+  background-color: #5cb85c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 2px;
+  margin-top: 1px;
 }
 
 .cuadro-programacion {
@@ -1644,12 +1708,6 @@ body {
 .cuadro-label {
   display: block;
   cursor: pointer;
-}
-
-.icono-cuadro {
-  width: 50px; /* Ajusta el tamaño del icono */
-  height: auto;
-  margin-bottom: 0.5rem;
 }
 
 .cuadro-programacion .text-programacion-agregar {
@@ -1965,6 +2023,230 @@ button[type="submit"]:hover {
   }
 }
 
+/*RESTAURACION-CLAVE*/
+
+
+/* Estilos generales para el contenedor del formulario */
+.password-reset-container {
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #ffffff; /* Color de fondo blanco */
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+  text-align: center;
+}
+
+/* Estilo del título */
+.password-reset-container .Titulo-Principal {
+  margin-bottom: 30px;
+  font-size: 40px;
+  font-weight: 700;
+  color: #4CAF50;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Sombra más ligera */
+  letter-spacing: 1px; /* Espaciado entre letras */
+  transition: transform 0.3s ease;
+}
+
+.password-reset-container .Titulo-Principal:hover {
+  transform: scale(1.05);
+}
+
+/* Estilo del subtítulo */
+.subtitle {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* Estilo para las instrucciones */
+.instructions {
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Estilos de los grupos de formulario */
+.form-group {
+  margin-bottom: 40px; /* Espacio entre los grupos de formulario */
+  text-align: left; /* Alineación del texto a la izquierda */
+
+}
+
+/* Estilos de las etiquetas */
+.form-group .titulo-correo {
+  display: block; /* Asegura que el label ocupe toda la línea */
+  margin-bottom: 10px; /* Espacio debajo del label */
+  font-size: 16px; /* Tamaño de fuente del label */
+  color: #444; /* Color del texto del label */
+  font-weight: 600; /* Peso de fuente semi-negrita */
+}
+
+/* Estilo del campo de entrada */
+.form-group .Texto-cuadro {
+  display: block; /* Asegura que el input ocupe toda la línea */
+  width: 100%; /* Ajusta al ancho del contenedor */
+  max-width: 400px; /* Limita el ancho máximo */
+  padding: 15px; /* Espaciado interno del input */
+  border: 1px solid #ccc; /* Borde del input */
+  border-radius: 5px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño de fuente del input */
+  margin-top: 10px; /* Espacio entre el label y el input */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra del input */
+  transition: border 0.3s ease, box-shadow 0.3s ease; 
+}
+
+/* Cambiar color del borde al hacer foco */
+.form-group .Texto-cuadro:focus {
+  border-color: #4CAF50; /* Cambia el color del borde al enfocar */
+  outline: none; /* Sin contorno */
+}
+
+/* Estilos del botón */
+.btn-submit {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Efecto de transición */
+  width: 100%;
+  margin-top: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más suave */
+}
+
+/* Efecto hover en el botón */
+.btn-submit:hover {
+  background-color: #45a049;
+  transform: scale(1.02); /* Efecto de aumento al pasar el ratón */
+}
+
+/* Estilo para el mensaje de éxito */
+.message {
+  color: #28a745;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+/* Estilos para el texto de ejemplo */
+.email-example {
+  font-size: 14px; /* Tamaño de fuente */
+  color: #888; /* Color del texto de ejemplo */
+  margin-top: 5px; /* Espacio encima del texto de ejemplo */
+  text-align: left; /* Alineación del texto de ejemplo a la izquierda */
+  display: block; /* Asegura que el texto de ejemplo esté en una nueva línea */
+}
+
+
+/*CAMBIAR CLAVE*/
+/* Estilos generales (sin cambios) */
+.container-form-cambio-clave {
+  max-width: 400px;
+  margin: 0 auto; /* Alinea horizontalmente */
+  padding-top: 40px; /* Baja el contenedor para centrar verticalmente */
+}
+
+.caja-form {
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo mejorado para el título "AVA" */
+.titulo-principal {
+  font-size: 3rem; /* Tamaño más grande */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #4CAF50; /* Verde más vibrante */
+  letter-spacing: 5px; /* Espaciado entre letras */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+  background: linear-gradient(90deg, #4CAF50, #66BB6A); /* Gradiente suave */
+  -webkit-background-clip: text; /* Para que el gradiente solo afecte el texto */
+  color: transparent; /* Hace el texto transparente para mostrar el gradiente */
+  transition: transform 0.3s ease; /* Efecto de transformación */
+}
+
+/* Efecto hover para dar movimiento */
+.titulo-principal:hover {
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+}
+
+/* Estilos del subtítulo y formulario (sin cambios) */
+.subtitulo-clave {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.text-clave {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.mensaje-texto {
+  color: green;
+  text-align: center;
+  margin: 1px 0; /* Espacio arriba y abajo */
+  /* Elimina max-height */
+  overflow: visible; /* Asegúrate de que el contenido sea visible */
+  font-size: 1rem; /* Asegura un tamaño de fuente adecuado */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.label-clave {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.input-clave {
+  /*width: 100%;*/
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Estilo actualizado para el ícono de "ojo" centrado */
+.input-contenedor {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon-eye {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.boton-cambiar-clave {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.boton-cambiar-clave:hover {
+  background-color: #45a049;
+}
 
 
 /*ESTILOS DEL INDEX PRINCIPAL*/
@@ -2494,6 +2776,16 @@ body {
   font-size: 16px;
   margin: 20px auto 0 auto;
   cursor: pointer;
+}
+
+.link-volver {
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.link-clave {
+  margin-left: 7vh;
 }
 
 .botonLogin-inicio .enlace-inicio-login {

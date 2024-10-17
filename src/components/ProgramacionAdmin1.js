@@ -16,8 +16,12 @@ import {
 
 const ProgramacionAdmin1 = () => {
     const [coordinacion, setCoordinacion] = useState('');
-    const [ficha, setFicha] = useState('');
+    const [fichaConsultar, setFichaConsultar] = useState('');
+    const [fichaInsertar, setFichaInsertar] = useState('');
+    const [imagePreview, setImagePreview] = useState(null);
+    const [finTrimestre, setFinTrimestre] = useState('');
     const [showInfo, setShowInfo] = useState(false);
+    const [mensaje, setMensaje] = useState('');
 
     const handleGuardar = () => {
         Swal.fire({
@@ -35,19 +39,6 @@ const ProgramacionAdmin1 = () => {
             text: 'El horario se ha eliminado correctamente.',
             confirmButtonText: 'Aceptar'
         });
-    };
-
-    const handleBuscar = () => {
-        if (coordinacion && ficha) {
-            setShowInfo(true);
-        } else {
-            setShowInfo(false);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Por favor, completa ambos campos antes de buscar.',
-            });
-        }
     };
 
     const toggleDropdown = (e) => {
@@ -321,18 +312,111 @@ const ProgramacionAdmin1 = () => {
             }
         });
     };    
-    
 
-    return (
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result); // Establecer la imagen en estado
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleAgregarHorario = () => {
+        // Lógica para guardar el horario
+        if (finTrimestre && fichaInsertar && imagePreview) {
+            // Aquí puedes enviar los datos a tu backend o guardarlos en el estado
+            Swal.fire({
+                icon: 'success',
+                title: 'Horario agregado',
+                text: 'El horario se ha agregado exitosamente.',
+            });
+            // Reiniciar los campos si es necesario
+            setFinTrimestre('');
+            setFichaInsertar('');
+            setImagePreview(null);
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Por favor, completa todos los campos.',
+            });
+        }
+    };
+
+    const handleBuscar = () => {
+        const horarioEncontrado = horarios.find(horario => 
+            horario.ficha === fichaConsultar && 
+            horario.coordinacion === coordinacion
+        );
+    
+        if (horarioEncontrado) {
+            setHorarioConsultado(horarioEncontrado);
+            setShowInfo(true);
+        } else {
+            setShowInfo(false);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se encontró el horario para la ficha ingresada.',
+            });
+        }
+    };
+    
+     // Estado para almacenar los horarios
+     const [horarios, setHorarios] = useState([]);
+     const [horarioConsultado, setHorarioConsultado] = useState(null); // Para almacenar el horario consultado
+
+     return (
         <div className="contenedor-principal">
             <div className="cuadros-insertar">
-                <div className="cuadro-programacion" onClick={() => document.getElementById('file-upload1').click()}>
-                    <label className="cuadro-label" htmlFor="file-upload1">
+                <div className="cuadro-programacion">
+                    <label className="cuadro-label" htmlFor="file-upload1" onClick={(e) => e.stopPropagation()}>
                         <img className="icono-cuadro" src={Insertar} alt="insertar" />
-                        <p className="text-programacion-agregar">Agregar horario</p>
+                        <p className="text-programacion-agregar">Inserta el horario</p>
                     </label>
-                    <input type="file" id="file-upload1" style={{ display: 'none' }} />
+                    <input 
+                        type="file" 
+                        id="file-upload1" 
+                        style={{ display: 'none' }} 
+                        onChange={handleFileChange} 
+                    />
+                    <br />
+                    <hr />
+                    <br />
+                    <div className="campo-programacion">
+                        <label className="label-form-programacion">Fin de trimestre:</label>
+                        <input 
+                            type="date" 
+                            className="input-form-programacion" 
+                            value={finTrimestre}
+                            onChange={(e) => setFinTrimestre(e.target.value)} 
+                        />
+                    </div>
+                    <div className="campo-programacion">
+                        <label className="label-form-programacion">Ficha:</label>
+                        <input 
+                            type="text" 
+                            className="input-form-programacion-ficha" 
+                            placeholder="Número de ficha" 
+                            value={fichaInsertar} 
+                            onChange={(e) => setFichaInsertar(e.target.value)} 
+                        />
+                    </div>
+
+                    {imagePreview && (
+                        <div className="image-preview">
+                            <img src={imagePreview} alt="Vista previa" style={{ width: '100%', borderRadius: '8px' }} />
+                        </div>
+                    )}
+                    
+                    <button className="agregar-horario" onClick={handleAgregarHorario}>
+                        Agregar este horario
+                    </button>
                 </div>
+                
                 <div className="dropdown-container">
                     <div className="dropdown" onClick={toggleDropdown}>
                         <span>Ficha</span>
@@ -354,6 +438,7 @@ const ProgramacionAdmin1 = () => {
                     </div>
                 </div>
             </div>
+            
             <div className="container-form-programacion">
                 <h2 className="titulo-programacion">Consulta el horario</h2>
                 <div className="buscador-programacion">
@@ -382,8 +467,8 @@ const ProgramacionAdmin1 = () => {
                                     id="fichaBusqueda"
                                     name="fichaBusqueda"
                                     placeholder="Ingrese el número de ficha"
-                                    value={ficha}
-                                    onChange={(e) => setFicha(e.target.value)}
+                                    value={fichaConsultar}
+                                    onChange={(e) => setFichaConsultar(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -397,17 +482,27 @@ const ProgramacionAdmin1 = () => {
                     </form>
                 </div>
             </div>
-            {showInfo && (
+            
+            {showInfo && horarioConsultado && (
                 <div id="infoDisplay" className="info-display">
                     <div className="info-item">
-                        <label>Coordinación:</label> <input type='text' className="espaciado" id="infoCoordinacion"/>
+                        <label>Coordinación:</label> 
+                        <input type='text' className="espaciado" value={coordinacion} readOnly />
                     </div>
                     <div className="info-item">
-                        <label>Ficha:</label> <input className="espaciado" id="infoFicha"/>
+                        <label>Ficha:</label> 
+                        <input className="espaciado" value={horarioConsultado.ficha} readOnly />
                     </div>
-                    <div className="info-box">
-                        {/* Space for further content */}
+                    <div className="info-item">
+                        <label>Fin de trimestre:</label> 
+                        <input className="espaciado" value={horarioConsultado.finTrimestre} readOnly />
                     </div>
+                    {horarioConsultado.imagen && (
+                        <div className="info-item">
+                            <label>Horario:</label>
+                            <img src={horarioConsultado.imagen} alt="Horario" style={{ width: '100%', borderRadius: '8px' }} />
+                        </div>
+                    )}
                     <div className="info-buttons">
                         <button className="buton-horario-guardar" id="guardarButton" onClick={handleGuardar}>
                             Guardar
@@ -419,12 +514,13 @@ const ProgramacionAdmin1 = () => {
                         </button>
                     </div>
                     <div className='info-buttons-agregarProgramacion'>
-                        <button className="agregarProgramacion" id="agregarProgramacion" >
+                        <button className="agregarProgramacion" id="agregarProgramacion">
                             Agregar programación
                         </button>
                     </div>
                 </div>
             )}
+            {mensaje && <div className="mensaje-exito">{mensaje}</div>}
         </div>
     );
 };

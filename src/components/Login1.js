@@ -3,6 +3,8 @@ import { login } from "../api/api"; // Importa la función de login que realiza 
 import logo from "../../src/static/img/Logo de Bienestar.png";
 import logonormal from "../../src/static/img/logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import RestaurarClave from "../pages/Cambiarcla";
 
 function Login1() {
   const [correo, setCorreo] = useState("");
@@ -87,6 +89,8 @@ function Login1() {
             <button className="botonLogin-inicio" type="submit">
               Iniciar sesión
             </button>
+            <Link className="link-volver" to="/">Volver</Link>
+            <Link className="link-clave" to="/RestaurarClave">¿Olvidaste tu contraseña?</Link>
           </form>
         </div>
       </div>

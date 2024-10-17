@@ -1,38 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { getPerfil } from "../api/api.js"; // Ajusta la ruta según tu estructura de directorios
+import { useNavigate } from 'react-router-dom';
 
 function ProfileAdmin() {
   const [perfil, setPerfil] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Inicializa useNavigate
 
   useEffect(() => {
     const fetchPerfil = async () => {
       try {
         const id_Usuario = localStorage.getItem('id_Usuario');
-        console.log('ID de usuario obtenido del localStorage:', id_Usuario);
         if (!id_Usuario) {
           setError('Usuario no autenticado');
           setLoading(false);
           return;
         }
-        console.log("Fetching perfil for user ID:", id_Usuario);
         const data = await getPerfil(id_Usuario);
-        console.log("Perfil data received:", data);
         setPerfil(data);
       } catch (err) {
         setError(err.message);
-        console.error("Error fetching perfil:", error);
       } finally {
         setLoading(false);
       }
     };
 
     fetchPerfil();
-  },[]);
+  }, []);
 
   if (loading) return <p>Cargando...</p>;
   if (error) return <p>Error: {error}</p>;
+
+  const handleChangePassword = () => {
+    navigate('/Cambiarclave'); // Redirige a la ruta correcta
+  };
 
   return (
     <div className="body-profile-admin">
@@ -43,35 +45,29 @@ function ProfileAdmin() {
         <div className="profile-admin-container">
           <form className="form-perfil-admin" id="formulario" method="post">
             <div className="form-group-perfilAdmin">
-              <label className="label-form-profile-admin" htmlFor="nombre">
-                Nombre:
-              </label>
+              <label className="label-form-profile-admin" htmlFor="nombre">Nombre:</label>
               <input
                 className="input-form-profile-admin"
                 type="text"
                 id="nombre"
                 name="nombre"
-                value={perfil.nombre_Usua || '' || perfil.nombre_Admin || '' || perfil.nombre_Instruc  || '' || perfil.nombre_Capac}
+                value={perfil.nombre_Usua || perfil.nombre_Admin || perfil.nombre_Instruc || perfil.nombre_Capac || ''}
                 readOnly
               />
             </div>
             <div className="form-group-perfilAdmin">
-              <label className="label-form-profile-admin" htmlFor="apellido">
-                Apellido:
-              </label>
+              <label className="label-form-profile-admin" htmlFor="apellido">Apellido:</label>
               <input
                 className="input-form-profile-admin"
                 type="text"
                 id="apellido"
                 name="apellido"
-                value={perfil.apellido_Usua || '' || perfil.apellido_Admin || '' || perfil.apellido_Instruc  || '' || perfil.apellido_Capac}
+                value={perfil.apellido_Usua || perfil.apellido_Admin || perfil.apellido_Instruc || perfil.apellidos_Capac || ''}
                 readOnly
               />
             </div>
             <div className="form-group-perfilAdmin">
-              <label className="label-form-profile-admin" htmlFor="correo">
-                Correo institucional:
-              </label>
+              <label className="label-form-profile-admin" htmlFor="correo">Correo institucional:</label>
               <input
                 className="input-form-profile-admin"
                 type="email"
@@ -82,35 +78,39 @@ function ProfileAdmin() {
               />
             </div>
             <div className="form-group-perfilAdmin">
-              <label className="label-form-profile-admin" htmlFor="clave">
-                Clave:
-              </label>
-              <input
-                className="input-form-profile-admin"
-                type="password"
-                id="clave"
-                name="clave"
-                value={perfil.clave_Usua || ''}
-                readOnly
-              />
+              <label className="label-form-profile-admin" htmlFor="clave">Clave:</label>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <input
+                  className="input-form-profile-admin"
+                  type="password"
+                  id="clave"
+                  name="clave"
+                  value={perfil.clave_Usua || ''}
+                  readOnly
+                  style={{ flex: '1', marginRight: '10px' }} // Agregado para dar espacio al botón
+                />
+                <button
+                  type="button" // Cambia el tipo a button para evitar un submit accidental
+                  className="btn-cambiar-clave"
+                  onClick={handleChangePassword}
+                >
+                  Cambiar clave
+                </button>
+              </div>
             </div>
             <div className="form-group-perfilAdmin">
-              <label className="label-form-profile-admin" htmlFor="genero">
-                Género:
-              </label>
+              <label className="label-form-profile-admin" htmlFor="genero">Género:</label>
               <input
                 className="select-form-profile-admin"
                 id="genero"
                 name="genero"
                 disabled
-                value={perfil.genero_Usua || '' || perfil.genero_Admin || '' || perfil.genero_Instruc  || '' || perfil.genero_Capac}
+                value={perfil.genero_Usua || perfil.genero_Admin || perfil.genero_Instruc || perfil.genero_Capac || ''}
                 readOnly
               />
             </div>
             <div className="form-group-perfilAdmin">
-              <label className="label-form-profile-admin" htmlFor="rol">
-                Rol:
-              </label>
+              <label className="label-form-profile-admin" htmlFor="rol">Rol:</label>
               <input
                 className="select-form-profile-admin"
                 id="rol"
@@ -120,27 +120,23 @@ function ProfileAdmin() {
               />
             </div>
             <div className="form-group-perfilAdmin">
-              <label className="label-form-profile-admin" htmlFor="tipo_documento">
-                Tipo de documento:
-              </label>
+              <label className="label-form-profile-admin" htmlFor="tipo_documento">Tipo de documento:</label>
               <input
                 className="select-form-profile-admin"
                 id="tipo_documento"
                 name="tipo_documento"
                 disabled
-                value={perfil.tipodoc_Usua || '' || perfil.tipodoc_Admin || '' || perfil.tipodoc_Instruc  || '' || perfil.tipodoc_Capac}
+                value={perfil.tipodoc_Usua || perfil.tipodoc_Admin || perfil.tipodoc_Instruc || perfil.tipodoc_Capac || ''}
               />
             </div>
             <div className="form-group-perfilAdmin">
-              <label className="label-form-profile-admin" htmlFor="documento">
-                Número de documento:
-              </label>
+              <label className="label-form-profile-admin" htmlFor="documento">Número de documento:</label>
               <input
                 className="input-form-profile-admin"
                 type="number"
                 id="documento"
                 name="documento"
-                value={perfil.documento_Usua || '' || perfil.documento_Admin || '' || perfil.documento_Instruc  || '' || perfil.documento_Capac}
+                value={perfil.documento_Usua || perfil.documento_Admin || perfil.documento_Instruc || perfil.documento_Capac || ''}
                 readOnly
               />
             </div>
@@ -152,3 +148,5 @@ function ProfileAdmin() {
 }
 
 export default ProfileAdmin;
+
+
