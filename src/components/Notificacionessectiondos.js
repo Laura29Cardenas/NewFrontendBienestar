@@ -5,7 +5,7 @@ function Notificacionessectiondos() {
     <main classname="notifications-container">
       <div classname="notification-card">
         <h3> Asunto: Actualización de Taller</h3>
-        <p>
+        <p> 
           Descripción: Se ha actualizado el taller de Deportes para incluir
           nuevas actividades.
         </p>

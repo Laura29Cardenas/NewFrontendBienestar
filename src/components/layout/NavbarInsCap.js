@@ -5,7 +5,7 @@ import perfil from "../../static/img/perfil.png";
 import calendario from "../../static/img/calendario.png";
 import programaciones from "../../static/img/programaciones.png";
 import cerrar_sesion from "../../static/img/cerrarSesion.png";
-
+ 
 function Navbarinscap() {
   return (
     <div className="body-navbarUsuario">

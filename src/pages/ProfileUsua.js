@@ -6,7 +6,7 @@ function ProfileUsua() {
   return (
     <div >
       < NavbarInsCap />
-      < ProfileAdmin />
+      < ProfileAdmin /> 
     </div>
   );
 }; 

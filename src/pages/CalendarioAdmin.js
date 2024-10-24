@@ -5,7 +5,7 @@ import Calendariomain from "../components/Calendariomain";
 
 function CalendarioAdmin (){
     return (
-        <div>
+        <div> 
             < NavbarAdmin />
             < Calendariomain /> 
         </div>

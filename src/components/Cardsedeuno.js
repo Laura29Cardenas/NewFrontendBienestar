@@ -59,7 +59,7 @@ function Cardsedeuno() {
               onClick={() => showTallerAlert(programacion)} // Pasa la programacion al alert
               key={index} // Cambia el key a un índice si no hay un ID único
               style={{ cursor: 'pointer', marginBottom: '10px', padding: '10px', textAlign: 'left' }} // Estilo en línea para el cuadro
-            >
+            > 
               <ul className="text-info" style={{ listStyleType: 'none', padding: 0 }}>
                 <li className="li-card-usua">{programacion.descripcion_procaptall}</li>
                 <li className="li-card-usua">{programacion.nombre_Capacitador}</li>

@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../static/img/Logo de Bienestar.png";
 import perfil from "../../static/img/perfil.png";
-import calendario from "../../static/img/calendario.png";
+import calendario from "../../static/img/calendario.png"; 
 import informes from "../../static/img/informes.png";
 import programaciones from "../../static/img/programaciones.png";
 import usuarios from "../../static/img/usuarios.png";

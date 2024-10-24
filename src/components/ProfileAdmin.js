@@ -133,7 +133,7 @@ function ProfileAdmin() {
               <label className="label-form-profile-admin" htmlFor="documento">Número de documento:</label>
               <input
                 className="input-form-profile-admin"
-                type="number"
+                type="number" 
                 id="documento"
                 name="documento"
                 value={perfil.documento_Usua || perfil.documento_Admin || perfil.documento_Instruc || perfil.documento_Capac || ''}

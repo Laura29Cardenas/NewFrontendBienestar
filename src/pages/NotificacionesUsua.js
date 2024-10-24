@@ -4,7 +4,7 @@ import Notificacionessectionuno from "../components/notificacionessectionuno";
 import Notificacionessectiondos from "../components/Notificacionessectiondos";
 
 function NotificacionesUsua() {
-  return (
+  return ( 
     <div >
     < Navbarinscap />
     < Notificacionessectionuno />

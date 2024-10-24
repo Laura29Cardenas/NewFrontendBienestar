@@ -6,7 +6,7 @@ function ProgramacionAdmin() {
   return (
   <div>
     < NavbarAdmin />
-    < ProgramacionAdmin1 />
+    < ProgramacionAdmin1 /> 
   </div>
   );
 }; 

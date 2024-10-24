@@ -3,7 +3,7 @@ import NavbarInsCap from "../components/layout/NavbarInsCap";
 import Calendariomain from "../components/Calendariomain";
 
 function CalendarioPrograma () {
-  return (
+  return ( 
     <div >
       < NavbarInsCap />
       < Calendariomain />

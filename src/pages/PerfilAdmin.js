@@ -7,7 +7,7 @@ function PerfilAdmin() {
     <div className="body-profile-admin">
       < NavbarAdmin />
       < ProfileAdmin />
-    </div>
+    </div> 
   );
 };
  

@@ -5,8 +5,8 @@ import ProgramacionUsua from "./pages/ProgramacionUsua";
 import Informes from "./pages/Informes";
 import Usuarios from "./pages/Usuarios";
 import PerfilAdmin from "./pages/PerfilAdmin";
-import ProgramacionAdmin from "./pages/ProgramacionAdmin";
-import Inicio from "./pages/Inicio";
+import ProgramacionAdmin from "./pages/ProgramacionAdmin"; 
+import Inicio from "./pages/Inicio"; 
 import Login from "./pages/Login";
 import CalendarioAdmin from "./pages/CalendarioAdmin";
 import RestaurarClave from "./pages/RestaurarClave";
@@ -28,7 +28,7 @@ function App() {
           <Route path="/programacionAdmin" element={<ProgramacionAdmin/>} />
           <Route path="/CalendarioAdmin" element={<CalendarioAdmin />} />
           <Route path="/RestaurarClave" element={<RestaurarClave />}/>
-          <Route path="/Cambiarclave" element={<Cambiarcla />}/>
+          <Route path="/cambiar-clave/:token" element={<Cambiarcla />} />
         </Routes>
       </>
     </div>

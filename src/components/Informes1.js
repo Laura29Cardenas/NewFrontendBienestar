@@ -145,7 +145,7 @@ function Informes1() {
                 <i className="fa fa-download"></i> Descargar
               </button>
             </div>
-          )}
+          )} 
         </div>
       </div>
     </div>
@@ -153,5 +153,4 @@ function Informes1() {
 }
 
 export default Informes1;
-
 

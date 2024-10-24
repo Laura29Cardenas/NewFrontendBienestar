@@ -78,7 +78,7 @@ export const getProgramacionesPorFicha = async (ficha, cordinacion) => {
   const response = await fetch(`${API_BASE_URL}/programacion/ficha/${ficha}/cordinacion/${cordinacion}`);
   return response.json();
 };
-
+ 
 // Talleres
 // En api.js 
 export const createTaller = async (tipoTaller, nombreTaller) => {

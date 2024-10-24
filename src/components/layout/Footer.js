@@ -77,7 +77,7 @@ function Footer() {
               <div className="social-links">
                 <Link to="https://x.com/bcenigraf?lang=es">
                   <i className="fab fa-twitter" />
-                </Link>
+                </Link> 
                 <Link to="https://www.instagram.com/bienestarccys/">
                   <i className="fab fa-instagram" />
                 </Link>

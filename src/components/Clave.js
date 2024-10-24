@@ -1,44 +1,53 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 
 function Clave() {
+  const [email, setEmail] = useState('');
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const email = document.getElementById('email').value;
-    const messageElement = document.getElementById('message');
-  
-    // Validación de correo
-    const validEmail = /.+@(?:soy\.sena\.edu\.co|sena\.edu\.co)$/;
-  
-    if (!validEmail.test(email)) {
-      messageElement.textContent = 'Por favor, introduce un correo válido: usuario@soy.sena.edu.co o usuario@sena.edu.co';
-      return;
-    }
-   
+ 
     try {
-      // Asegúrate de que la URL apunte al puerto correcto
-      const response = await axios.post('http://localhost:3000/api/enviar-enlace', { email });
-      messageElement.textContent = `Se ha enviado un enlace de restauración de contraseña a ${email}.`;
+      const response = await fetch(`http://localhost:7777/api/cambiar-clave`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }), // Asegúrate de enviar el email o el token, según lo que necesites
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText);
+      }
+
+      const data = await response.text();
+      console.log(data);
+      // Aquí podrías mostrar un mensaje al usuario de que el correo fue enviado
     } catch (error) {
-      messageElement.textContent = 'Error al enviar el enlace, intenta nuevamente.';
+      console.error('Error en el envío del formulario:', error);
     }
-  
-    // Limpiar el campo de correo
-    document.getElementById('email').value = '';
   };
 
   return (
-    <div>
+    <div className="outer-container">
       <div className="password-reset-container">
-        <h1 className='Titulo-Principal'>AVA</h1>
+        <h1 className='Titulo-Principal'>SENA</h1>
         <p className="subtitle">¿Desea recuperar su contraseña?</p>
-        <p className="instructions">Para recuperar su cuenta, escriba su correo electrónico institucional.</p>
-        <p id="message" className="message"></p>
+        <p className="instructions">
+          Para recuperar su cuenta, escriba su correo electrónico institucional.
+        </p>
         <form id="passwordResetForm" onSubmit={handleSubmit}>
           <div className="form-group">
             <label className='titulo-correo' htmlFor="email">Correo Electrónico Institucional</label>
-            <input className='Texto-cuadro' type="email" id="email" placeholder="Introduce tu nombre de usuario o correo electrónico" required />
-            <p className="email-example">Ejemplo: usuario@soy.sena.edu.co o usuario@sena.edu.co</p>
+            <input
+              className='Texto-cuadro'
+              type="email"
+              id="email"
+              placeholder="Correo Institucional"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </div>
           <button type="submit" className="btn-submit">Enviar Enlace de Restauración</button>
         </form>
@@ -48,4 +57,5 @@ function Clave() {
 }
 
 export default Clave;
+
 

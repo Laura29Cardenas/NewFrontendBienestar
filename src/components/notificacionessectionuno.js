@@ -1,7 +1,7 @@
 import React from "react";
 
 function Notificacionessectionuno() {
-  return (
+  return ( 
     <div>
       <div classname="title-search-container">
         <h2 classname="section-title" >Historial de Notificaciones</h2>

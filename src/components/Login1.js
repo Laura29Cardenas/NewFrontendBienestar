@@ -1,44 +1,47 @@
 import React, { useState } from "react";
-import { login } from "../api/api"; // Importa la función de login que realiza la solicitud al backend
 import logo from "../../src/static/img/Logo de Bienestar.png";
 import logonormal from "../../src/static/img/logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import RestaurarClave from "../pages/Cambiarcla";
 
 function Login1() {
   const [correo, setCorreo] = useState("");
   const [contraseña, setContraseña] = useState("");
   const [error, setError] = useState("");
-  const [mostrarContraseña, setMostrarContraseña] = useState(false); // Estado para mostrar/ocultar contraseña
+  const [mostrarContraseña, setMostrarContraseña] = useState(false);
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Evita la recarga de la página
+    event.preventDefault();
+
+    if (!correo || !contraseña) {
+        setError("Por favor, complete todos los campos.");
+        return;
+    }
 
     try {
-      const data = await login(correo, contraseña); // Llama a la API con los valores del formulario
-      console.log("Inicio de sesión exitoso:", data);
+        const response = await fetch('http://localhost:7777/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: correo, password: contraseña }),
+        });
 
-      // Guardar el token en el almacenamiento local
-      localStorage.setItem("token", data.token);
-
-      // Dependiendo del rol, redireccionar a diferentes páginas
-      const rol = data.user.rol; // Acceder al rol dentro de "user"
-
-      if (rol === 1) {
-        window.location.href = "/perfilAdmin";
-      } else if (rol === 2) {
-        window.location.href = "/profileUsua";
-      } else if (rol === 3) {
-        window.location.href = "/profileUsua";
-      } else {
-        setError("Rol no reconocido. Contacte con el administrador.");
-      }
-    } catch (err) {
-      console.error("Error de inicio de sesión:", err);
-      setError("Correo o contraseña incorrectos. Inténtalo de nuevo.");
+        if (response.ok) {
+            const data = await response.json();
+            console.log('Inicio de sesión exitoso:', data);
+            // Aquí puedes redirigir o manejar el inicio de sesión exitoso
+        } else { 
+            const errorData = await response.json();
+            setError(errorData.message); // Muestra el mensaje de error
+            console.error('Error de inicio de sesión:', errorData.message);
+        }
+    } catch (error) {
+        setError('Error en el envío del formulario.');
+        console.error('Error en el envío del formulario:', error);
     }
-  };
+};
+
 
   return (
     <div className="body-login">
@@ -60,7 +63,7 @@ function Login1() {
                 className="form-control-login"
                 id="correo"
                 value={correo}
-                onChange={(e) => setCorreo(e.target.value)}
+                onChange={(e) => setCorreo(e.target.value)} // Asegúrate de que esto esté funcionando
                 required
               />
             </div>
@@ -83,14 +86,18 @@ function Login1() {
                 >
                   {mostrarContraseña ? <FaEyeSlash /> : <FaEye />}
                 </span>
-              </div> 
+              </div>
             </div>
             {error && <p style={{ color: "red" }}>{error}</p>}
             <button className="botonLogin-inicio" type="submit">
               Iniciar sesión
             </button>
-            <Link className="link-volver" to="/">Volver</Link>
-            <Link className="link-clave" to="/RestaurarClave">¿Olvidaste tu contraseña?</Link>
+            <Link className="link-volver" to="/">
+              Volver
+            </Link>
+            <Link className="link-clave" to="/RestaurarClave">
+              ¿Olvidaste tu contraseña?
+            </Link>
           </form>
         </div>
       </div>

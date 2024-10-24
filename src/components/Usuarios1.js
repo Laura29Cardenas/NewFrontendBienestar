@@ -5,7 +5,7 @@ import { getbuscarUsuario } from "../api/api"; // Asegúrate de que la ruta a tu
 import { updateUsuario } from "../api/api";
 import { getIdUsuarioGlobal } from "../api/api"; // Asegúrate de que la ruta sea correcta
 import { registrarUsuario } from "../api/api";
-import { registrarUsuariosDesdeExcel } from "../api/api";
+import { registrarUsuariosDesdeExcel } from "../api/api"; 
 
 function Usuarios1() {
   const [user, setUser] = useState(null); 

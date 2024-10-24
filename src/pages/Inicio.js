@@ -7,7 +7,7 @@ import Iniciosection4 from "../components/Iniciosection4";
 import Iniciosection5 from "../components/Iniciosection5";
 import Footer from "../components/layout/Footer";
 
-function Inicio() {
+function Inicio() { 
   return (
     <div> 
       <NavbarInicio />

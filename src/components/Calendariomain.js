@@ -16,14 +16,13 @@ function Calendariomain() {
     for (let i = 1; i <= daysInMonth; i++) {
       const date = new Date(year, month, i);
       const dateStr = date.toISOString().split('T')[0];
-      const event = events.find(e => e.fecha === dateStr);
+      const event = events.find(e => e.fecha === dateStr); 
       daysArray.push({
         day: i,
         dateStr: dateStr,
         hasEvent: !!event,
       });
     }
-
     return daysArray;
   };
 

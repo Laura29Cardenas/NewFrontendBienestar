@@ -61,7 +61,7 @@ function CardsedeFontibon() {
                 <li className="li-card-usua">{programacion.descripcion_procaptall}</li>
                 <li className="li-card-usua">{programacion.nombre_Capacitador}</li>
                 <li className="li-card-usua">{programacion.fecha_procaptall} | {programacion.horaInicio_procaptall}</li>
-              </ul>
+              </ul> 
             </div> 
           ))
         ) : (

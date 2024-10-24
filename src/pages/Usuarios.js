@@ -3,7 +3,7 @@ import NavbarAdmin from "../components/layout/NavbarAdmin";
 import Usuarios1 from "../components/Usuarios1";
 
 function Usuarios() {
-  return (
+  return ( 
     <div >
       < NavbarAdmin />
       < Usuarios1 />

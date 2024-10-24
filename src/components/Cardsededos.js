@@ -33,7 +33,7 @@ function Cardsededos() {
     });
   };
 
-  return (
+  return ( 
     <div className="card">
       <h2 className="title">Sede 64</h2>
       <div className="card-content"> 

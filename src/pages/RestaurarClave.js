@@ -6,5 +6,5 @@ function RestaurarClave (){
         < Clave />
     );
 };
-
+ 
 export default RestaurarClave; 

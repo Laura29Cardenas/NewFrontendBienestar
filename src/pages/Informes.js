@@ -6,7 +6,7 @@ function Informes() {
   return (
     <div >
       < NavbarAdmin />
-      < Informes1 />
+      < Informes1 /> 
     </div>
   );
 }; 

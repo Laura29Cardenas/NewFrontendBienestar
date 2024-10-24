@@ -4,7 +4,7 @@ import asesoria_psicologica from "../static/img/asesoria_psicologica.png";
 import estudio from "../static/img/estudio.png";
 
 function Iniciosection1() {
-  return (
+  return ( 
     <div>
       <section className="section-inicio1-index">
         <div className="content-uno container-index">

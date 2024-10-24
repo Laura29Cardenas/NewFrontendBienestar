@@ -6,7 +6,7 @@ import { Modal, Button, Form } from "react-bootstrap";
 import Select from "react-select";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-  getProgramaciones,
+  getProgramaciones, 
   createProgramacion,
   updateProgramacion,
   deleteProgramacion,

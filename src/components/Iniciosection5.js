@@ -53,7 +53,7 @@ function Iniciosection5() {
           <div className="blog-1">
             <br />
             <h3 className="titulo-tipoh3">Programas Especiales</h3>
-            <br />
+            <br /> 
             <img className="imagen-index" src={discapacidad} alt="discapacidad" />
             <br />
             <p className="txt-p"> 

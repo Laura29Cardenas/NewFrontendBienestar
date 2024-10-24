@@ -4,7 +4,7 @@ import actividades from "../../static/img/actividades.png";
 
 function NavbarInicio() {
   return (
-    <div>
+    <div> 
       <header className="encabezado-index">
         <div className="menu-index container-index">
           <Link to="#" className="logo-index">

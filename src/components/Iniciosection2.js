@@ -3,7 +3,7 @@ import React from "react";
 function Iniciosection2() {
   return ( 
     <div>
-      <main className="services">
+      <main className="services"> 
         <div className="services-content container-index">
           <h2 className="titulo-tipoh2">Bienestar al Aprendiz SENA</h2> 
           <p className="txt-p">

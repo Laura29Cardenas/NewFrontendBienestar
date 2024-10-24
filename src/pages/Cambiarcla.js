@@ -1,12 +1,12 @@
 import React from "react";
-import Cambiarclave from "../components/Cambiarclave";
+import { useParams } from "react-router-dom"; // Para capturar los parámetros de la URL
+import Cambiarclave from "../components/Cambiarclave"; // Importa correctamente
 
 function Cambiarcla() {
-    return (
-        <div>
-        <Cambiarclave/>
-        </div>
-    );
-}; 
-
+    const { token } = useParams(); // Captura el token desde la URL
+    return <Cambiarclave token={token} />; // Pasa el token al componente
+}
+ 
 export default Cambiarcla;
+
+

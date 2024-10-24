@@ -384,7 +384,7 @@ const ProgramacionAdmin1 = () => {
                         onChange={handleFileChange} 
                     />
                     <br />
-                    <hr />
+                    <hr /> 
                     <br />
                     <div className="campo-programacion">
                         <label className="label-form-programacion">Fin de trimestre:</label>
