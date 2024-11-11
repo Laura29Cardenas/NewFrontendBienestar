@@ -120,6 +120,6 @@ function CambiarClave() {
             </div>
         </div>
     );
-}
+} 
 
 export default CambiarClave;

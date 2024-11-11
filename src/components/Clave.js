@@ -46,7 +46,7 @@ function Clave() {
               placeholder="Correo Institucional"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
+              required 
             />
           </div>
           <button type="submit" className="btn-submit">Enviar Enlace de Restauración</button>
@@ -57,5 +57,4 @@ function Clave() {
 }
 
 export default Clave;
-
 
