@@ -10,8 +10,7 @@ import Inicio from "./pages/Inicio";
 import Login from "./pages/Login";
 import CalendarioAdmin from "./pages/CalendarioAdmin";
 import RestaurarClave from "./pages/RestaurarClave";
-import Cambiarcla from "./pages/Cambiarcla";
-
+import CambiarClave from './pages/CambiarClave';
 function App() {
   return (
     <div className=" App">
@@ -28,8 +27,8 @@ function App() {
           <Route path="/programacionAdmin" element={<ProgramacionAdmin/>} />
           <Route path="/CalendarioAdmin" element={<CalendarioAdmin />} />
           <Route path="/RestaurarClave" element={<RestaurarClave />}/>
-          <Route path="/cambiar-clave/:token" element={<Cambiarcla />} />
-        </Routes>
+          <Route path="/restablecer-clave/:token" element={<CambiarClave />} />
+          </Routes>
       </>
     </div>
   );

@@ -18,22 +18,26 @@ function Login1() {
         return;
     }
 
+    console.log('Correo:', correo);
+    console.log('Contraseña:', contraseña);
+
+
     try {
         const response = await fetch('http://localhost:7777/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email: correo, password: contraseña }),
+            body: JSON.stringify({ correo: correo, contraseña: contraseña }), // Verifica que estos nombres coincidan con lo que espera el backend
         });
 
         if (response.ok) {
             const data = await response.json();
             console.log('Inicio de sesión exitoso:', data);
             // Aquí puedes redirigir o manejar el inicio de sesión exitoso
-        } else { 
+        } else {
             const errorData = await response.json();
-            setError(errorData.message); // Muestra el mensaje de error
+            setError(errorData.message || 'Error en el inicio de sesión.'); // Muestra el mensaje de error
             console.error('Error de inicio de sesión:', errorData.message);
         }
     } catch (error) {
@@ -41,7 +45,6 @@ function Login1() {
         console.error('Error en el envío del formulario:', error);
     }
 };
-
 
   return (
     <div className="body-login">

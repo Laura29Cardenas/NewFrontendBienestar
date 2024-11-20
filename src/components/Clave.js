@@ -5,26 +5,27 @@ function Clave() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
- 
+  
     try {
-      const response = await fetch(`http://localhost:7777/api/cambiar-clave`, {
+      const response = await fetch('http://localhost:7777/api/restablecer-clave', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }), // Asegúrate de enviar el email o el token, según lo que necesites
+        body: JSON.stringify({ email: 'dframirez786@soy.sena.edu.co' })  // Usar el correo que quieres probar
       });
-
+      
+  
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(errorText);
+        const data = await response.json();
+        throw new Error(data.message || 'Hubo un error al enviar el correo.');
       }
-
-      const data = await response.text();
-      console.log(data);
-      // Aquí podrías mostrar un mensaje al usuario de que el correo fue enviado
+  
+      // Mostrar un mensaje al usuario que el correo fue enviado
+      alert('Se ha enviado un enlace de restauración a su correo electrónico.');
     } catch (error) {
-      console.error('Error en el envío del formulario:', error);
+      console.error('Error al enviar el correo:', error);
+      alert('Hubo un error al enviar el correo. Inténtelo de nuevo.');
     }
   };
 
