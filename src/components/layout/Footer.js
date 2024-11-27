@@ -14,7 +14,7 @@ function Footer() {
                   <Link to="https://www.sena.edu.co/es-co/ciudadano/Paginas/certificadosConstancias.aspx">
                     Certificados
                   </Link>
-                </li>
+                </li> 
                 <li>
                   <Link to="https://portal.senasofiaplus.edu.co/index.php/cronograma">
                     Cronogramas 2024

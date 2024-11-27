@@ -1541,7 +1541,7 @@ body {
   .navbar-usuario .ul-nav-usuario .li-navUsuario {
     margin: 0 10px; /* Reduce el margen entre los elementos de la barra de navegación */
   }
-
+ 
   .navbar-usuario .ul-nav-usuario .li-navUsuario .enlace-navUsuario {
     padding: 4px 8px; /* Reduce el padding de los enlaces */
   }

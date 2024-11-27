@@ -2,49 +2,60 @@ import React, { useState } from "react";
 import logo from "../../src/static/img/Logo de Bienestar.png";
 import logonormal from "../../src/static/img/logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Importar useNavigate para redirección
 
 function Login1() {
-  const [correo, setCorreo] = useState("");
-  const [contraseña, setContraseña] = useState("");
-  const [error, setError] = useState("");
-  const [mostrarContraseña, setMostrarContraseña] = useState(false);
+  const [correo, setCorreo] = useState(""); // Almacena el valor del input de correo
+  const [contraseña, setContraseña] = useState(""); // Almacena el valor del input de contraseña
+  const [error, setError] = useState(""); // Almacena mensajes de error
+  const [mostrarContraseña, setMostrarContraseña] = useState(false); // Alterna entre mostrar/ocultar la contraseña
+  const navigate = useNavigate(); // Hook para redirección
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Evita la recarga de página
 
+    // Validar que los campos no estén vacíos
     if (!correo || !contraseña) {
-        setError("Por favor, complete todos los campos.");
-        return;
+      setError("Por favor, ingrese su correo y contraseña.");
+      return;
     }
-
-    console.log('Correo:', correo);
-    console.log('Contraseña:', contraseña);
-
 
     try {
-        const response = await fetch('http://localhost:7777/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ correo: correo, contraseña: contraseña }), // Verifica que estos nombres coincidan con lo que espera el backend
-        });
+      const response = await fetch("http://localhost:7777/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ correo, contraseña }), // Enviar correo y contraseña
+      });
 
-        if (response.ok) {
-            const data = await response.json();
-            console.log('Inicio de sesión exitoso:', data);
-            // Aquí puedes redirigir o manejar el inicio de sesión exitoso
-        } else {
-            const errorData = await response.json();
-            setError(errorData.message || 'Error en el inicio de sesión.'); // Muestra el mensaje de error
-            console.error('Error de inicio de sesión:', errorData.message);
-        }
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Manejo de errores del servidor
+        setError(data.message || "Error desconocido al iniciar sesión.");
+        return;
+      }
+
+      console.log("Inicio de sesión exitoso:", data);
+
+      // Guardar datos del usuario (como el rol) en localStorage
+      localStorage.setItem("rol", data.rol); // Almacenar el rol
+      localStorage.setItem("token", data.token); // Almacenar el token si es necesario
+
+      // Redirigir según el rol
+      if (data.rol === "administrador") {
+        navigate("/perfilAdmin"); // Redirige al perfil del administrador
+      } else if (data.rol === "usuario") {
+        navigate("/profileUsua"); // Redirige al perfil del usuario
+      } else {
+        setError("Rol no reconocido. Contacta al administrador.");
+      }
     } catch (error) {
-        setError('Error en el envío del formulario.');
-        console.error('Error en el envío del formulario:', error);
+      console.error("Error de inicio de sesión:", error);
+      setError("Ocurrió un error inesperado. Intenta nuevamente.");
     }
-};
+  };
 
   return (
     <div className="body-login">
@@ -66,7 +77,7 @@ function Login1() {
                 className="form-control-login"
                 id="correo"
                 value={correo}
-                onChange={(e) => setCorreo(e.target.value)} // Asegúrate de que esto esté funcionando
+                onChange={(e) => setCorreo(e.target.value)} // Controla el valor con useState
                 required
               />
             </div>
@@ -80,18 +91,18 @@ function Login1() {
                   className="form-control-login"
                   id="contraseña"
                   value={contraseña}
-                  onChange={(e) => setContraseña(e.target.value)}
+                  onChange={(e) => setContraseña(e.target.value)} // Controla el valor con useState
                   required
                 />
                 <span
                   className="password-toggle-icon"
-                  onClick={() => setMostrarContraseña(!mostrarContraseña)}
+                  onClick={() => setMostrarContraseña(!mostrarContraseña)} // Alterna la visibilidad
                 >
                   {mostrarContraseña ? <FaEyeSlash /> : <FaEye />}
                 </span>
               </div>
             </div>
-            {error && <p style={{ color: "red" }}>{error}</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>} {/* Muestra errores aquí */}
             <button className="botonLogin-inicio" type="submit">
               Iniciar sesión
             </button>
@@ -103,9 +114,10 @@ function Login1() {
             </Link>
           </form>
         </div>
-      </div>
+      </div> 
     </div>
   );
 }
 
 export default Login1;
+

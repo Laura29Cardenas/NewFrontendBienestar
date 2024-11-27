@@ -13,7 +13,7 @@ function Iniciosection1() {
           <div className="item-group" />
           <div className="item-index">
             <img className="imagen-index" src={asesoria_psicologica} alt="asesoria_psicologica" />
-            <br/>
+            <br/> 
             <p className="txt-p"> 
               El servicio de asesoría psicológica del SENA ofrece apoyo
               emocional y mental a los estudiantes. Proporciona un espacio

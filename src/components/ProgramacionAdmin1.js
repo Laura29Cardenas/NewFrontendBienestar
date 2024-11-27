@@ -12,7 +12,7 @@ import {
     consultarTallerPorNombre, 
     updateTaller,  // Asegúrate de agregar esta línea
     deleteTaller    // Y también esta
-} from '../api/api';
+} from '../api/api'; 
 
 const ProgramacionAdmin1 = () => {
     const [coordinacion, setCoordinacion] = useState('');

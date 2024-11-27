@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {
   getProgramaciones, 
   createProgramacion,
-  updateProgramacion,
+  updateProgramacion, 
   deleteProgramacion,
   getTalleres,
   getCapacitadores, 

@@ -12,7 +12,7 @@ function Notificacionessectiondos() {
         <div classname="programacion">
           <p>Día: 01/08/2024</p> 
           <p>Hora: 10:00 AM</p>
-          <p>Sede: 52 auditorio</p>
+          <p>Sede: 52 auditorio</p> 
           <p>Capacitador: Juan Pérez</p>
         </div>
       </div>

@@ -126,7 +126,7 @@ function Usuarios1() {
                 <option value="2">Instructor</option>
                 <option value="3">Capacitador</option>
               </select>
-            </div>
+            </div> 
           </form>
         </div>
         <div>

@@ -16,7 +16,7 @@ function Cardsedeuno() {
         setProgramaciones(extractedData.filter(item => item !== undefined)); // Filtrar los valores indefinidos
       } catch (error) {
         console.error("Error al obtener programaciones:", error);
-        Swal.fire({
+        Swal.fire({ 
           title: 'Error',
           text: 'No se pudieron cargar las programaciones.',
           icon: 'error',

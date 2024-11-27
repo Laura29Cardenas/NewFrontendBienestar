@@ -1,52 +1,58 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom"; // Para obtener parámetros de la URL
+import { Link } from "react-router-dom"; // Para navegación
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Librería de íconos
 
 function CambiarClave() {
-  const { token } = useParams(); // Obtener el token de la URL
-  const [oldPassword, setOldPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [temporaryPassword, setTemporaryPassword] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showTemporaryPassword, setShowTemporaryPassword] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Token que se envía:", token);
-  
-    if (!password) {
-      setMessage('Por favor, ingrese una nueva contraseña.');
+
+    if (!email || !temporaryPassword || !password || !confirmPassword) {
+      setMessage("Todos los campos son obligatorios.");
       return;
     }
-  
+
+    if (password !== confirmPassword) {
+      setMessage("Las contraseñas no coinciden.");
+      return;
+    }
+
     try {
-      const response = await fetch(`http://localhost:7777/api/restablecer-clave/${token}`, {
-        method: 'POST',
+      const response = await fetch(`http://localhost:7777/api/cambiar-clave`, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ newPassword: password }), // Asegúrate de que "newPassword" esté bien definido
+        body: JSON.stringify({
+          email,
+          temporaryPassword,
+          newPassword: password,
+        }),
       });
-  
-      if (!response.ok) {
-        const data = await response.json();
-            console.log("Respuesta del servidor:", data);
-            setMessage('Contraseña actualizada con éxito.');
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage("Contraseña actualizada con éxito.");
       } else {
-        const errorData = await response.json();
-            console.error("Detalles del error:", errorData);
-            setMessage(errorData.message || 'Error al cambiar la contraseña.');
+        setMessage(data.message || "Error al cambiar la contraseña.");
       }
     } catch (error) {
-      console.error('Error al enviar la solicitud:', error);
-      setMessage('Error al enviar la solicitud.');
+      console.error("Error al enviar la solicitud:", error);
+      setMessage("Error interno del servidor.");
     }
-  };  
+  };
 
-  const toggleShowOldPassword = () => {
-    setShowOldPassword(!showOldPassword);
+  const toggleShowTemporaryPassword = () => {
+    setShowTemporaryPassword(!showTemporaryPassword);
   };
 
   const toggleShowPassword = () => {
@@ -63,28 +69,44 @@ function CambiarClave() {
         <h1 className="titulo-principal">SENA</h1>
         <p className="subtitulo-clave">Cambiar Contraseña</p>
         <p className="text-clave">
-          Por favor, ingrese su nueva contraseña y confírmela.
+          Por favor, ingrese su correo, clave temporal, nueva contraseña y
+          confírmela.
         </p>
         <p id="message" className="mensaje-texto">
           {message}
         </p>
         <form id="passwordChangeForm" onSubmit={handleSubmit}>
-          {/* Campo de Contraseña Anterior */}
+          {/* Campo de Correo */}
           <div className="form-group">
-            <label className="label-clave" htmlFor="oldPassword">
-              Contraseña Anterior
+            <label className="label-clave" htmlFor="email">
+              Correo Electrónico
+            </label>
+            <input
+              className="input-clave"
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Campo de Clave Temporal */}
+          <div className="form-group">
+            <label className="label-clave" htmlFor="temporaryPassword">
+              Clave Temporal
             </label>
             <div className="input-contenedor">
               <input
                 className="input-clave"
-                type={showOldPassword ? "text" : "password"}
-                id="oldPassword"
-                value={oldPassword}
-                onChange={(e) => setOldPassword(e.target.value)}
+                type={showTemporaryPassword ? "text" : "password"}
+                id="temporaryPassword"
+                value={temporaryPassword}
+                onChange={(e) => setTemporaryPassword(e.target.value)}
                 required
               />
-              <span className="icon-eye" onClick={toggleShowOldPassword}>
-                {showOldPassword ? <FaEyeSlash /> : <FaEye />}
+              <span className="icon-eye" onClick={toggleShowTemporaryPassword}>
+                {showTemporaryPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
           </div>
@@ -132,7 +154,10 @@ function CambiarClave() {
           <button type="submit" className="boton-cambiar-clave">
             Cambiar Contraseña
           </button>
-        </form>
+          <Link className="link-volver" to="/">
+            Volver atrás
+          </Link>
+        </form> 
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ import cerrar_sesion from "../../static/img/cerrarSesion.png";
 import { Link } from "react-router-dom";
 
 function NavbarAdmin() {
-  return (
+  return ( 
     <div className="body-navbarAdmin">
       <header className="header-nav-admin">
         <img

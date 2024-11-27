@@ -196,7 +196,7 @@ function Informes1() {
               <div className="report-content">
                 <p>
                   <strong>Sede:</strong> {informeData.sede_procaptall}
-                </p>
+                </p> 
                 <p>
                   <strong>Descripción:</strong>{" "}
                   {informeData.descripcion_procaptall}

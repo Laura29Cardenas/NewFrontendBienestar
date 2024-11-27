@@ -4,7 +4,7 @@ function Iniciosection3() {
   return (
     <div>  
       <section className="general">
-        <div className="general-1">
+        <div className="general-1"> 
           <h2 className="titulo-tipoh2"> Acceso a Recursos Adicionales </h2> 
           <h3>Bibliotecas y Centros de Recursos: </h3>
           <p className="parrafo-general">

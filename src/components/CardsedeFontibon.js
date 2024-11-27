@@ -13,7 +13,7 @@ function CardsedeFontibon() {
         // Asegúrate de que los datos se estructuran correctamente
         const extractedData = Object.values(data[0]).filter(item => item !== undefined);
         setProgramaciones(extractedData);
-      } catch (error) {
+      } catch (error) { 
         console.error("Error al obtener programaciones:", error);
         Swal.fire({
           title: 'Error',

@@ -55,7 +55,7 @@ export const getProgramacionesPorSede52 = async () => {
   return response.json();
 };
 
-// Obtener programacion por sede (Sede 64)
+// Obtener programacion por sede (Sede 64) 
 export const getProgramacionesPorSede64 = async () => {
   const response = await fetch(`${API_BASE_URL}/programaciones/sede64`);
   if (!response.ok) {

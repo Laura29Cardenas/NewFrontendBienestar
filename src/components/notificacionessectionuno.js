@@ -14,7 +14,7 @@ function Notificacionessectionuno() {
           <button classname="search-button" id="buscarNotificacion">
             <img src="{busquedaUsua}" classname="Buscar" alt="Buscar" />
           </button>
-          <button classname="filter-button">
+          <button classname="filter-button"> 
             <img src="{filtrar}" classname="Filtrar" alt="Filtrar" />
           </button>
         </div>

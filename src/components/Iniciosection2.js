@@ -5,7 +5,7 @@ function Iniciosection2() {
     <div>
       <main className="services"> 
         <div className="services-content container-index">
-          <h2 className="titulo-tipoh2">Bienestar al Aprendiz SENA</h2> 
+          <h2 className="titulo-tipoh2">Bienestar al Aprendiz SENA</h2>  
           <p className="txt-p">
             Es una estrategia institucional para contribui permanencia y el
             desempeño exitoso de los aprendices de la entidad en su proceso

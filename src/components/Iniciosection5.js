@@ -8,7 +8,7 @@ function Iniciosection5() {
     <div>
       <section className="blog container-index">
         <h2 className="titulo-tipoh2">Programas de Apoyo Financiero</h2> 
-        <p className="txt-p">
+        <p className="txt-p"> 
           Bienestar al Aprendiz ofrece una amplia gama de programas de apoyo
           financiero diseñados para asistir a los estudiantes en la cobertura de
           diversos gastos relacionados con su educación y necesidades

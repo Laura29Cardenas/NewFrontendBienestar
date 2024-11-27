@@ -61,7 +61,7 @@ function Calendariomain() {
         uniqueEvents
       );
       setDaysInMonth(daysArray);
-      setCalendarVisible(true);
+      setCalendarVisible(true); 
     } catch (error) {
       console.error("Error al obtener programaciones:", error);
       Swal.fire({

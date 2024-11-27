@@ -13,7 +13,7 @@ function Profile ()  {
         <div className="profile-usua-container">
           <form 
           className="form-perfil-usua" 
-          id="formulario" 
+          id="formulario"  
           action="#" 
           method="post">
 

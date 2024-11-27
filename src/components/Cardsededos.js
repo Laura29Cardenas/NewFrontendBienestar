@@ -17,7 +17,7 @@ function Cardsededos() {
     Swal.fire({
       title: `Información del Taller de ${tallerData.nombre_Taller}`,
       html: `
-        <div class="workshop-container">
+        <div class="workshop-container"> 
           <div class="workshop-content">
             <p><strong>Fecha y Hora:</strong> ${tallerData.fecha_procaptall} | ${tallerData.horaInicio_procaptall} - ${tallerData.horaFin_procaptall}</p>
             <p><strong>Descripción:</strong> ${tallerData.descripcion_procaptall}</p>
